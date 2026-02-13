@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
+    public InputActionReference fire;
+    public InputActionReference aim;
+    
     
     private Camera cam;
     public Vector3 targetPos {get; set;}
@@ -13,23 +17,24 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float shootCooldown = .3f;
     
+    
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
-
-    void Update()
+    
+    void FixedUpdate()
     {
         if (gameObject.tag == "Player")
         {
-            targetPos = cam.ScreenToWorldPoint(Input.mousePosition);
+            targetPos = cam.ScreenToWorldPoint(aim.action.ReadValue<Vector2>());
         }
         
-        if (gameObject.tag == "bad")
-        {
-            targetPos =  GameObject.Find("Player").transform.position;
-        }
-
+        // if (gameObject.tag == "bad")
+        // {
+        //     targetPos =  GameObject.Find("Player").transform.position;
+        // }
+        
         Vector3 rotation = targetPos - transform.position;
         
         float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
@@ -46,7 +51,7 @@ public class Shooting : MonoBehaviour
             }
         }
         
-        if (Input.GetMouseButton(0) && canFire && gameObject.tag == "Player")
+        if ((fire.action.ReadValue<float>() == 1) && canFire && gameObject.tag == "Player")
         {
             canFire = false;
             GameObject bull;
@@ -54,12 +59,12 @@ public class Shooting : MonoBehaviour
             bull.tag = gameObject.tag;
         }
 
-        if (canFire && gameObject.tag != "Player")
-        {
-            canFire = false;
-            GameObject bull;
-            bull = Instantiate(bullet, bulletTrans.position, Quaternion.identity);
-            bull.tag = gameObject.tag;
-        }
+        // if (canFire && gameObject.tag != "Player")
+        // {
+        //     canFire = false;
+        //     GameObject bull;
+        //     bull = Instantiate(bullet, bulletTrans.position, Quaternion.identity);
+        //     bull.tag = gameObject.tag;
+        // }
     }
 }
