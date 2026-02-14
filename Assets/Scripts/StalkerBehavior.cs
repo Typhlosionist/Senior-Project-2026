@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class StalkerBehavior : EnemyBase
@@ -18,6 +17,10 @@ public class StalkerBehavior : EnemyBase
     [SerializeField] float lungeSpeed = 5;
     [SerializeField] float lungeReduction = 8;
     [SerializeField] float attackReach = 2;
+
+    [SerializeField] float skulkTime = 1;
+    [SerializeField] float skulkSpeed = 3;
+    
     
     bool canAttack = true;
 
@@ -33,6 +36,8 @@ public class StalkerBehavior : EnemyBase
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         hurtBox = transform.Find("AttackBox");
+
+        AttackTarget = GameObject.Find("Player");
 
         hurtBox.gameObject.SetActive(false);
         
@@ -60,10 +65,16 @@ public class StalkerBehavior : EnemyBase
                 }
                 else
                 {
+                    //Will not move to search if player is still withing attack distance
                     state = "Search";
+                    if(distToTarget <= attackDistance) state = "Attack";
                 }
                 break;
             case "Attacking":
+                //Running Coroutine Attack()
+                break;
+            case "Skulk":
+                //Running Corouting Skulk()
                 break;
             default:
                 state = "Search";
@@ -100,10 +111,22 @@ public class StalkerBehavior : EnemyBase
         
         //Cooldown (Regains movement after half cooldown, can attack after full cooldown)
         yield return new WaitForSeconds(attackCooldown/2);
-        state = "Search";
+        state = "Skulk";
+        StartCoroutine(Skulk());
 
         yield return new WaitForSeconds(attackCooldown/2);
         canAttack = true;
+    }
+
+    //Stalker Skulks away after attacking
+    IEnumerator Skulk()
+    {
+        Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
+        rb.linearVelocity = -dir * skulkSpeed;
+
+        yield return new WaitForSeconds(skulkTime);
+
+        state = "Search";
     }
 
     public void MoveToTarget()

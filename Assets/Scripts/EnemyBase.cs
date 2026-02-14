@@ -19,9 +19,7 @@ public class EnemyBase : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        CurrentHealth = MaxHealth;
-
-        rb = GetComponent<Rigidbody2D>();
+ 
     }
 
     // Update is called once per frame
