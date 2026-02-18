@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEngine.UIElements;
 
 public class NavGrid : MonoBehaviour   
 {
@@ -23,26 +22,46 @@ public class NavGrid : MonoBehaviour
         {
             for(int j = 0 ; j < nodesVertical; j++)
             {
+                
                 float offset = nodeSpacing/2;
                 
                 Vector2 posVec = new Vector2(i*nodeSpacing, j*nodeSpacing);
 
                 if(j%2 != 0)
                 {
-                    Debug.Log("hit");
                     posVec.x += offset;
                 }
 
-                GameObject nodeObj = Instantiate(Node, (Vector2)transform.position + posVec, Quaternion.identity);
 
-                nodes.Add(nodeObj);
+                //TODO: get collision detection working
+                Collider2D hit = Physics2D.OverlapCircle(posVec, nodeSpacing/4);
+                if(hit == null)
+                {
+                    GameObject nodeObj = Instantiate(Node, (Vector2)transform.position + posVec, Quaternion.identity);
+                    nodeObj.GetComponent<node>().parentSpawner = this;
+
+                    nodes.Add(nodeObj);
+                }
+
+
             }
         }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
+        //Adjacency
+        foreach(GameObject obj in nodes)
+        {
+            foreach(GameObject other in nodes)
+            {
+                float distance = Vector2.Distance(obj.transform.position, other.transform.position);
+
+                if(obj != other && distance <= nodeSpacing*1.5)
+                {
+                    obj.GetComponent<node>().AddNeighboor(other);
+                }
+            }
+        }
+
+        //Rendering
         if(nodesVisible){
             foreach(GameObject obj in nodes)
             {
@@ -58,6 +77,18 @@ public class NavGrid : MonoBehaviour
                 objSp.enabled = false;
             }
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(nodesVisible){
+            foreach(GameObject obj in nodes)
+            {
+                obj.GetComponent<node>().DrawConnections();
+            }
+        }
+        
     }
 }
 

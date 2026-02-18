@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: de4b7489676654b49ae17dffe5e612fa
+guid: d6c95af8b015a934488f6add88f131a2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4700886969767651361
-    second: CIS4914EnemyConcepts_0
+      213: 4493077389576853052
+    second: Shiner_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +113,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CIS4914EnemyConcepts_0
+      name: Shiner_0
       rect:
         serializedVersion: 2
-        x: 931
-        y: 1210
-        width: 2057
-        height: 1790
+        x: 111
+        y: 84
+        width: 641
+        height: 635
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fd79cb5153813ceb0800000000000000
-      internalID: -4700886969767651361
+      spriteID: c36511a941e9a5e30800000000000000
+      internalID: 4493077389576853052
       vertices: []
       indices: 
       edges: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 683b74357eb3a4b44a452271d26457b1
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CIS4914EnemyConcepts_0: -4700886969767651361
+      Shiner_0: 4493077389576853052
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

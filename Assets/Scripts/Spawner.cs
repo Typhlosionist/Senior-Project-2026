@@ -1,3 +1,4 @@
+using Unity.Collections.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -8,11 +9,16 @@ public class Spawner : MonoBehaviour
     [SerializeField] int numberToSpawn;
     [SerializeField] int spawnRadius;
 
+    [SerializeField] bool spawnOnStartup = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (spawnOnStartup)
+        {
         Spawn();
+        }
     }
 
     void Spawn()

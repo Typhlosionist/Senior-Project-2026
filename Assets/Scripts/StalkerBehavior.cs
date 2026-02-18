@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class StalkerBehavior : EnemyBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     SpriteRenderer sprite;
     Transform hurtBox;
@@ -121,10 +120,15 @@ public class StalkerBehavior : EnemyBase
     //Stalker Skulks away after attacking
     IEnumerator Skulk()
     {
+        /*
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
         rb.linearVelocity = -dir * skulkSpeed;
 
         yield return new WaitForSeconds(skulkTime);
+        */
+
+        //TODO: Fix the skulk function once pathfinding works
+        yield return new WaitForSeconds(0);
 
         state = "Search";
     }

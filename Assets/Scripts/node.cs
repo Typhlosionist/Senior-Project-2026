@@ -5,16 +5,26 @@ public class node : MonoBehaviour
 {
     public NavGrid parentSpawner;
     public int ID;
-    public List<GameObject> neighbors = new List<GameObject>();
+    public List<GameObject> neighboors = new List<GameObject>();
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void DrawConnections()
     {
-        
+        foreach(GameObject neighboor in neighboors)
+        {
+            Debug.DrawLine(this.transform.position, neighboor.transform.position, Color.white, 0f);
+        }
+    }
+
+    public void AddNeighboor(GameObject neighboor)
+    {
+        neighboors.Add(neighboor);
     }
 
     public Vector2 getGlobalPosition()
     {
         return transform.position;
     }
+
+
 
 }

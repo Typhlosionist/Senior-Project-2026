@@ -15,24 +15,20 @@ public class EnemyBase : MonoBehaviour
     public Rigidbody2D rb; 
 
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
- 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-        
-    }
-
     //Transitions the object's velocity from it's current velocity to the desired velocity
     //TODO
     //Note: IEnumerator better?
-    public void TransitionVelocity(Vector2 targetVal, float rate)
+    void TransitionVelocity(Vector2 targetVal, float rate)
+    {
+        
+    }
+
+    void SeachForTarget()
+    {
+        
+    }
+
+    public void MoveToTarget()
     {
         
     }
