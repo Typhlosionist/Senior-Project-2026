@@ -8,11 +8,12 @@ public class NavGrid : MonoBehaviour
     [SerializeField] int nodesHorizontal = 2;
 
     [SerializeField] float nodeSpacing = 5;
+    [SerializeField] float detectionRadius = 0.4f;
 
     //Debug Options
     [SerializeField] bool nodesVisible = true;
 
-    List<GameObject> nodes = new List<GameObject>();
+    public List<GameObject> nodes = new List<GameObject>();
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,9 +33,8 @@ public class NavGrid : MonoBehaviour
                     posVec.x += offset;
                 }
 
-
-                //TODO: get collision detection working
-                Collider2D hit = Physics2D.OverlapCircle(posVec, nodeSpacing/4);
+                Collider2D hit = Physics2D.OverlapCircle((Vector2)transform.position + posVec, detectionRadius, LayerMask.GetMask("Default"));
+                //Debug.Log(hit);
                 if(hit == null)
                 {
                     GameObject nodeObj = Instantiate(Node, (Vector2)transform.position + posVec, Quaternion.identity);
@@ -61,6 +61,9 @@ public class NavGrid : MonoBehaviour
             }
         }
 
+        //Cleanup
+        KeepLargestCluster();
+
         //Rendering
         if(nodesVisible){
             foreach(GameObject obj in nodes)
@@ -77,7 +80,73 @@ public class NavGrid : MonoBehaviour
                 objSp.enabled = false;
             }
         }
+
     }
+
+    //Helper
+    void KeepLargestCluster()
+{
+    HashSet<GameObject> visited = new HashSet<GameObject>();
+    List<List<GameObject>> clusters = new List<List<GameObject>>();
+
+    // Find connected clusters using BFS
+    foreach (GameObject startNode in nodes)
+    {
+        if (visited.Contains(startNode))
+            continue;
+
+        List<GameObject> cluster = new List<GameObject>();
+        Queue<GameObject> queue = new Queue<GameObject>();
+
+        queue.Enqueue(startNode);
+        visited.Add(startNode);
+
+        while (queue.Count > 0)
+        {
+            GameObject current = queue.Dequeue();
+            cluster.Add(current);
+
+            List<GameObject> neighbors = current.GetComponent<node>().neighboors;
+
+            foreach (GameObject neighbor in neighbors)
+            {
+                if (!visited.Contains(neighbor))
+                {
+                    visited.Add(neighbor);
+                    queue.Enqueue(neighbor);
+                }
+            }
+        }
+
+        clusters.Add(cluster);
+    }
+
+    // Find largest cluster
+    List<GameObject> largestCluster = null;
+    int maxSize = 0;
+
+    foreach (var cluster in clusters)
+    {
+        if (cluster.Count > maxSize)
+        {
+            maxSize = cluster.Count;
+            largestCluster = cluster;
+        }
+    }
+
+    if (largestCluster == null)
+        return;
+
+    // Remove nodes not in largest cluster
+    for (int i = nodes.Count - 1; i >= 0; i--)
+    {
+        if (!largestCluster.Contains(nodes[i]))
+        {
+            Destroy(nodes[i]);
+            nodes.RemoveAt(i);
+        }
+    }
+}
 
     // Update is called once per frame
     void Update()
