@@ -17,54 +17,45 @@ public class Shooting : MonoBehaviour
     private float timer;
     public float shootCooldown = .3f;
     
+    public Vector3 rotation { get; set;}
+    
+    private bool freeze = PlayerMove.freeze;
     
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
     
-    void FixedUpdate()
+    void Update()
     {
-        if (gameObject.tag == "Player")
+        freeze = PlayerMove.freeze;
+        if (!freeze)
         {
             targetPos = cam.ScreenToWorldPoint(aim.action.ReadValue<Vector2>());
-        }
-        
-        // if (gameObject.tag == "bad")
-        // {
-        //     targetPos =  GameObject.Find("Player").transform.position;
-        // }
-        
-        Vector3 rotation = targetPos - transform.position;
-        
-        float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
-        
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
-        if (!canFire)
-        {
-            timer += Time.deltaTime;
-            if (timer > shootCooldown)
+            rotation = targetPos - transform.position;
+
+            float rotZ = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(0, 0, rotZ);
+
+            if (!canFire)
             {
-                canFire = true;
-                timer = 0;
+                timer += Time.deltaTime;
+                if (timer > shootCooldown)
+                {
+                    canFire = true;
+                    timer = 0;
+                }
+            }
+
+            if ((fire.action.ReadValue<float>() == 1) && canFire)
+            {
+                canFire = false;
+                GameObject bull;
+                bull = Instantiate(bullet, bulletTrans.position, Quaternion.identity);
+                bull.tag = gameObject.tag;
             }
         }
-        
-        if ((fire.action.ReadValue<float>() == 1) && canFire && gameObject.tag == "Player")
-        {
-            canFire = false;
-            GameObject bull;
-            bull = Instantiate(bullet, bulletTrans.position, Quaternion.identity);
-            bull.tag = gameObject.tag;
-        }
-
-        // if (canFire && gameObject.tag != "Player")
-        // {
-        //     canFire = false;
-        //     GameObject bull;
-        //     bull = Instantiate(bullet, bulletTrans.position, Quaternion.identity);
-        //     bull.tag = gameObject.tag;
-        // }
     }
 }

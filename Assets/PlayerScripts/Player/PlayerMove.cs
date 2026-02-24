@@ -14,6 +14,8 @@ public class PlayerMove : MonoBehaviour
     private Vector2 moveDir;
 
     public InputActionReference move;
+
+    public static bool freeze = false;
     
     private float dashLen = .25f;
     private float dashCd = 1f;
@@ -23,9 +25,15 @@ public class PlayerMove : MonoBehaviour
     
     void Update()
     {
-        
-        moveDir = move.action.ReadValue<Vector2>();
-        
+        if (!freeze)
+        {
+            moveDir = move.action.ReadValue<Vector2>();
+        }
+        else
+        {
+            moveDir = Vector2.zero;
+        }
+
         //maybe make this invincible
         // if (Input.GetKeyDown(KeyCode.LeftShift))
         // {
