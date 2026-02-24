@@ -3,16 +3,17 @@ using System.Collections.Generic;
 
 public class NavGrid : MonoBehaviour   
 {
+    //Configuration options
     [SerializeField] GameObject Node;
     [SerializeField] int nodesVertical = 2;
     [SerializeField] int nodesHorizontal = 2;
-
     [SerializeField] float nodeSpacing = 5;
     [SerializeField] float detectionRadius = 0.4f;
 
     //Debug Options
     [SerializeField] bool nodesVisible = true;
 
+    //Grid
     public List<GameObject> nodes = new List<GameObject>();
 
 
@@ -64,22 +65,7 @@ public class NavGrid : MonoBehaviour
         //Cleanup
         KeepLargestCluster();
 
-        //Rendering
-        if(nodesVisible){
-            foreach(GameObject obj in nodes)
-            {
-                SpriteRenderer objSp = obj.GetComponent<SpriteRenderer>();
-                objSp.color = Color.purple;
-            }
-        }
-        else
-        {
-            foreach(GameObject obj in nodes)
-            {
-                SpriteRenderer objSp = obj.GetComponent<SpriteRenderer>();
-                objSp.enabled = false;
-            }
-        }
+
 
     }
 
@@ -106,7 +92,7 @@ public class NavGrid : MonoBehaviour
             GameObject current = queue.Dequeue();
             cluster.Add(current);
 
-            List<GameObject> neighbors = current.GetComponent<node>().neighboors;
+            List<GameObject> neighbors = current.GetComponent<node>().neighbors;
 
             foreach (GameObject neighbor in neighbors)
             {
@@ -151,13 +137,104 @@ public class NavGrid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Debug
         if(nodesVisible){
             foreach(GameObject obj in nodes)
             {
                 obj.GetComponent<node>().DrawConnections();
             }
         }
+
+        //Rendering
+        if(nodesVisible){
+            foreach(GameObject obj in nodes)
+            {
+                SpriteRenderer objSp = obj.GetComponent<SpriteRenderer>();
+                objSp.color = Color.purple;
+                objSp.enabled = true;
+            }
+        }
+        else
+        {
+            foreach(GameObject obj in nodes)
+            {
+                SpriteRenderer objSp = obj.GetComponent<SpriteRenderer>();
+                objSp.enabled = false;
+            }
+        }
         
+    }
+
+    //Returns a path of nodes from one node to another
+    public List<GameObject> FindNodePath(Vector2 startPos, Vector2 endPos)
+    {
+        GameObject startNode = FindClosestNode(startPos);
+        GameObject endNode = FindClosestNode(endPos);
+
+        Queue<GameObject> queue = new Queue<GameObject>();
+        Dictionary<GameObject, GameObject> cameFrom = new Dictionary<GameObject, GameObject>();
+        HashSet<GameObject> visited = new HashSet<GameObject>();
+
+        queue.Enqueue(startNode);
+        visited.Add(startNode);
+
+        while (queue.Count > 0)
+        {
+            GameObject current = queue.Dequeue();
+
+            if (current == endNode)
+                return ReconstructPath(cameFrom, startNode, endNode);
+
+            foreach (GameObject neighbor in current.GetComponent<node>().neighbors)
+            {
+                if (visited.Contains(neighbor))
+                    continue;
+
+                visited.Add(neighbor);
+                cameFrom[neighbor] = current;
+                queue.Enqueue(neighbor);
+            }
+        }
+
+        return null; // No path found
+    }
+
+    //Helper Function for FindNodePath
+    static List<GameObject> ReconstructPath(Dictionary<GameObject, GameObject> cameFrom, GameObject start, GameObject goal)
+    {
+        List<GameObject> path = new List<GameObject>();
+        GameObject current = goal;
+
+        while (current != start)
+        {
+            path.Add(current);
+            current = cameFrom[current];
+        }
+
+        path.Add(start);
+        path.Reverse();
+        return path;
+    }
+
+    //Returns the closest node to the given position
+    public GameObject FindClosestNode(Vector2 position)
+    {
+        GameObject closestNode = nodes[0];
+
+        float distToCN = Vector2.Distance(position, closestNode.transform.position);
+
+        foreach(GameObject obj in nodes)
+        {
+            float newDist = Vector2.Distance(position, obj.transform.position);
+
+            if (newDist < distToCN)
+            {
+                closestNode = obj;
+                distToCN = newDist;
+            }
+        }
+
+        return closestNode;
     }
 }
 

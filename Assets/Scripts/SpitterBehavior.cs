@@ -1,26 +1,26 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Mathematics;
+using System.Collections.Generic;
+using UnityEditor;
 
 public class SpitterBehavior : EnemyBase
 {
+    //Components
     SpriteRenderer sprite;
 
-    [SerializeField] float attackDistance = 8;
+    //Attack Related Values
+    [SerializeField] float attackDistance = 10;
     float distToTarget;
-
-    [SerializeField] float attackDelay = 0.1F;
     [SerializeField] float attackCooldown = 1F;
 
+    //Projectile related Variables
     [SerializeField] GameObject projectile;
-    [SerializeField] float damage = 1;
     [SerializeField] float shotSpeed = 1;
-    
-    
+
+    //Behvior related variable
     bool canAttack = true;
-
-
-    string state;
+    string state = "Search";
 
     void Start()
     {
@@ -33,59 +33,69 @@ public class SpitterBehavior : EnemyBase
 
         AttackTarget = GameObject.Find("Player");
 
-        //State
-        state = "Search";
-        
-        StartCoroutine(Attack());
+        path = navGrid.FindNodePath(transform.position, AttackTarget.transform.position);
+
     }
 
     // Update is called once per frame
     void Update()
     {
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
+        Search();
+    }
 
-        switch (state)
+    void Search()
+    {
+        StartCoroutine(Pathfind());
+
+        if (LineOfSight && distToTarget <= attackDistance)
         {
-            case "Search":
-                MoveToTarget();
-                sprite.color = Color.white;
-                break;
-            case "Attack":
-                if(canAttack){
-                    StartCoroutine(Attack());
-                    state = "Attacking";
+            rb.linearVelocity = Vector2.zero;
+            if (canAttack)
+            {
+                StartCoroutine(Attack());
+            }
+            
+        }
+        else if(path != null)
+        {
+            GameObject travelNode = path[0];
+            float distToNode = Vector2.Distance(transform.position, travelNode.transform.position);
+
+            if(distToNode < moveToNodeDist)
+            {
+                if(path.Count >= 2)
+                {
+                    travelNode = path[1];
+                    rb.linearVelocity = (travelNode.transform.position - transform.position).normalized * MoveSpeed;  
                 }
                 else
                 {
-                    //Will not move to search if player is still within attack distance
-                    state = "Search";
-                    if(distToTarget <= attackDistance) state = "Attack";
+                    rb.linearVelocity = Vector2.zero;
                 }
-                break;
-            case "Attacking":
-                //Running Coroutine Attack()
-                break;
-            default:
-                state = "Search";
-                break;
+            }
+            else
+            {
+                rb.linearVelocity = (travelNode.transform.position - transform.position).normalized * MoveSpeed;  
+            }
 
         }
-    
     }
 
     IEnumerator Attack()
     {
+        canAttack = false;
         
-
         GameObject shot = Instantiate(projectile, transform.position, quaternion.identity);
 
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
         
-        shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, damage);
+        shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage);
 
 
-        yield return new WaitForSeconds(attackDelay);
+        yield return new WaitForSeconds(attackCooldown);
 
-        state = "Search";
+        canAttack = true;
+
     }
 }

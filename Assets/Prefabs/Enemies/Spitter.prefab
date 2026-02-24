@@ -120,7 +120,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &5849339607781606348
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -172,13 +172,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   MaxHealth: 1
   CurrentHealth: 0
-  MoveSpeed: 1
+  MoveSpeed: 1.2
   Damage: 1
   AttackTarget: {fileID: 0}
+  LineOfSight: 0
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 129
+  path: []
+  navGrid: {fileID: 0}
+  pathfindCooldown: 1
+  pathfindOnCooldown: 0
+  moveToNodeDist: 1
   rb: {fileID: 0}
   attackDistance: 8
-  attackDelay: 0.1
   attackCooldown: 1
   projectile: {fileID: 6853589449238579801, guid: 068b455f3730eea48b85a7f1e4056ad8, type: 3}
-  damage: 0
-  shotSpeed: 0
+  shotSpeed: 4

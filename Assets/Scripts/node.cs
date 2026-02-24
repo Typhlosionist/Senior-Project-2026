@@ -5,26 +5,19 @@ public class node : MonoBehaviour
 {
     public NavGrid parentSpawner;
     public int ID;
-    public List<GameObject> neighboors = new List<GameObject>();
+    public List<GameObject> neighbors = new List<GameObject>();
 
     public void DrawConnections()
     {
-        foreach(GameObject neighboor in neighboors)
+        foreach(GameObject neighbor in neighbors)
         {
-            Debug.DrawLine(this.transform.position, neighboor.transform.position, Color.white, 0f);
+            Debug.DrawLine(this.transform.position, neighbor.transform.position, Color.white, 0f);
         }
     }
 
-    public void AddNeighboor(GameObject neighboor)
+    public void AddNeighboor(GameObject neighbor)
     {
-        neighboors.Add(neighboor);
+        neighbors.Add(neighbor);
     }
-
-    public Vector2 getGlobalPosition()
-    {
-        return transform.position;
-    }
-
-
 
 }
