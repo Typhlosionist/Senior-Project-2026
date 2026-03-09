@@ -9,12 +9,12 @@ public class SpitterBehavior : EnemyBase
     //Components
     SpriteRenderer sprite;
 
-    //Attack Related Values
+    [Header("Attack Values")]
     [SerializeField] float attackDistance = 10;
     float distToTarget;
     [SerializeField] float attackCooldown = 1F;
 
-    //Projectile related Variables
+    [Header("Projectile Variables")]
     [SerializeField] GameObject projectile;
     [SerializeField] float shotSpeed = 1;
 

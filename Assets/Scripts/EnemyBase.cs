@@ -6,26 +6,26 @@ using UnityEditor;
 
 public class EnemyBase : MonoBehaviour
 {
-    // Enemy Stats
+    [Header("Enemy Stats")]
     [SerializeField] public float MaxHealth = 1;
     public float CurrentHealth;
     [SerializeField] public float MoveSpeed = 1;
     [SerializeField] public float Damage = 1;
 
 
-    //Targeting
+    [Header("Targeting")]
     [SerializeField] public GameObject AttackTarget;
     public bool LineOfSight = false;
     [SerializeField] private LayerMask raycastMask;
 
-    //Pathfinding Variables
+    [Header("Pathfinding Variables")]
     public List<GameObject> path;
     public NavGrid navGrid;
     public float pathfindCooldown = 1;
     public bool pathfindOnCooldown = false;
     public float moveToNodeDist = 0.1f;
 
-    //Enemy Components
+    [Header("Enemy Components")]
     public Rigidbody2D rb;
 
     void Awake()
@@ -54,7 +54,7 @@ public class EnemyBase : MonoBehaviour
         }
         else
         {
-            Debug.Log("Raycast error");
+            Debug.Log("Raycast error, make sure to set raycast mask");
         }
     }
 

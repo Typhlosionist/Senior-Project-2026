@@ -7,16 +7,19 @@ public class StalkerBehavior : EnemyBase
     SpriteRenderer sprite;
     Transform hurtBox;
 
+    [Header("Attack Variables")]
     [SerializeField] float attackDistance = 1;
     float distToTarget;
-
     [SerializeField] float attackDelay = 0.1F;
     [SerializeField] float attackDuration = 0.1F;
     [SerializeField] float attackCooldown = 0.1F;
-    [SerializeField] float lungeSpeed = 5;
-    [SerializeField] float lungeReduction = 8;
     [SerializeField] float attackReach = 2;
 
+    [Header("Lunging Variable")]
+    [SerializeField] float lungeSpeed = 5;
+    [SerializeField] float lungeReduction = 8;
+
+    [Header("Skulking Variables")]
     [SerializeField] float skulkTime = 1;
     [SerializeField] float skulkSpeed = 3;
     
