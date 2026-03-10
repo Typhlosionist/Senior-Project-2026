@@ -8,11 +8,7 @@ public class UpgradeTree : MonoBehaviour
     public GameObject upgradeTree;
     
     private bool isOpen = false;
-
-    void Start()
-    {
-        upgradeTree = GameObject.Find("UpgradeTree");
-    }
+    
     void Update()
     {
         if (Keyboard.current.gKey.wasPressedThisFrame)

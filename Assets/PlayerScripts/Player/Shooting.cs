@@ -20,6 +20,7 @@ public class Shooting : MonoBehaviour
     public Vector3 rotation { get; set;}
     
     private bool freeze = PlayerMove.freeze;
+    private bool isDashing = PlayerMove.isDashing;
     
     void Start()
     {
@@ -29,7 +30,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         freeze = PlayerMove.freeze;
-        if (!freeze)
+        if (!freeze || isDashing)
         {
             targetPos = cam.ScreenToWorldPoint(aim.action.ReadValue<Vector2>());
 
