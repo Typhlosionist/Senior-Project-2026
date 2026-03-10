@@ -68,6 +68,10 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
+    protected virtual void OnTriggerEnter2D(Collider2D other) {
+        Debug.Log(other.name + " Entered hitbox of " + this.name);
+    }
+
     //Transitions the object's velocity from it's current velocity to the desired velocity
     //TODO
     //Note: IEnumerator better?
