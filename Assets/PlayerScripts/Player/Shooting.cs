@@ -7,20 +7,24 @@ public class Shooting : MonoBehaviour
 {
     public InputActionReference fire;
     public InputActionReference aim;
-    
-    
+
+
     private Camera cam;
-    public Vector3 targetPos {get; set;}
+    public Vector3 targetPos { get; set;}
     public GameObject bullet;
     public Transform bulletTrans;
     public bool canFire = true;
     private float timer;
-    public float shootCooldown = .3f;
+    public static float shootCooldown = .8f;
     
+    public static float bulletSpeed = 10f;
     public Vector3 rotation { get; set;}
     
     private bool freeze = PlayerMove.freeze;
     private bool isDashing = PlayerMove.isDashing;
+
+    public static bool spreadOne = false;
+    public static bool spreadTwo = false;
     
     void Start()
     {
@@ -53,9 +57,43 @@ public class Shooting : MonoBehaviour
             if ((fire.action.ReadValue<float>() == 1) && canFire)
             {
                 canFire = false;
-                GameObject bull;
-                bull = Instantiate(bullet, bulletTrans.position, Quaternion.identity);
-                bull.tag = gameObject.tag;
+
+                int num = 1;
+
+                float spreadAngle = 0;
+                
+                if (spreadOne)
+                {
+                    num = 2;
+                    spreadAngle = 10f;
+                }
+
+                if (spreadTwo)
+                {
+                    num = 3;
+                    spreadAngle = 20f;
+                }
+                
+                for (int i = 0; i < num; i++)
+                {
+                    float angleOffset = 0;
+
+                    if (num > 1)
+                    {
+                        angleOffset = -spreadAngle / 2 + (spreadAngle / (num - 1)) * i;
+                    }
+
+                    Vector3 dir = (targetPos - bulletTrans.position).normalized;
+
+                    Vector3 spreadDir = Quaternion.Euler(0, 0, angleOffset) * dir;
+
+                    Vector3 spreadTarget = bulletTrans.position + spreadDir * 100f;
+
+                    GameObject bull = Instantiate(bullet, bulletTrans.position, bulletTrans.rotation);
+                    bull.tag = gameObject.tag;
+
+                    bull.GetComponent<Bullter>().targetPos = spreadTarget;
+                }
             }
         }
     }

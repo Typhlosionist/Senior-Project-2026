@@ -31,5 +31,28 @@ public class UpgradeTree : MonoBehaviour
     public void Clicked()
     {
         Debug.Log(GetComponentInChildren<TextMeshProUGUI>().text + " clicked");
+        if (GetComponentInChildren<TextMeshProUGUI>().text == "Bullet Speed")
+        {
+            Shooting.bulletSpeed = 20f;
+        }
+        
+        if (GetComponentInChildren<TextMeshProUGUI>().text == "Spread")
+        {
+            Shooting.spreadOne = true;
+        }
+        
+        if (GetComponentInChildren<TextMeshProUGUI>().text == "Spread2" && Shooting.spreadOne)
+        {
+            Shooting.spreadTwo = true;
+        }
+        else
+        {
+            Debug.Log("Spread 1 not unlocked");
+        }
+        
+        if (GetComponentInChildren<TextMeshProUGUI>().text == "Fire Rate")
+        {
+            Shooting.shootCooldown  = .3f;
+        }
     }
 }
