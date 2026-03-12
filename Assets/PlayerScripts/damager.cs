@@ -8,10 +8,10 @@ public class damager : MonoBehaviour
     
     protected void OnTriggerEnter2D(Collider2D target)
     {
-        if (target.CompareTag("Player") && gameObject.tag != "Player")
-        {
-            target.GetComponent<PlayerHpScript>().hurt(damage);
-        }
+        // if (target.CompareTag("Player") && gameObject.tag != "Player")
+        // {
+        //     target.GetComponent<PlayerHpScript>().hurt(damage);
+        // }
         // depreciated from when I had my own enemy
         /// // if (target.CompareTag("bad") && gameObject.tag != "bad")
         // {
