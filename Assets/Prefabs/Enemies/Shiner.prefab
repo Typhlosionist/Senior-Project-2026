@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 2037136931039579685}
   - component: {fileID: 6698584153090541966}
   - component: {fileID: 8994519790702301267}
+  - component: {fileID: 3782274645810662121}
   m_Layer: 8
   m_Name: Shiner
   m_TagString: Enemy
@@ -507,3 +508,25 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.844451, y: 4.789531}
   m_EdgeRadius: 0
+--- !u!95 &3782274645810662121
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459186264051520115}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35da182c9256e144f91cfae43e70e619, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
