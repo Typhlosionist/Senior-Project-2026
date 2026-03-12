@@ -175,8 +175,8 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 5641266347440471056}
   circleCollider: {fileID: 0}
-  move: {fileID: 0}
-  dash: {fileID: 0}
+  move: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  dash: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashLen: 0
   dashSpeed: 0
 --- !u!114 &3805541628333165387
