@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     
-    public Animator playerAnimator;
+    
     public float moveSpeed;
     public Rigidbody2D rb;
     public CircleCollider2D circleCollider;
@@ -41,41 +41,6 @@ public class PlayerMove : MonoBehaviour
         {
             moveDir = Vector2.zero;
         }
-        playerAnimator.SetBool("Right", false);
-        playerAnimator.SetBool("Left", false);
-        playerAnimator.SetBool("Forward", false);
-        playerAnimator.SetBool("Back", false);
-        
-        
-        moveDir = move.action.ReadValue<Vector2>();
-        if (moveDir.x == 0 && moveDir.y == 0)
-        {
-            playerAnimator.SetFloat("Speed", 0);
-        }
-        if (moveDir.x > 0)
-        {
-            playerAnimator.SetBool("Right", true);
-            playerAnimator.SetFloat("Speed", moveSpeed);
-        }
-        else if (moveDir.x < 0)
-        {
-            playerAnimator.SetBool("Left", true);
-            playerAnimator.SetFloat("Speed", moveSpeed);
-        }
-
-        if (moveDir.y > 0)
-        {
-            playerAnimator.SetBool("Back", true);
-            playerAnimator.SetFloat("Speed", moveSpeed);
-        }
-        else if (moveDir.y < 0)
-        {
-            playerAnimator.SetBool("Forward", true);
-            playerAnimator.SetFloat("Speed", moveSpeed);
-        }
-
-        Debug.Log("x " + moveDir.x);
-        Debug.Log("y " + moveDir.y);
         
         if (Keyboard.current.shiftKey.wasPressedThisFrame)
         {
