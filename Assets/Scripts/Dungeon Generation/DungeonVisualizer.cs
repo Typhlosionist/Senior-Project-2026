@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System;
+using Unity.Collections;
 
 public class DungeonVisualizer : MonoBehaviour
 {
@@ -15,16 +16,44 @@ public class DungeonVisualizer : MonoBehaviour
 
     public TileBase floorTile;
 
+    public TileBase startTile;
+
     [Header("Wall Generator")]
     public WallGenerator wallGenerator;
 
+    public void PaintFloorTiles(Dungeon dungeon, bool generateWalls = true)
+    {
+        char [,] dungeonLayout = dungeon.GetLayout();
+        for (int x = 0; x < dungeonLayout.GetLength(0); x++)
+        {
+            for (int y = 0; y < dungeonLayout.GetLength(1); y++)
+            {
+                Vector3Int tilePosition = new Vector3Int(x, y, 0);
+                if (dungeon.IsFloor(x, y))
+                {
+  
+                    PaintTile(tilePosition, floorTilemap, floorTile);
+                }
+                else if(dungeon.IsStart(x, y))
+                {
+                    Debug.Log("painting start tile");
+                    PaintTile(tilePosition, floorTilemap, startTile);
+                }
 
+            }
+        }
+
+        if (generateWalls)
+        {
+            wallGenerator.GenerateWalls(dungeon, this);
+        }
+    }
 
     public void PaintFloorTiles(HashSet<Vector2Int> floorPositions, bool generateWalls = true)
     {
         foreach (var position in floorPositions)
         {
-            PaintTile(position, floorTilemap, floorTile);
+            PaintTile((Vector3Int)position, floorTilemap, floorTile);
         }
 
         if (generateWalls)
@@ -34,10 +63,9 @@ public class DungeonVisualizer : MonoBehaviour
 
    
 }
-    private void PaintTile(Vector2Int position, Tilemap tilemap, TileBase tile)
+    private void PaintTile(Vector3Int position, Tilemap tilemap, TileBase tile)
     {
-        var tilePosition = tilemap.WorldToCell((Vector3Int)position);
-        tilemap.SetTile(tilePosition, tile);
+        tilemap.SetTile(position, tile);
     }
 
     public void Clear()
@@ -48,6 +76,6 @@ public class DungeonVisualizer : MonoBehaviour
 
     internal void PaintWallTile(Vector2Int position, TileBase wallTile)
     {
-        PaintTile(position, wallTilemap, wallTile);
+        PaintTile((Vector3Int)position, wallTilemap, wallTile);
     }
 }

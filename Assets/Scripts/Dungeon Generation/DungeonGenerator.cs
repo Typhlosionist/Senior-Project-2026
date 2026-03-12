@@ -1,263 +1,236 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO.Hashing;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class DungeonGenerator : MonoBehaviour
 {
-    [Header("Dungeon Settings")]
+    public int dungeonWidth = 50;
+    public int dungeonHeight = 50;
 
-    public int width = 50;
-
-    public int height = 50;
-
-    public int minRoomWidth = 5;
-    public int minRoomHeight = 5;
-
-    public int minRooms = 5;
-    public int maxRooms = 10;
-
-    public int roomOffset = 3;
+    public int roomCount = 5;
+    public int minRoomSize = 6;
+    public int maxRoomSize = 10;
 
     public DungeonVisualizer dungeonVisualizer;
-
-    private int targetRoomCount;
-
     public void GenerateDungeon()
     {
+        Dungeon dungeon = new Dungeon(dungeonWidth, dungeonHeight, roomCount, minRoomSize, maxRoomSize);
+        List<Room> rooms = GenerateRooms(dungeon);
+
+        ConnectRooms(dungeon, rooms);
+        SetStartAndExitRooms(dungeon, rooms);
 
         dungeonVisualizer.Clear();
-
-        targetRoomCount = Random.Range(minRooms, maxRooms);
-
-        BoundsInt dungeonBounds = new BoundsInt(Vector3Int.zero, new Vector3Int(width, height, 0));
-
-        List<BoundsInt> rooms = GenerateRooms(dungeonBounds);
-
-        HashSet<Vector2Int> floorPositions = CreateRooms(rooms); 
-
-        List<Vector2Int> roomPositions = new List<Vector2Int>();
-
-        foreach (var room in rooms)
-        {
-            Vector3Int roomPosition = Vector3Int.RoundToInt(room.center);
-            roomPositions.Add((Vector2Int)roomPosition);
-        }
-
-        HashSet<Vector2Int> hallways = ConnectRooms(roomPositions);
-        floorPositions.UnionWith(hallways);
-
-        dungeonVisualizer.PaintFloorTiles(floorPositions);
-
+        dungeonVisualizer.PaintFloorTiles(dungeon);
 
     }
 
-    private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomPositions)
+    public Dungeon CreateDungeon()
     {
-        HashSet<Vector2Int> hallways = new HashSet<Vector2Int>();
+        Dungeon dungeon = new Dungeon(dungeonWidth, dungeonHeight, roomCount, minRoomSize, maxRoomSize);
+        List<Room> rooms = GenerateRooms(dungeon);
+        ConnectRooms(dungeon, rooms);
+        SetStartAndExitRooms(dungeon, rooms);
 
-        List<Vector2Int> connectedRooms = new List<Vector2Int>();
-        List<Vector2Int> unconnectedRooms = new List<Vector2Int>(roomPositions);
+        dungeonVisualizer.Clear();
+        dungeonVisualizer.PaintFloorTiles(dungeon);
 
-        unconnectedRooms.Shuffle();
-
-        connectedRooms.Add(unconnectedRooms[0]);
-        unconnectedRooms.RemoveAt(0);
-
-        while (unconnectedRooms.Count > 0)
-        {
-            Vector2Int currentRoom = unconnectedRooms[0];
-            unconnectedRooms.RemoveAt(0);
-
-            Vector2Int closestConnectedRoom = FindClosestRoom(currentRoom, connectedRooms);
-            hallways.UnionWith(CreateHallway(closestConnectedRoom, currentRoom)); 
-
-            int additionalConnections = Random.Range(0, 3);
-
-            if (additionalConnections > 0 && connectedRooms.Count > 1)
-            {
-                for (int i = 0; i < additionalConnections; i++)
-                {
-                    Vector2Int randomRoom = connectedRooms[Random.Range(0, connectedRooms.Count)];
-
-                    if (randomRoom != closestConnectedRoom)
-                    {
-                        hallways.UnionWith(CreateHallway(randomRoom, currentRoom));
-                    }
-                }
-            }
-
-            connectedRooms.Add(currentRoom);
-        }
-
-        return hallways;
+        return dungeon;
     }
 
-    private IEnumerable<Vector2Int> CreateHallway(Vector2Int closestConnectedRoom, Vector2Int destination)
+
+    private List<Room> GenerateRooms(Dungeon dungeon)
     {
-        HashSet<Vector2Int> hallway = new HashSet<Vector2Int>();
+        List<Room> rooms = new List<Room>();
+        System.Random random = new System.Random();
 
-        Vector2Int position = closestConnectedRoom;
-
-        hallway.Add(position);
-
-        while (position.y != destination.y)
+        for (int i = 0; i < roomCount; i++)
         {
-            if (destination.y > position.y)
+            for (int attempt = 0; i < 50; attempt++)
             {
-                position += Vector2Int.up;
-            } 
-            else if (destination.y < position.y)
-            {
-                position += Vector2Int.down;
-            }
+                int roomWidth = random.Next(minRoomSize, maxRoomSize);
+                int roomHeight = random.Next(minRoomSize, maxRoomSize);
+                int roomX = random.Next(2, dungeonWidth - roomWidth - 2);
+                int roomY = random.Next(2, dungeonHeight - roomHeight - 2);
 
-            hallway.Add(position);
-        }
+                Room newRoom = new Room(roomX, roomY, roomWidth, roomHeight);
 
-        while (position.x != destination.x)
-        {
-            if (destination.x > position.x)
-            {
-                position += Vector2Int.right;
-            } 
-            else if (destination.x < position.x)
-            {
-                position += Vector2Int.left;
-            }
+                bool intersects = false;
 
-            hallway.Add(position);
-        }
-
-        return hallway;
-    }
-
-    private Vector2Int FindClosestRoom(Vector2Int currentRoom, List<Vector2Int> connectedRooms)
-    {
-        Vector2Int closestRoom = connectedRooms[0];
-        float closestDistance = float.MaxValue;
-
-        foreach (var room in connectedRooms)
-        {
-            float distance = Vector2Int.Distance(currentRoom, room);
-
-            if (distance < closestDistance)
-            {
-                closestRoom = room;
-                closestDistance = distance;
-            }
-        }
-
-        return closestRoom;
-    }
-
-    private List<BoundsInt> GenerateRooms(BoundsInt dungeonBounds)
-    {
-        List<BoundsInt> rooms = new List<BoundsInt>();
-
-        Queue<BoundsInt> roomQueue = new Queue<BoundsInt>();
-
-        roomQueue.Enqueue(dungeonBounds);
-
-        while (roomQueue.Count > 0)
-        {
-            var room = roomQueue.Dequeue();
-            if (room.size.x >= minRoomWidth * 2 || room.size.y >= minRoomHeight * 2)
-            {
-                if (Random.value < 0.5f)
+                foreach (var room in rooms)
                 {
-                    if (room.size.y >= minRoomHeight * 2)
+                    if (newRoom.Intersects(room))
                     {
-                        SplitRoomHorizontal(roomQueue, room);
-                    }
-                    else
-                    {
-                        SplitRoomVertical(roomQueue, room);
+                        intersects = true;
+                        break;
                     }
                 }
-                else
+
+                if (!intersects)
                 {
-                    if (room.size.x >= minRoomWidth * 2)
-                    {
-                        SplitRoomVertical(roomQueue, room);
-                    }
-                    else
-                    {
-                        SplitRoomHorizontal(roomQueue, room);
-                    
-                    }
-                }
-            }
-            else
-            {
-                if (rooms.Count < targetRoomCount)
-                {
-                    rooms.Add(room);
-                }
-                else
-                {
+                    rooms.Add(newRoom);
+                    dungeon.AddRoom(newRoom);
                     break;
                 }
+
             }
         }
 
         return rooms;
-
     }
 
-    private void SplitRoomVertical(Queue<BoundsInt> roomQueue, BoundsInt room)
+    private void ConnectRooms(Dungeon dungeon, List<Room> rooms)
     {
-        int xSplit = Random.Range(1, room.size.x / 2) + room.size.x / 4;
+        System.Random random = new System.Random();
+        for (int i = 1; i < rooms.Count; i++)
+        {
+            var (x1, y1) = rooms[i-1].Center();
+            var (x2, y2) = rooms[i].Center();
 
-        BoundsInt bottomRoom = new BoundsInt(
-            room.min,
-            new Vector3Int(xSplit, room.size.y , room.size.z)
-        );
+            if(random.Next(0, 2) == 0)
+            {
+                CreateHorizontalHallway(dungeon, x1, x2, y1);
+                CreateVerticalHallway(dungeon, y1, y2, x2);
+            }
+            else
+            {
+                CreateVerticalHallway(dungeon, y1, y2, x2);
+                CreateHorizontalHallway(dungeon, x1, x2, y1);
+                
+            }
 
-        BoundsInt topRoom = new BoundsInt(
-            new Vector3Int(xSplit, room.min.y, room.min.z),
-            new Vector3Int(room.size.x - xSplit, room.size.y, room.size.z)
-        );
+            dungeon.ConnectRooms(rooms[i-1], rooms[i]);
+        }
+    }
 
-        roomQueue.Enqueue(bottomRoom);
-        roomQueue.Enqueue(topRoom);
+    private void CreateVerticalHallway(Dungeon dungeon, int y1, int y2, int x)
+    {
+        int start = Math.Min(y1, y2);
+        int end = Math.Max(y1, y2);
+
+        for (int y = start; y <= end; y++)
+        {
+            dungeon.AddFloor(x, y);
+        }
     }
     
-    private void SplitRoomHorizontal(Queue<BoundsInt> roomQueue, BoundsInt room)
+
+    private void CreateHorizontalHallway(Dungeon dungeon, int x1, int x2, int y)
     {
-        int ySplit = Random.Range(1, room.size.y / 2) + room.size.y / 4;
+        int start = Math.Min(x1, x2);
+        int end = Math.Max(x1, x2);
 
-        BoundsInt bottomRoom = new BoundsInt(
-            room.min,
-            new Vector3Int(room.size.x, ySplit, room.size.z)
-        );
-
-        BoundsInt topRoom = new BoundsInt(
-            new Vector3Int(room.min.x, ySplit, room.min.z),
-            new Vector3Int(room.size.x, room.size.y - ySplit, room.size.z)
-        );
-
-        roomQueue.Enqueue(bottomRoom);
-        roomQueue.Enqueue(topRoom);
+        for (int x = start; x <= end; x++)
+        {
+            dungeon.AddFloor(x, y);
+        }
     }
 
-    private HashSet<Vector2Int> CreateRooms(List<BoundsInt> rooms)
+    private void SetStartAndExitRooms(Dungeon dungeon, List<Room> rooms)
     {
-        HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
+        
+        System.Random random = new System.Random();
+
+        Room startRoom = rooms[random.Next(0, rooms.Count)];
+        Room exitRoom = SelectExitRoom(startRoom, rooms);
+
+        dungeon.SetStartLocation(startRoom.Center().x, startRoom.Center().y);
+        SetExitDoor(dungeon, exitRoom);
+
+
+    }
+
+    private Room SelectExitRoom(Room startRoom, List<Room> rooms)
+    {
+        System.Random random = new System.Random();
+        List<Room> possibleRooms = new List<Room>();
 
         foreach (var room in rooms)
         {
-            for (int x = roomOffset; x < room.size.x - roomOffset; x++)
+            if (room != startRoom)
             {
-                for (int y = roomOffset; y < room.size.y - roomOffset; y++)
+                List<Room> connectedRooms = room.GetConnectedRooms();
+
+                if (!connectedRooms.Contains(startRoom))
                 {
-                    Vector2Int position = (Vector2Int)room.min + new Vector2Int(x, y);
-                    floorPositions.Add(position);
+                    possibleRooms.Add(room);
                 }
             }
         }
 
-        return floorPositions;
+        if (possibleRooms.Count == 0)
+        {
+            // if dungeon only contains one room
+            possibleRooms = new List<Room>(rooms);
+            possibleRooms.Remove(startRoom);
+
+            if (possibleRooms.Count == 0)
+            {
+                possibleRooms.Add(startRoom);
+            }
+        }
+
+        return possibleRooms[random.Next(0, possibleRooms.Count)];
+        
+    }
+
+    private void SetExitDoor(Dungeon dungeon, Room room)
+    {
+        List<(int x, int y)> wallPositions = new List<(int x, int y)>();
+
+        for (int x = room.x - 1; x <= room.x + room.width; x++)
+        {
+            for (int y = room.y - 1; y <= room.y + room.height; y++)
+            {
+                if (dungeon.IsWall(x, y) && IsCenterWall(dungeon, x, y))
+                {
+                    wallPositions.Add((x, y));
+                }
+            }
+        }
+
+        if (wallPositions.Count > 0)
+        {
+            System.Random random = new System.Random();
+            var (x, y) = wallPositions[random.Next(0, wallPositions.Count)];
+            dungeon.SetExitLocation(x, y);
+        }
+    }
+
+    private bool IsCenterWall(Dungeon dungeon, int x, int y)
+    {
+        
+        string binaryTileType = "";
+        foreach (var direction in dungeonVisualizer.wallGenerator.directions)
+        {
+            int neighborX = x + direction.x;
+            int neighborY = y + direction.y;
+
+            if (dungeon.InBounds(neighborX, neighborY))
+            {
+                if (dungeon.IsFloor(neighborX, neighborY))
+                {
+                    binaryTileType += "1";
+                }
+                else
+                {
+                    binaryTileType += "0";
+                }
+            }
+        }
+
+        int tileType = Convert.ToInt32(binaryTileType, 2);
+
+        return (
+            WallTypesHelper.topWall.Contains(tileType) ||
+            WallTypesHelper.rightWall.Contains(tileType) ||
+            WallTypesHelper.bottomWall.Contains(tileType) ||
+            WallTypesHelper.leftWall.Contains(tileType)
+        );
     }
 }
 
