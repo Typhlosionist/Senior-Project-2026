@@ -28,7 +28,6 @@ public class PlayerMove : MonoBehaviour
     public float dashSpeed;
     private Vector2 dashDir;
     
-
     void Update()
     {
         if (!freeze)
