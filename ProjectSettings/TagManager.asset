@@ -4,9 +4,8 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - bad
-  - bullet
-  - Wall
+  - Enemy
+  - Navigation
   layers:
   - Default
   - TransparentFX
@@ -15,12 +14,12 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - PlayerHitbox
+  - EnemyHitbox
+  - EnemyHurtbox
+  - Navigation
   - 
   - 
   - 
