@@ -5271,6 +5271,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5305222527649539113, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: aim
+      value: 
+      objectReference: {fileID: -5630151704836100654, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 5305222527649539113, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 1120369429361536294, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 6851032148477793583, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: dash
+      value: 
+      objectReference: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    - target: {fileID: 6851032148477793583, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: move
+      value: 
+      objectReference: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 7416505930025955399, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: m_SortingLayer
       value: 2
@@ -5292,6 +5308,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5526387547211637661, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
+      propertyPath: Target.TrackingTarget
+      value: 
+      objectReference: {fileID: 345117717}
     - target: {fileID: 6527894528786853274, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.5
@@ -5340,7 +5360,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 345117717}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9065510925869011680, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
+    - {fileID: 129575161991204070, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
+    - {fileID: 919700494736498693, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -21251,6 +21274,26 @@ PrefabInstance:
     - target: {fileID: 7552870813800541928, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563770929056996917, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+      propertyPath: m_text
+      value: Bullet Speed
+      objectReference: {fileID: 0}
+    - target: {fileID: 7563770929056996917, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+    - target: {fileID: 7563770929056996917, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2140474, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+    - target: {fileID: 7563770929056996917, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7705237323736615313, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
