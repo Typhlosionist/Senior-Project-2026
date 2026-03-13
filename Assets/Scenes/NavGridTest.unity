@@ -177,6 +177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7508179198982276645, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
+      propertyPath: Target.TrackingTarget
+      value: 
+      objectReference: {fileID: 1015889843}
     - target: {fileID: 7879300962348803608, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
       propertyPath: m_Name
       value: Cam
@@ -185,7 +189,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1015889843}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9065510925869011680, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
+    - {fileID: 7303573677406299, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
+    - {fileID: 919700494736498693, guid: 1d6ffca504b323940908e7dc5568a67e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
