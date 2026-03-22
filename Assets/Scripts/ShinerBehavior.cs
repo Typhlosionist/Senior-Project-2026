@@ -4,7 +4,6 @@ using UnityEngine;
 public class ShinerBehavior : EnemyBase
 {
 
-    Transform sprite;
     Transform hurtBox;
     CapsuleCollider2D collider;
 

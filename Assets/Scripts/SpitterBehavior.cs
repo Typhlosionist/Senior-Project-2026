@@ -6,8 +6,6 @@ using UnityEditor;
 
 public class SpitterBehavior : EnemyBase
 {
-    //Components
-    SpriteRenderer sprite;
 
     [Header("Attack Values")]
     [SerializeField] float attackDistance = 10;
@@ -29,7 +27,7 @@ public class SpitterBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = transform.Find("Sprite");
 
         AttackTarget = GameObject.Find("Player");
 

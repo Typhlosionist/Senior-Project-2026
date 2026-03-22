@@ -25,8 +25,11 @@ public class EnemyBase : MonoBehaviour
     public bool pathfindOnCooldown = false;
     public float moveToNodeDist = 0.1f;
 
-    [Header("Enemy Components")]
-    public Rigidbody2D rb;
+    [HideInInspector] public Vector2 desiredVelocity = Vector2.zero;
+    public float accelerationRate = 0.5f;
+
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Transform sprite;
 
     void Awake()
     {
@@ -56,6 +59,10 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.Log("Raycast error, make sure to set raycast mask");
         }
+
+        //Interpolate current velocity towards desired velocity
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * accelerationRate);
+        Debug.Log(desiredVelocity);
     }
 
     public IEnumerator Pathfind()
@@ -72,12 +79,5 @@ public class EnemyBase : MonoBehaviour
         Debug.Log(other.name + " Entered hitbox of " + this.name);
     }
 
-    //Transitions the object's velocity from it's current velocity to the desired velocity
-    //TODO
-    //Note: IEnumerator better?
-    void TransitionVelocity(Vector2 targetVal, float rate)
-    {
-        
-    }
 
 }
