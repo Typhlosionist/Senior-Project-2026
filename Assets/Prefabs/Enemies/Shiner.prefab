@@ -331,8 +331,8 @@ GameObject:
   - component: {fileID: 7867855814696655557}
   - component: {fileID: 5325820975292570751}
   - component: {fileID: 2037136931039579685}
-  - component: {fileID: 6698584153090541966}
   - component: {fileID: 8994519790702301267}
+  - component: {fileID: 6698584153090541966}
   m_Layer: 8
   m_Name: Shiner
   m_TagString: Enemy
@@ -422,6 +422,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+<<<<<<< Updated upstream
 --- !u!114 &6698584153090541966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,6 +462,8 @@ MonoBehaviour:
   maxHopDist: 9
   hopCooldown: 4
   hopHeight: 5
+=======
+>>>>>>> Stashed changes
 --- !u!61 &8994519790702301267
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -507,3 +510,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 4.844451, y: 4.789531}
   m_EdgeRadius: 0
+--- !u!114 &6698584153090541966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459186264051520115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2b0fe3f47dac4449b40f973f2c016e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShinerBehavior
+  MaxHealth: 1
+  CurrentHealth: 0
+  MoveSpeed: 1
+  Damage: 1
+  AttackTarget: {fileID: 0}
+  LineOfSight: 0
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 129
+  path: []
+  navGrid: {fileID: 0}
+  pathfindCooldown: 1
+  pathfindOnCooldown: 0
+  moveToNodeDist: 0.1
+  rb: {fileID: 0}
+  attackDistance: 1.2
+  attackDelay: 0.1
+  attackCooldown: 1
+  attackDuration: 0.2
+  attackReach: 4
+  walkDist: 4
+  hopSpeed: 3
+  hopSpread: 10
+  minHopDist: 4
+  maxHopDist: 8
+  hopCooldown: 5
+  hopHeight: 5
