@@ -13,6 +13,11 @@ public class Bullter : MonoBehaviour
     
     private IEnumerator coroutine;
     public float time = 10f;
+    
+    public bool flame = false;
+    public bool ice = false;
+    public bool knockback = false;
+    
     void Start()
     {
         fire();
