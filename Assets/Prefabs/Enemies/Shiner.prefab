@@ -454,12 +454,12 @@ MonoBehaviour:
   attackCooldown: 1
   attackDuration: 0.2
   attackReach: 4
-  walkDist: 3
+  walkDist: 4
   hopSpeed: 3
   hopSpread: 10
-  minHopDist: 4
-  maxHopDist: 8
-  hopCooldown: 5
+  minHopDist: 5
+  maxHopDist: 9
+  hopCooldown: 4
   hopHeight: 5
 --- !u!61 &8994519790702301267
 BoxCollider2D:

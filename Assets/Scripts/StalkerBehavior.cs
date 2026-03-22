@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class StalkerBehavior : EnemyBase
 {
-
-    SpriteRenderer sprite;
     Transform hurtBox;
 
     [Header("Attack Variables")]
@@ -36,7 +34,7 @@ public class StalkerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
 
         AttackTarget = GameObject.Find("Player");
@@ -58,7 +56,7 @@ public class StalkerBehavior : EnemyBase
         {
             case "Search":
                 MoveToTarget();
-                sprite.color = Color.white;
+                sprite.GetComponent<SpriteRenderer>().color = Color.white;
                 break;
             case "Attack":
                 if(canAttack){
@@ -89,7 +87,7 @@ public class StalkerBehavior : EnemyBase
     //TODO make the attack actually attack
     IEnumerator Attack()
     {
-        sprite.color = Color.red;
+        sprite.GetComponent<SpriteRenderer>().color = Color.red;
         canAttack = false;
 
         //Pause
