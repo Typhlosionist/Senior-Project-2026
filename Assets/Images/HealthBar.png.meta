@@ -1,16 +1,13 @@
 fileFormatVersion: 2
-guid: 1d1c44f0e61f7cc49a5ed8a47d42963a
+guid: a19b438a65de3df4a94a73720b4b4f47
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8901842017000291208
-    second: Mushrooms_0
+      213: -8227546954408941770
+    second: HealthBar_0
   - first:
-      213: -4684916708011110980
-    second: Mushrooms_1
-  - first:
-      213: -8612262464314026121
-    second: Mushrooms_2
+      213: -3178617384780871938
+    second: HealthBar_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -106,23 +103,45 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Mushrooms_0
+      name: HealthBar_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 195
+        y: 733
+        width: 1561
+        height: 118
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 88bf2f58622b98b70800000000000000
-      internalID: 8901842017000291208
+      spriteID: 637ab99e2a1e1dd80800000000000000
+      internalID: -8227546954408941770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HealthBar_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 165
+        width: 1905
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef6414f545843e3d0800000000000000
+      internalID: -3178617384780871938
       vertices: []
       indices: 
       edges: []
@@ -131,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 12bba93ac86e2034588314fbaab7751a
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -139,11 +158,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      Mushrooms_0: 8901842017000291208
+      HealthBar_0: -8227546954408941770
+      HealthBar_1: -3178617384780871938
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

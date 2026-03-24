@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 9ba22615454916b478fb2b1623e5b516
+guid: 6295bb9ed0af46e4abac59d8faa51132
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3280522375899740502
-    second: BulletTypes_0
+      213: -6599295688515851649
+    second: NightTimer_0
+  - first:
+      213: 1875429174228404796
+    second: NightTimer_1
+  - first:
+      213: -5489485480291921456
+    second: NightTimer_2
+  - first:
+      213: -5006536414242216701
+    second: NightTimer_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,89 +109,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BulletTypes_0
+      name: NightTimer_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
+        x: 203
+        y: 534
+        width: 6
+        height: 6
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 659793d48b1c68d20800000000000000
-      internalID: 3280522375899740502
+      spriteID: f7aee3e29879a64a0800000000000000
+      internalID: -6599295688515851649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletTypes_1
+      name: NightTimer_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
+        x: 212
+        y: 532
+        width: 6
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 203f03d0c9d45764c91ea140ede719ac
-      internalID: 660480244
+      spriteID: c3ac943c5ecd60a10800000000000000
+      internalID: 1875429174228404796
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletTypes_2
+      name: NightTimer_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
+        x: 219
+        y: 503
+        width: 602
+        height: 332
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: 96e38377cbe82984aac45e18afd43ee6
-      internalID: 1950375177
+      spriteID: 0d1198b4a0e61d3b0800000000000000
+      internalID: -5489485480291921456
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BulletTypes_3
+      name: NightTimer_3
       rect:
         serializedVersion: 2
-        x: 384
-        y: 0
-        width: 128
-        height: 128
+        x: 509
+        y: 129
+        width: 38
+        height: 243
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: 0
+      tessellationDetail: -1
       bones: []
-      spriteID: a57a13f0e1c9335459dda7ba23c54999
-      internalID: -203157945
+      spriteID: 305e80238a5358ab0800000000000000
+      internalID: -5006536414242216701
       vertices: []
       indices: 
       edges: []
@@ -191,7 +200,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 28da9b885905aca43894d6496b86ed16
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -199,14 +208,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      BulletTypes_0: 3280522375899740502
-      BulletTypes_1: 660480244
-      BulletTypes_2: 1950375177
-      BulletTypes_3: -203157945
+      NightTimer_0: -6599295688515851649
+      NightTimer_1: 1875429174228404796
+      NightTimer_2: -5489485480291921456
+      NightTimer_3: -5006536414242216701
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
