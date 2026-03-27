@@ -252,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   MaxHealth: 1
   CurrentHealth: 0
-  MoveSpeed: 1
+  MoveSpeed: 7
   Damage: 1
   AttackTarget: {fileID: 0}
   LineOfSight: 0
@@ -263,11 +263,12 @@ MonoBehaviour:
   navGrid: {fileID: 0}
   pathfindCooldown: 1
   pathfindOnCooldown: 0
-  moveToNodeDist: 0.1
   desiredVelocity: {x: 0, y: 0}
   accelerationRate: 0.5
   rb: {fileID: 0}
   sprite: {fileID: 0}
+  darknessController: {fileID: 0}
+  isNightmode: 0
 --- !u!1 &7596398360412651407
 GameObject:
   m_ObjectHideFlags: 0

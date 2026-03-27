@@ -38,6 +38,10 @@ public class SpitterBehavior : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        if(darknessController.isNight && !isNightmode)
+        {
+            BecomeNightmode();
+        }
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
         Search();
     }
@@ -46,36 +50,35 @@ public class SpitterBehavior : EnemyBase
     {
         StartCoroutine(Pathfind());
 
+        //Attack Player
         if (LineOfSight && distToTarget <= attackDistance)
         {
-            rb.linearVelocity = Vector2.zero;
+            desiredVelocity = Vector2.zero;
             if (canAttack)
             {
                 StartCoroutine(Attack());
             }
             
         }
+
+        //Move Towards Player
         else if(path != null)
         {
-            GameObject travelNode = path[0];
-            float distToNode = Vector2.Distance(transform.position, travelNode.transform.position);
 
-            if(distToNode < moveToNodeDist)
+            GameObject travelNode;
+
+            if(path.Count == 1)
             {
-                if(path.Count >= 2)
-                {
-                    travelNode = path[1];
-                    rb.linearVelocity = (travelNode.transform.position - transform.position).normalized * MoveSpeed;  
-                }
-                else
-                {
-                    rb.linearVelocity = Vector2.zero;
-                }
+                travelNode = path[0];
             }
             else
             {
-                rb.linearVelocity = (travelNode.transform.position - transform.position).normalized * MoveSpeed;  
+                travelNode = path[1];
             }
+
+            
+
+            desiredVelocity = (travelNode.transform.position - transform.position).normalized * MoveSpeed; 
 
         }
     }
@@ -83,17 +86,35 @@ public class SpitterBehavior : EnemyBase
     IEnumerator Attack()
     {
         canAttack = false;
-        
-        GameObject shot = Instantiate(projectile, transform.position, quaternion.identity);
 
+
+        GameObject shot = Instantiate(projectile, transform.position, quaternion.identity);
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
-        
-        shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage);
+        shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage, isNightmode);
+
+        if (isNightmode)
+        {
+            yield return new WaitForSeconds(0.25f);
+            shot = Instantiate(projectile, transform.position, quaternion.identity);
+            dir = (AttackTarget.transform.position - transform.position).normalized;
+            shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage, isNightmode);
+
+            yield return new WaitForSeconds(0.25f);
+            shot = Instantiate(projectile, transform.position, quaternion.identity);
+            dir = (AttackTarget.transform.position - transform.position).normalized;
+            shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage, isNightmode);
+        }
 
 
         yield return new WaitForSeconds(attackCooldown);
 
         canAttack = true;
 
+    }
+
+    void BecomeNightmode()
+    {
+        sprite.GetComponent<SpriteRenderer>().color = Color.purple;
+        isNightmode = true;
     }
 }

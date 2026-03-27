@@ -23,7 +23,6 @@ public class EnemyBase : MonoBehaviour
     public NavGrid navGrid;
     public float pathfindCooldown = 1;
     public bool pathfindOnCooldown = false;
-    public float moveToNodeDist = 0.1f;
 
     [HideInInspector] public Vector2 desiredVelocity = Vector2.zero;
     public float accelerationRate = 0.5f;
@@ -31,9 +30,16 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Transform sprite;
 
+    //Night Transitioning Variables
+    [HideInInspector] public DarknessController darknessController;
+    [HideInInspector] public bool isNightmode = false;
+    
+
     void Awake()
     {
         navGrid = GameObject.Find("NavGrid").GetComponent<NavGrid>();
+
+        darknessController = GameObject.Find("DarknessController").GetComponent<DarknessController>();
     }
 
     private void FixedUpdate() {
@@ -62,7 +68,6 @@ public class EnemyBase : MonoBehaviour
 
         //Interpolate current velocity towards desired velocity
         rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * accelerationRate);
-        Debug.Log(desiredVelocity);
     }
 
     public IEnumerator Pathfind()

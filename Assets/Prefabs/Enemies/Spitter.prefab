@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1798610903284018800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: -3.55, z: 0}
+  m_LocalPosition: {x: 1.31, y: -3.69, z: 0}
   m_LocalScale: {x: 8.212132, y: 1.3333331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 4747133972530089298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.14, y: 0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -279,8 +279,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.9145391, y: 0.14482558}
-  m_Size: {x: 3.7024093, y: 7.0853257}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 3.2292664, y: 5.0981264}
   m_Direction: 0
 --- !u!114 &8262632984368308368
 MonoBehaviour:
@@ -307,8 +307,12 @@ MonoBehaviour:
   navGrid: {fileID: 0}
   pathfindCooldown: 1
   pathfindOnCooldown: 0
-  moveToNodeDist: 1
+  desiredVelocity: {x: 0, y: 0}
+  accelerationRate: 3
   rb: {fileID: 0}
+  sprite: {fileID: 0}
+  darknessController: {fileID: 0}
+  isNightmode: 0
   attackDistance: 8
   attackCooldown: 1
   projectile: {fileID: 6853589449238579801, guid: 068b455f3730eea48b85a7f1e4056ad8, type: 3}

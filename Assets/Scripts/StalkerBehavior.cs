@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StalkerBehavior : EnemyBase
@@ -52,6 +53,11 @@ public class StalkerBehavior : EnemyBase
     {
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
 
+        if (!isNightmode && darknessController.isNight)
+        {
+            BecomeNightmode();
+        }
+
         switch (state)
         {
             case "Search":
@@ -92,46 +98,61 @@ public class StalkerBehavior : EnemyBase
 
         //Pause
         rb.linearVelocity = Vector2.zero;
+        desiredVelocity = Vector2.zero;
         yield return new WaitForSeconds(attackDelay);
 
-        //Lunge
+        
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
 
-            //AttackBox
+        //AttackBox
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);
         hurtBox.gameObject.SetActive(true);
 
-        rb.linearVelocity = dir * lungeSpeed;
-        yield return new WaitForSeconds(attackDuration);
-        rb.linearVelocity = dir * lungeSpeed / lungeReduction;
+        if(isNightmode){
+            //Lunge
+            rb.linearVelocity = dir * lungeSpeed;
+            desiredVelocity = rb.linearVelocity;
+            yield return new WaitForSeconds(attackDuration);
+            desiredVelocity = Vector2.zero;
+        }
+        else
+        {
+            //Standing Attack
+            yield return new WaitForSeconds(attackDuration);
+        }
 
         hurtBox.gameObject.SetActive(false);
 
-            
-        
-        //Cooldown (Regains movement after half cooldown, can attack after full cooldown)
+        //Pause after attack
         yield return new WaitForSeconds(attackCooldown/2);
-        state = "Skulk";
-        StartCoroutine(Skulk());
+
+        if(isNightmode){    
+            //skulk TODO: Awaiting Implementation
+            /*
+            state = "Skulk";
+            StartCoroutine(Skulk());
+            */
+            state = "Search";
+        }
+        else state = "Search";
+        
 
         yield return new WaitForSeconds(attackCooldown/2);
         canAttack = true;
     }
 
     //Stalker Skulks away after attacking
+    /*
     IEnumerator Skulk()
     {
-        /*
-        Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
-        rb.linearVelocity = -dir * skulkSpeed;
+        Note: use similar code to the frog jump in order to find a retreat direction that does not collide with other stalkers
+    }
+    */
 
-        yield return new WaitForSeconds(skulkTime);
-        */
-
-        //TODO: Fix the skulk function once pathfinding works
-        yield return new WaitForSeconds(0);
-
-        state = "Search";
+    void BecomeNightmode()
+    {
+        sprite.GetComponent<SpriteRenderer>().color = Color.purple;
+        isNightmode = true;
     }
 
     public void MoveToTarget()

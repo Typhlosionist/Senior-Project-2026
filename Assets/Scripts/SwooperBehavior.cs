@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -63,8 +64,17 @@ public class SwooperBehavior : EnemyBase
 
       }
 
-      //Velocity towards pathfinding node
-      Vector2 dir = (furthestNode.transform.position - transform.position).normalized;
+      Vector2 dir;
+
+      //Set Velocity
+      if (LineOfSight)
+      {
+        dir = (AttackTarget.transform.position - transform.position).normalized;
+      }
+      else{
+        dir = (furthestNode.transform.position - transform.position).normalized;
+      }
+
       desiredVelocity = dir * MoveSpeed;
 
     }
