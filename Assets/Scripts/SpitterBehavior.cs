@@ -117,4 +117,9 @@ public class SpitterBehavior : EnemyBase
         sprite.GetComponent<SpriteRenderer>().color = Color.purple;
         isNightmode = true;
     }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision); 
+    }
 }

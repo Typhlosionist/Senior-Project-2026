@@ -5,7 +5,7 @@ public class ShinerBehavior : EnemyBase
 {
 
     Transform hurtBox;
-    CapsuleCollider2D collider;
+    CapsuleCollider2D capCollider;
 
     [Header("Attack Variables")]
     [SerializeField] float attackDistance = 1;
@@ -41,11 +41,12 @@ public class ShinerBehavior : EnemyBase
         rb = GetComponent<Rigidbody2D>();
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
-        collider = GetComponent<CapsuleCollider2D>();
+        capCollider = GetComponent<CapsuleCollider2D>();
 
         AttackTarget = GameObject.Find("Player");
 
         hurtBox.gameObject.SetActive(false);
+        hurtBox.GetComponent<AttackBox>().setDamage(Damage);
 
         path = navGrid.FindNodePath(transform.position, AttackTarget.transform.position);
         
@@ -143,7 +144,7 @@ public class ShinerBehavior : EnemyBase
         hopSpot = hopNode.transform.position;
 
         //Hop Motion
-        collider.enabled = false;
+        capCollider.enabled = false;
         float progress = 0;
         float distance = Vector3.Distance(transform.position, hopSpot);
 
@@ -167,7 +168,7 @@ public class ShinerBehavior : EnemyBase
 
         rb.linearVelocity = Vector2.zero;
 
-        collider.enabled = true;
+        capCollider.enabled = true;
 
         //Hop Cooldown
         yield return new WaitForSeconds(0.25f);
@@ -201,6 +202,11 @@ public class ShinerBehavior : EnemyBase
 
         canAttack = true;
         
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision); 
     }
 
 }

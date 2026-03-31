@@ -6,7 +6,7 @@ public class SpitterShot : MonoBehaviour
 {
     Vector2 direction;
     float speed;
-    float damage;
+    public float Damage;
 
 
     Rigidbody2D rb;
@@ -21,7 +21,7 @@ public class SpitterShot : MonoBehaviour
     {
         direction = dir;
         speed = spd;
-        damage = dmg;
+        Damage = dmg;
 
         rb = GetComponent<Rigidbody2D>();
 
@@ -42,11 +42,6 @@ public class SpitterShot : MonoBehaviour
         Debug.Log("self Destruct");
         Destroy(gameObject);
 
-    }
-
-    public float getDamage()
-    {
-        return damage;
     }
 
     void OnTriggerEnter2D(Collider2D other) {

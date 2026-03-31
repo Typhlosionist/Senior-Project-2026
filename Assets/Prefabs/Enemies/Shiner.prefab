@@ -79,7 +79,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.6666667}
@@ -259,16 +259,17 @@ MonoBehaviour:
   LineOfSight: 0
   raycastMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 129
   path: []
   navGrid: {fileID: 0}
   pathfindCooldown: 1
   pathfindOnCooldown: 0
-  moveToNodeDist: 0.1
   desiredVelocity: {x: 0, y: 0}
   accelerationRate: 0.5
   rb: {fileID: 0}
   sprite: {fileID: 0}
+  darknessController: {fileID: 0}
+  isNightmode: 0
   attackDistance: 1
   attackDelay: 0.1
   attackCooldown: 0.1
@@ -383,6 +384,7 @@ GameObject:
   - component: {fileID: 6561130684435986430}
   - component: {fileID: 6758938207934934889}
   - component: {fileID: 7778407292275812799}
+  - component: {fileID: 8385276948589617224}
   m_Layer: 11
   m_Name: AttackBox
   m_TagString: Untagged
@@ -510,3 +512,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8385276948589617224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916578044925964242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c56e927951980b479e6dc1dc0d40368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  Damage: 1

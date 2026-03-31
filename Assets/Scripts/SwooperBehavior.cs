@@ -40,7 +40,7 @@ public class SwooperBehavior : EnemyBase
         LayerMask mask = LayerMask.GetMask("Default");
 
         // Get collider half width (for left/right offsets)
-        float halfWidth = GetComponent<CapsuleCollider2D>().bounds.extents.x;
+        float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;
 
         // Perpendicular to direction (for side offsets)
         Vector2 perp = new Vector2(-direction.y, direction.x);
@@ -77,5 +77,16 @@ public class SwooperBehavior : EnemyBase
 
       desiredVelocity = dir * MoveSpeed;
 
+    }
+
+    void BecomeNightmode()
+    {
+        sprite.GetComponent<SpriteRenderer>().color = Color.purple;
+        isNightmode = true;
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision); 
     }
 }

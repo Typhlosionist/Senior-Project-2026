@@ -82,6 +82,27 @@ public class EnemyBase : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         Debug.Log(other.name + " Entered hitbox of " + this.name);
+
+        if (other.CompareTag("bullet"))
+        {
+            Bullter bullet = other.GetComponent<Bullter>();
+
+            if (bullet.flame)
+            {
+                Debug.Log("Flame bullet");
+            }
+            else if (bullet.ice)
+            {
+                Debug.Log("Ice bullet");
+            }
+            else if (bullet.knockback)
+            {
+                Debug.Log("Knockback bullet");
+            }
+            
+            //Bullter no damage :(
+            //this.CurrentHealth -= bullet.damage;
+        }
     }
 
 
