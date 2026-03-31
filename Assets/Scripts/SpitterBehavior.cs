@@ -41,7 +41,10 @@ public class SpitterBehavior : EnemyBase
     void Update()
     {
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
-        Search();
+        if (!knockedBack)
+        {
+            Search();
+        }
     }
 
     void Search()
