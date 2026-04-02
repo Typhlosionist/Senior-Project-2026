@@ -312,7 +312,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   darknessController: {fileID: 0}
   isNightmode: 0
-  attackDistance: 1
+  attackDistance: 1.75
   attackDelay: 0.3
   attackDuration: 0.3
   attackCooldown: 1

@@ -54,12 +54,12 @@ public class StalkerBehavior : EnemyBase
     {
         StartCoroutine(Pathfind());
 
+        distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
+
         if(distToTarget <= attackDistance)
         {
             state = "Attack";
-        }
-
-        distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
+        }        
 
         if (!isNightmode && darknessController.isNight)
         {

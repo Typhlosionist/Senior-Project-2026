@@ -43,7 +43,8 @@ public class Spawner : MonoBehaviour
                 
                 Vector2 spawnPos = spawnNode.transform.position;
                 
-                Instantiate(enemyToSpawn, spawnPos, quaternion.identity);
+                GameObject enemy = Instantiate(enemyToSpawn, spawnPos, quaternion.identity);
+                enemy.GetComponent<EnemyBase>().navGrid = navGrid;
             }
         }
     }

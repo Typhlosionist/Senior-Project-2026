@@ -37,27 +37,40 @@ public class EnemyBase : MonoBehaviour
 
     void Awake()
     {
-        navGrid = GameObject.Find("NavGrid").GetComponent<NavGrid>();
-
         darknessController = GameObject.Find("DarknessController").GetComponent<DarknessController>();
     }
 
     private void FixedUpdate() {
 
-        Vector2 direction = AttackTarget.transform.position - transform.position;
-        float distance = direction.magnitude;
+        Vector2 origin = transform.position;
+        Vector2 target = AttackTarget.transform.position;
+        Vector2 direction = (target - origin).normalized;
+        float distance = Vector2.Distance(origin, target);
 
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, raycastMask);
+        // Get collider half width (for left/right offsets)
+        float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;
 
-        if(ray.collider != null)
+        // Perpendicular to direction (for side offsets)
+        Vector2 perp = new Vector2(-direction.y, direction.x);
+
+        // Two ray origins (left and right edges)
+        Vector2 originLeft = origin + perp * halfWidth;
+        Vector2 originRight = origin - perp * halfWidth;
+
+        RaycastHit2D hitLeft = Physics2D.Raycast(originLeft, direction, distance, raycastMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(originRight, direction, distance, raycastMask);
+
+        //Both rays must collide with player
+        if (hitLeft.collider != null && hitRight.collider != null)
         {
-            LineOfSight = ray.collider.CompareTag("Player");
-            if (LineOfSight)
+            if (hitLeft.collider.CompareTag("Player") && hitRight.collider.CompareTag("Player"))
             {
+                LineOfSight = true;
                 Debug.DrawRay(transform.position, AttackTarget.transform.position - transform.position, color: Color.green);
             }
             else
             {
+                LineOfSight = false;
                 Debug.DrawRay(transform.position, AttackTarget.transform.position - transform.position, color: Color.red);
             }
         }
