@@ -33,6 +33,23 @@ public class EnemyBase : MonoBehaviour
     //Night Transitioning Variables
     [HideInInspector] public DarknessController darknessController;
     [HideInInspector] public bool isNightmode = false;
+
+    //Bullet Effect Variable
+    bool isBurning = false;
+    float burnDamage;
+    float burnRate;
+    float burnTimer;
+    float burnProgress;
+
+    bool isChilly = false;
+    float chillRate;
+    float chillSpeed;
+    float chillTimer;
+    float chillProgress;
+
+    bool isKnocked = false;
+    float knockbackPower;
+    Vector2 knockbackDir;
     
 
     void Awake()
@@ -100,23 +117,106 @@ public class EnemyBase : MonoBehaviour
         {
             Bullter bullet = other.GetComponent<Bullter>();
 
+            //Bullter no damage :(
+            //this.CurrentHealth -= bullet.damage;
+
+            if(CurrentHealth <= 0)
+            {
+                Perish();
+            }
+
             if (bullet.flame)
             {
+                burnProgress = 0;
+                //burnDamage = bullet.burnDamage
+                //burnTimer = bullet.burnTimer
+                //burnRate = bullet.burnRate
+
+                if(!isBurning) StartCoroutine(FireTick());
+                
                 Debug.Log("Flame bullet");
             }
             else if (bullet.ice)
             {
+                chillProgress = 0;
+                /*
+                chillRate;
+                chillSpeed;
+                chillTimer;
+                */
+
+                if(!isChilly) StartCoroutine(ChillTick());
+
                 Debug.Log("Ice bullet");
             }
             else if (bullet.knockback)
             {
+                //knockbackPower
+                //knockbackDir
                 Debug.Log("Knockback bullet");
             }
             
-            //Bullter no damage :(
-            //this.CurrentHealth -= bullet.damage;
+            
         }
     }
 
+    [ContextMenu("Sim Fire Bullet")]
+    void SimulateFire()
+    {
+        burnProgress = 0;
+        burnDamage = 2;
+        burnTimer = 15;
+        burnRate = 5;
+
+        if(!isBurning) StartCoroutine(FireTick());
+    }
+
+    IEnumerator FireTick()
+    {
+        isBurning = true;
+        
+        //Burn Timer and damage
+        yield return new WaitForFixedUpdate();
+
+        isBurning = false;
+    }
+
+    [ContextMenu("Sim Ice Bullet")]
+    void SimulateChill()
+    {
+        
+    }
+
+    IEnumerator ChillTick()
+    {
+        isChilly = true;
+
+        //Chill Timer and slow
+        yield return new WaitForFixedUpdate();
+
+        isChilly = false;
+    }
+
+    [ContextMenu("Sim Wind Bullet")]
+    void SimulateKockback()
+    {
+
+    }
+
+    IEnumerator Knockback()
+    {
+        isKnocked = true;
+
+        //Knockback Functionality
+        yield return new WaitForFixedUpdate();
+
+        isKnocked = false;
+    }
+
+    [ContextMenu("Self Destruct")]
+    void Perish()
+    {
+        
+    }
 
 }
