@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 1661941474089423274}
   - component: {fileID: 8240042503116457421}
   - component: {fileID: 2941813079217730649}
+  - component: {fileID: 5133045262355110563}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -299,3 +300,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5133045262355110563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6141016384824728763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cdee61ee9472a64d9b514ba8f09c85b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimeManager
+  dayDuration: 30
+  nightDuration: 4
+  sunriseHr: 6

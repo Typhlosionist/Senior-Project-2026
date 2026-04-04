@@ -13,6 +13,6 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hand.rotation = Quaternion.Euler(0,0, 90- hrstodegrees * ((tm.GetHour() + TimeManager.hrsinday - tm.sunriseHr) % TimeManager.hrsinday));
+        hand.rotation = Quaternion.Euler(0,0, 90- hrstodegrees * (tm.GetHour() % TimeManager.hrsinday));
     }
 }
