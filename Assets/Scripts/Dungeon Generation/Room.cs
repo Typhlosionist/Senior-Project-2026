@@ -27,7 +27,7 @@ public class Room
     }
     public bool Intersects(Room other)
     {
-        int padding = 2;
+        int padding = 3;
         // return x < other.x + other.width &&
         //     x + width > other.x &&
         //     y < other.y + other.height &&
