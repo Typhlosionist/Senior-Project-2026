@@ -31,7 +31,7 @@ public class StalkerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        //sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
 
         AttackTarget = GameObject.Find("Player");
