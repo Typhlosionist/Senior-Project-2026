@@ -53,22 +53,35 @@ public class PlayerMove : MonoBehaviour
         {
             playerAnimator.SetBool("Right", true);
             playerAnimator.SetFloat("Speed", moveSpeed);
+            playerAnimator.SetBool("Left", false);
+            playerAnimator.SetBool("Forward", false);
+            playerAnimator.SetBool("Back", false);
         }
         else if (moveDir.x < 0)
         {
             playerAnimator.SetBool("Left", true);
             playerAnimator.SetFloat("Speed", moveSpeed);
+            playerAnimator.SetBool("Right", false);
+            playerAnimator.SetBool("Forward", false);
+            playerAnimator.SetBool("Back", false);
         }
 
         if (moveDir.y > 0)
         {
             playerAnimator.SetBool("Back", true);
             playerAnimator.SetFloat("Speed", moveSpeed);
+            playerAnimator.SetBool("Right", false);
+            playerAnimator.SetBool("Left", false);
+            playerAnimator.SetBool("Forward", false);
+
         }
         else if (moveDir.y < 0)
         {
             playerAnimator.SetBool("Forward", true);
             playerAnimator.SetFloat("Speed", moveSpeed);
+            playerAnimator.SetBool("Right", false);
+            playerAnimator.SetBool("Left", false);
+            playerAnimator.SetBool("Back", false);
         }
 
         Debug.Log("x " + moveDir.x);
