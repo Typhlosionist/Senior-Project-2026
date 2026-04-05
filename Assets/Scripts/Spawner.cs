@@ -6,16 +6,20 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] GameObject enemyToSpawn;
-
-    [SerializeField] int numberToSpawn;
-
-    [SerializeField] bool spawnOnStartup = false;
-
     NavGrid navGrid;
     List<GameObject> nodeList;
 
     bool spawnInitiated = false;
+    
+
+    int numWavesCompleted = 0;
+    int requiredWaves;
+    bool allWavesCompleted = false;
+    int enemiesPerWave;
+
+    [SerializeField] public List<GameObject> enemyTypes;
+
+    List<GameObject> CurrentWave;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,44 +27,48 @@ public class Spawner : MonoBehaviour
     {
         navGrid = GetComponentInParent<NavGrid>();
         nodeList = navGrid.nodes;
-
-        if (spawnOnStartup)
-        {
-            spawnInitiated = true;
-        }
     }
 
-    public void Spawn()
+    public void InitiateSpawn(int perWave, int waves)
     {
-        if(nodeList.Count < 1)
-        {
-            nodeList = navGrid.nodes;
-        }
-        else{
+        spawnInitiated = true;
+        requiredWaves = waves;
+        enemiesPerWave = perWave;
 
-            for(int i = 0; i < numberToSpawn; i++) {
-                GameObject spawnNode = nodeList[UnityEngine.Random.Range(0, nodeList.Count)];
-                
-                Vector2 spawnPos = spawnNode.transform.position;
-                
-                GameObject enemy = Instantiate(enemyToSpawn, spawnPos, quaternion.identity);
-                enemy.GetComponent<EnemyBase>().navGrid = navGrid;
-            }
+        SpawnWave();
+    }
+
+    void SpawnWave()
+    {
+        for(int i = 0; i < enemiesPerWave; i++) {
+            GameObject spawnNode = nodeList[UnityEngine.Random.Range(0, nodeList.Count)];
+         
+            Vector2 spawnPos = spawnNode.transform.position;
+            
+            GameObject enemy = Instantiate(enemyTypes[UnityEngine.Random.Range(0, enemyTypes.Count)], spawnPos, quaternion.identity);
+            enemy.GetComponent<EnemyBase>().navGrid = navGrid;
+            CurrentWave.Add(enemy);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(spawnInitiated){
-            if(nodeList.Count < 1)
+        CurrentWave.RemoveAll(enemy => enemy == null);
+
+        if(spawnInitiated && !allWavesCompleted){
+            if(CurrentWave.Count == 0)
             {
-                nodeList = navGrid.nodes;
-            }
-            else
-            {
-                Spawn();
-                spawnInitiated = false;
+                numWavesCompleted += 1;
+
+                if(numWavesCompleted < requiredWaves)
+                {
+                    SpawnWave();
+                }
+                else
+                {
+                    allWavesCompleted = true;
+                }
             }
         }
     }

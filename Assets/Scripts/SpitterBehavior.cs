@@ -18,7 +18,6 @@ public class SpitterBehavior : EnemyBase
 
     //Behvior related variable
     bool canAttack = true;
-    string state = "Search";
 
     void Start()
     {
@@ -114,7 +113,6 @@ public class SpitterBehavior : EnemyBase
 
     void BecomeNightmode()
     {
-        sprite.GetComponent<SpriteRenderer>().color = Color.purple;
         isNightmode = true;
     }
 

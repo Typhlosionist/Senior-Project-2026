@@ -16,11 +16,7 @@ public class StalkerBehavior : EnemyBase
 
     [Header("Lunging Variable")]
     [SerializeField] float lungeSpeed = 5;
-    [SerializeField] float lungeReduction = 8;
 
-    [Header("Skulking Variables")]
-    [SerializeField] float skulkTime = 1;
-    [SerializeField] float skulkSpeed = 3;
     
     
     bool canAttack = true;
@@ -84,9 +80,6 @@ public class StalkerBehavior : EnemyBase
             case "Attacking":
                 //Running Coroutine Attack()
                 break;
-            case "Skulk":
-                //Running Corouting Skulk()
-                break;
             default:
                 state = "Search";
                 break;
@@ -138,7 +131,6 @@ public class StalkerBehavior : EnemyBase
 
     void BecomeNightmode()
     {
-        sprite.GetComponent<SpriteRenderer>().color = Color.purple;
         isNightmode = true;
 
         attackDistance = attackDistance * 2;

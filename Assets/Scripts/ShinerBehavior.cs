@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ShinerBehavior : EnemyBase
 {
 
     Transform hurtBox;
     CapsuleCollider2D capCollider;
+    Light2D nightLight;
 
     [Header("Attack Variables")]
     [SerializeField] float attackDistance = 1;
@@ -42,6 +44,9 @@ public class ShinerBehavior : EnemyBase
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
         capCollider = GetComponent<CapsuleCollider2D>();
+        nightLight = sprite.GetComponent<Light2D>();
+
+        nightLight.intensity = 0;
 
         AttackTarget = GameObject.Find("Player");
 
@@ -60,6 +65,11 @@ public class ShinerBehavior : EnemyBase
     {
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
         StartCoroutine(Pathfind());
+
+        if (!isNightmode && darknessController.isNight)
+        {
+            BecomeNightmode();
+        }
 
         switch (state)
         {
@@ -202,6 +212,13 @@ public class ShinerBehavior : EnemyBase
 
         canAttack = true;
         
+    }
+
+    void BecomeNightmode()
+    {
+        isNightmode = true;
+        MoveSpeed = MoveSpeed * 1.5f;
+        nightLight.intensity = 1;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
