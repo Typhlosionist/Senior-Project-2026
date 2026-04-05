@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6527894528786853274}
-  - component: {fileID: 7508179198982276645}
-  - component: {fileID: 4152717763046535730}
-  - component: {fileID: 6995744905452306356}
+  - component: {fileID: 5024691125221367036}
+  - component: {fileID: 2513023596511322745}
+  - component: {fileID: 5122516527106535696}
   m_Layer: 0
   m_Name: Cam
   m_TagString: Untagged
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7508179198982276645
+--- !u!114 &5024691125221367036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,7 +77,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &4152717763046535730
+--- !u!114 &2513023596511322745
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!114 &6995744905452306356
+--- !u!114 &5122516527106535696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

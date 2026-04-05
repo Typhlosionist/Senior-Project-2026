@@ -27,10 +27,16 @@ public class Room
     }
     public bool Intersects(Room other)
     {
-        return x < other.x + other.width &&
-            x + width > other.x &&
-            y < other.y + other.height &&
-            y + height > other.y;
+        int padding = 2;
+        // return x < other.x + other.width &&
+        //     x + width > other.x &&
+        //     y < other.y + other.height &&
+        //     y + height > other.y;
+
+            return x - padding < other.x + other.width &&
+            x + width + padding > other.x &&
+            y - padding< other.y + other.height &&
+            y + height + padding > other.y;
     }
     public void ConnectRoom(Room other)
     {

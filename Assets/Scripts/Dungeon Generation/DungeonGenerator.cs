@@ -8,6 +8,14 @@ using UnityEngine.Tilemaps;
 
 public class DungeonGenerator : MonoBehaviour
 {
+
+    public GameObject[] obstaclePrefabs;
+
+    [Range(0f, 1f)]
+    public float obstacleSpawnChance = 0.05f;
+    public int obstacleEdgeBuffer = 1;
+
+
     public int dungeonWidth = 50;
     public int dungeonHeight = 50;
 
@@ -35,6 +43,7 @@ public class DungeonGenerator : MonoBehaviour
         List<Room> rooms = GenerateRooms(dungeon);
         ConnectRooms(dungeon, rooms);
         SetStartAndExitRooms(dungeon, rooms);
+        //SpawnObstacles(dungeon, rooms);
 
         dungeonVisualizer.Clear();
         dungeonVisualizer.PaintFloorTiles(dungeon);
@@ -46,11 +55,22 @@ public class DungeonGenerator : MonoBehaviour
     private List<Room> GenerateRooms(Dungeon dungeon)
     {
         List<Room> rooms = new List<Room>();
+        List<Room> intersectionRooms = new List<Room>();
         System.Random random = new System.Random();
 
-        for (int i = 0; i < roomCount; i++)
+
+        Room startRoom = PlaceRoomInZone(dungeon, intersectionRooms, random, 2, dungeonWidth / 3, 2, dungeonHeight / 3);
+        dungeon.AddRoom(startRoom);
+        rooms.Add(startRoom);
+        intersectionRooms.Add(startRoom);
+        
+
+        Room exitRoom = PlaceRoomInZone(dungeon, intersectionRooms, random, dungeonWidth / 3 * 2, dungeonWidth - 2, dungeonHeight / 3 * 2, dungeonHeight - 2);
+        intersectionRooms.Add(exitRoom);
+
+        for (int i = 0; i < roomCount - 2; i++)
         {
-            for (int attempt = 0; i < 50; attempt++)
+            for (int attempt = 0; attempt < 50; attempt++)
             {
                 int roomWidth = random.Next(minRoomSize, maxRoomSize);
                 int roomHeight = random.Next(minRoomSize, maxRoomSize);
@@ -61,7 +81,7 @@ public class DungeonGenerator : MonoBehaviour
 
                 bool intersects = false;
 
-                foreach (var room in rooms)
+                foreach (var room in intersectionRooms)
                 {
                     if (newRoom.Intersects(room))
                     {
@@ -73,6 +93,7 @@ public class DungeonGenerator : MonoBehaviour
                 if (!intersects)
                 {
                     rooms.Add(newRoom);
+                    intersectionRooms.Add(newRoom);
                     dungeon.AddRoom(newRoom);
                     break;
                 }
@@ -80,8 +101,43 @@ public class DungeonGenerator : MonoBehaviour
             }
         }
 
+        rooms.Add(exitRoom);
+        dungeon.AddRoom(exitRoom);
+
         return rooms;
     }
+
+    private Room PlaceRoomInZone(Dungeon dungeon, List<Room> existingRooms, System.Random random,
+    int xMin, int xMax, int yMin, int yMax)
+{
+    int roomWidth = random.Next(minRoomSize, maxRoomSize);
+    int roomHeight = random.Next(minRoomSize, maxRoomSize);
+
+    for (int attempt = 0; attempt < 50; attempt++)
+    {
+        
+        int roomX = random.Next(xMin, xMax - roomWidth);
+        int roomY = random.Next(yMin, yMax - roomHeight);
+
+        Room candidate = new Room(roomX, roomY, roomWidth, roomHeight);
+
+        bool intersects = false;
+        foreach (var room in existingRooms)
+        {
+            if (candidate.Intersects(room))
+            {
+                intersects = true;
+                break;
+            }
+        }
+
+        if (!intersects)
+            return candidate;
+    }
+
+    // Fallback: place at the zone's minimum corner if all attempts fail
+    return new Room(xMin, yMin, roomWidth, roomHeight);
+}
 
     private void ConnectRooms(Dungeon dungeon, List<Room> rooms)
     {
@@ -115,6 +171,8 @@ public class DungeonGenerator : MonoBehaviour
         for (int y = start; y <= end; y++)
         {
             dungeon.AddFloor(x, y);
+            dungeon.AddFloor(x + 1, y);
+            dungeon.AddFloor(x - 1, y);
         }
     }
     
@@ -127,6 +185,8 @@ public class DungeonGenerator : MonoBehaviour
         for (int x = start; x <= end; x++)
         {
             dungeon.AddFloor(x, y);
+            dungeon.AddFloor(x, y + 1);
+            dungeon.AddFloor(x, y - 1);
         }
     }
 
@@ -135,10 +195,14 @@ public class DungeonGenerator : MonoBehaviour
         
         System.Random random = new System.Random();
 
-        Room startRoom = rooms[random.Next(0, rooms.Count)];
-        Room exitRoom = SelectExitRoom(startRoom, rooms);
+        //Room startRoom = rooms[random.Next(0, rooms.Count)];
+        //Room exitRoom = SelectExitRoom(startRoom, rooms);
+
+        Room startRoom = rooms[0];
+        Room exitRoom = rooms[rooms.Count - 1];
 
         dungeon.SetStartLocation(startRoom.Center().x, startRoom.Center().y);
+        dungeon.SetExitRoom(exitRoom);
         SetExitDoor(dungeon, exitRoom);
 
 
@@ -198,6 +262,32 @@ public class DungeonGenerator : MonoBehaviour
             System.Random random = new System.Random();
             var (x, y) = wallPositions[random.Next(0, wallPositions.Count)];
             dungeon.SetExitLocation(x, y);
+        }
+    }
+
+    private void SpawnObstacles(Dungeon dungeon, List<Room> rooms)
+    {
+        System.Random random = new System.Random();
+
+        foreach (var room in rooms)
+        {
+            if (room == rooms[0]) continue;
+
+            for(int x = room.x + obstacleEdgeBuffer; x < room.x + room.width - obstacleEdgeBuffer; x++)
+            {
+                for(int y = room.y + obstacleEdgeBuffer; y < room.y + room.height - obstacleEdgeBuffer; y++)
+                {
+                    if (!dungeon.IsFloor(x, y)) continue;
+
+                    if (random.NextDouble() < obstacleSpawnChance)
+                    {
+
+                        int index = random.Next(0, obstaclePrefabs.Length);
+                        Vector3 position = new Vector3(x + 0.5f, y + 0.5f);
+                        Instantiate(obstaclePrefabs[index], position, Quaternion.identity);
+                    }
+                }
+            }
         }
     }
 
