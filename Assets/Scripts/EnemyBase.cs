@@ -210,11 +210,5 @@ public class EnemyBase : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    
-     void BecomeNightmode()
-      {
-        isNightmode = true;
-        MoveSpeed = MoveSpeed * 1.5f;
-      }
 }
     

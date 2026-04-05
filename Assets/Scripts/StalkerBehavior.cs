@@ -31,7 +31,7 @@ public class StalkerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
+        //sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         hurtBox = transform.Find("AttackBox");
 
         AttackTarget = GameObject.Find("Player");
@@ -193,8 +193,8 @@ public class StalkerBehavior : EnemyBase
 
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision); 
-    }
+    // protected override void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     base.OnTriggerEnter2D(collision); 
+    // }
 }

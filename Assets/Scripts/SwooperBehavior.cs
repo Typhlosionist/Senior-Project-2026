@@ -89,9 +89,9 @@ public class SwooperBehavior : EnemyBase
     MoveSpeed = MoveSpeed * 1.5f;
   }
 
-  protected override void OnTriggerEnter2D(Collider2D collision)
-  {
-    base.OnTriggerEnter2D(collision); 
-  }
+  // protected override void OnTriggerEnter2D(Collider2D collision)
+  // {
+  //   base.OnTriggerEnter2D(collision); 
+  // }
 
 }

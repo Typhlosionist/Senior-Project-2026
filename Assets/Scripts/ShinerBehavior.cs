@@ -223,9 +223,9 @@ public class ShinerBehavior : EnemyBase
         nightLight.intensity = 1;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
-    {
-        base.OnTriggerEnter2D(collision); 
-    }
+    // protected override void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     base.OnTriggerEnter2D(collision); 
+    // }
 
 }
