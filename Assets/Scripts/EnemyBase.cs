@@ -28,35 +28,58 @@ public class EnemyBase : MonoBehaviour
     public NavGrid navGrid;
     public float pathfindCooldown = 1;
     public bool pathfindOnCooldown = false;
-    public float moveToNodeDist = 0.1f;
 
-    [Header("Enemy Components")]
-    public Rigidbody2D rb;
+    [HideInInspector] public Vector2 desiredVelocity = Vector2.zero;
+    public float accelerationRate = 0.5f;
+
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Transform sprite;
+
+    //Night Transitioning Variables
+    [HideInInspector] public DarknessController darknessController;
+    [HideInInspector] public bool isNightmode = false;
+
+    
 
     void Awake()
     {
-        navGrid = GameObject.Find("NavGrid").GetComponent<NavGrid>();
         originalMoveSpeed = MoveSpeed;
+        darknessController = GameObject.Find("DarknessController").GetComponent<DarknessController>();
     }
 
-    private void FixedUpdate()
-    {
-        isDead();
+    private void FixedUpdate() {
         
-        Vector2 direction = AttackTarget.transform.position - transform.position;
-        float distance = direction.magnitude;
+        isDead();
 
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, distance, raycastMask);
+        Vector2 origin = transform.position;
+        Vector2 target = AttackTarget.transform.position;
+        Vector2 direction = (target - origin).normalized;
+        float distance = Vector2.Distance(origin, target);
 
-        if(ray.collider != null)
+        // Get collider half width (for left/right offsets)
+        float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;
+    
+        // Perpendicular to direction (for side offsets)
+        Vector2 perp = new Vector2(-direction.y, direction.x);
+
+        // Two ray origins (left and right edges)
+        Vector2 originLeft = origin + perp * halfWidth;
+        Vector2 originRight = origin - perp * halfWidth;
+
+        RaycastHit2D hitLeft = Physics2D.Raycast(originLeft, direction, distance, raycastMask);
+        RaycastHit2D hitRight = Physics2D.Raycast(originRight, direction, distance, raycastMask);
+
+        //Both rays must collide with player
+        if (hitLeft.collider != null && hitRight.collider != null)
         {
-            LineOfSight = ray.collider.CompareTag("Player");
-            if (LineOfSight)
+            if (hitLeft.collider.CompareTag("Player") && hitRight.collider.CompareTag("Player"))
             {
+                LineOfSight = true;
                 Debug.DrawRay(transform.position, AttackTarget.transform.position - transform.position, color: Color.green);
             }
             else
             {
+                LineOfSight = false;
                 Debug.DrawRay(transform.position, AttackTarget.transform.position - transform.position, color: Color.red);
             }
         }
@@ -64,6 +87,9 @@ public class EnemyBase : MonoBehaviour
         {
             Debug.Log("Raycast error, make sure to set raycast mask");
         }
+
+        //Interpolate current velocity towards desired velocity
+        rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, desiredVelocity, Time.deltaTime * accelerationRate);
     }
 
     public IEnumerator Pathfind()
@@ -184,9 +210,11 @@ public class EnemyBase : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void TransitionVelocity(Vector2 targetVal, float rate)
-    {
-        
-    }
+    
+     void BecomeNightmode()
+      {
+        isNightmode = true;
+        MoveSpeed = MoveSpeed * 1.5f;
+      }
 }
+    

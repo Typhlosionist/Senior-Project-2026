@@ -49,5 +49,11 @@ TagManager:
   - name: Player
     uniqueID: 1272399919
     locked: 0
+  - name: Darkness
+    uniqueID: 3519191403
+    locked: 0
+  - name: Light
+    uniqueID: 2690272343
+    locked: 0
   m_RenderingLayers:
   - Default

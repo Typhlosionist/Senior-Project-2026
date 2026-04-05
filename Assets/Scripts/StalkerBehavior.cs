@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class StalkerBehavior : EnemyBase
 {
-
-    SpriteRenderer sprite;
     Transform hurtBox;
 
     [Header("Attack Variables")]
@@ -18,11 +16,7 @@ public class StalkerBehavior : EnemyBase
 
     [Header("Lunging Variable")]
     [SerializeField] float lungeSpeed = 5;
-    [SerializeField] float lungeReduction = 8;
 
-    [Header("Skulking Variables")]
-    [SerializeField] float skulkTime = 1;
-    [SerializeField] float skulkSpeed = 3;
     
     
     bool canAttack = true;
@@ -43,6 +37,7 @@ public class StalkerBehavior : EnemyBase
         AttackTarget = GameObject.Find("Player");
 
         hurtBox.gameObject.SetActive(false);
+        hurtBox.GetComponent<AttackBox>().setDamage(Damage);
         
 
         //State
@@ -53,15 +48,26 @@ public class StalkerBehavior : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
-
         if (knockedBack) return;
         
+        StartCoroutine(Pathfind());
+
+        distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
+        
+        if(distToTarget <= attackDistance)
+        {
+            state = "Attack";
+        }        
+
+        if (!isNightmode && darknessController.isNight)
+        {
+            BecomeNightmode();
+        }
+
         switch (state)
         {
             case "Search":
-                MoveToTarget();
-                sprite.color = Color.white;
+                Search();
                 break;
             case "Attack":
                 if(canAttack){
@@ -70,16 +76,11 @@ public class StalkerBehavior : EnemyBase
                 }
                 else
                 {
-                    //Will not move to search if player is still withing attack distance
                     state = "Search";
-                    if(distToTarget <= attackDistance) state = "Attack";
                 }
                 break;
             case "Attacking":
                 //Running Coroutine Attack()
-                break;
-            case "Skulk":
-                //Running Corouting Skulk()
                 break;
             default:
                 state = "Search";
@@ -89,61 +90,111 @@ public class StalkerBehavior : EnemyBase
     
     }
 
-    //TODO make the attack actually attack
     IEnumerator Attack()
     {
-        sprite.color = Color.red;
         canAttack = false;
 
         //Pause
         rb.linearVelocity = Vector2.zero;
+        desiredVelocity = Vector2.zero;
         yield return new WaitForSeconds(attackDelay);
 
-        //Lunge
+        
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
 
-            //AttackBox
+        //AttackBox
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);
         hurtBox.gameObject.SetActive(true);
 
-        rb.linearVelocity = dir * lungeSpeed;
-        yield return new WaitForSeconds(attackDuration);
-        rb.linearVelocity = dir * lungeSpeed / lungeReduction;
+        if(isNightmode){
+            //Lunge
+            rb.linearVelocity = dir * lungeSpeed;
+            desiredVelocity = rb.linearVelocity;
+            yield return new WaitForSeconds(attackDuration);
+            desiredVelocity = Vector2.zero;
+        }
+        else
+        {
+            //Standing Attack
+            yield return new WaitForSeconds(attackDuration);
+        }
 
         hurtBox.gameObject.SetActive(false);
 
-            
-        
-        //Cooldown (Regains movement after half cooldown, can attack after full cooldown)
+        //Pause after attack
         yield return new WaitForSeconds(attackCooldown/2);
-        state = "Skulk";
-        StartCoroutine(Skulk());
 
+        state = "Search";
+        
         yield return new WaitForSeconds(attackCooldown/2);
         canAttack = true;
     }
 
-    //Stalker Skulks away after attacking
-    IEnumerator Skulk()
+
+    void BecomeNightmode()
     {
-        /*
-        Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
-        rb.linearVelocity = -dir * skulkSpeed;
+        isNightmode = true;
 
-        yield return new WaitForSeconds(skulkTime);
-        */
-
-        //TODO: Fix the skulk function once pathfinding works
-        yield return new WaitForSeconds(0);
-
-        state = "Search";
+        attackDistance = attackDistance * 2;
     }
 
-    public void MoveToTarget()
+    public void Search()
     {
-        Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
-        rb.linearVelocity = dir * MoveSpeed;
+        GameObject furthestNode = path[0];
 
-        if(distToTarget <= attackDistance) state = "Attack";
+        for (int i = 0; i < path.Count; i++)
+        {
+            GameObject currentNode = path[i];
+
+            Vector2 origin = transform.position;
+            Vector2 target = currentNode.transform.position;
+            Vector2 direction = (target - origin).normalized;
+            float distance = Vector2.Distance(origin, target);
+
+            LayerMask mask = LayerMask.GetMask("Default");
+
+            // Get collider half width (for left/right offsets)
+            float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;
+
+            // Perpendicular to direction (for side offsets)
+            Vector2 perp = new Vector2(-direction.y, direction.x);
+
+            // Two ray origins (left and right edges)
+            Vector2 originLeft = origin + perp * halfWidth;
+            Vector2 originRight = origin - perp * halfWidth;
+
+            RaycastHit2D hitLeft = Physics2D.Raycast(originLeft, direction, distance, mask);
+            RaycastHit2D hitRight = Physics2D.Raycast(originRight, direction, distance, mask);
+
+            // BOTH rays must be clear
+            if (hitLeft.collider == null && hitRight.collider == null)
+            {
+            furthestNode = currentNode;
+            }
+            else
+            {
+            break;
+            }
+
+        }
+
+        Vector2 dir;
+
+        //Set Velocity
+        if (LineOfSight)
+        {
+            dir = (AttackTarget.transform.position - transform.position).normalized;
+        }
+        else{
+            dir = (furthestNode.transform.position - transform.position).normalized;
+        }
+
+        desiredVelocity = dir * MoveSpeed;
+
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision); 
     }
 }
