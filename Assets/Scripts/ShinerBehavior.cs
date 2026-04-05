@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class ShinerBehavior : EnemyBase
 {
 
-    Transform sprite;
     Transform hurtBox;
-    CapsuleCollider2D collider;
+    CapsuleCollider2D capCollider;
+    Light2D nightLight;
 
     [Header("Attack Variables")]
     [SerializeField] float attackDistance = 1;
@@ -42,11 +43,15 @@ public class ShinerBehavior : EnemyBase
         rb = GetComponent<Rigidbody2D>();
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
-        collider = GetComponent<CapsuleCollider2D>();
+        capCollider = GetComponent<CapsuleCollider2D>();
+        nightLight = sprite.GetComponent<Light2D>();
+
+        nightLight.intensity = 0;
 
         AttackTarget = GameObject.Find("Player");
 
         hurtBox.gameObject.SetActive(false);
+        hurtBox.GetComponent<AttackBox>().setDamage(Damage);
 
         path = navGrid.FindNodePath(transform.position, AttackTarget.transform.position);
         
@@ -58,11 +63,16 @@ public class ShinerBehavior : EnemyBase
     // Update is called once per frame
     void Update()
     {
+        if (knockedBack) return;
+
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
         StartCoroutine(Pathfind());
 
-        if (knockedBack) return;
-        
+        if (!isNightmode && darknessController.isNight)
+        {
+            BecomeNightmode();
+        }
+
         switch (state)
         {
             case "Search":
@@ -146,7 +156,7 @@ public class ShinerBehavior : EnemyBase
         hopSpot = hopNode.transform.position;
 
         //Hop Motion
-        collider.enabled = false;
+        capCollider.enabled = false;
         float progress = 0;
         float distance = Vector3.Distance(transform.position, hopSpot);
 
@@ -170,7 +180,7 @@ public class ShinerBehavior : EnemyBase
 
         rb.linearVelocity = Vector2.zero;
 
-        collider.enabled = true;
+        capCollider.enabled = true;
 
         //Hop Cooldown
         yield return new WaitForSeconds(0.25f);
@@ -205,5 +215,17 @@ public class ShinerBehavior : EnemyBase
         canAttack = true;
         
     }
+
+    void BecomeNightmode()
+    {
+        isNightmode = true;
+        MoveSpeed = MoveSpeed * 1.5f;
+        nightLight.intensity = 1;
+    }
+
+    // protected override void OnTriggerEnter2D(Collider2D collision)
+    // {
+    //     base.OnTriggerEnter2D(collision); 
+    // }
 
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3f2f1d3ec45679240b2fafb6369e83d1
+guid: dc78a6a6acc18324bb03a39863dcd2de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6231044458718751821
-    second: circle_0
+      213: 5462497140434423990
+    second: Swooper_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: circle_0
+      name: Swooper_0
       rect:
         serializedVersion: 2
-        x: 35
-        y: 35
-        width: 430
-        height: 430
+        x: 13
+        y: 6
+        width: 178
+        height: 159
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3b3176a0412e689a0800000000000000
-      internalID: -6231044458718751821
+      spriteID: 6b05e2a2530becb40800000000000000
+      internalID: 5462497140434423990
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      circle_0: -6231044458718751821
+      Swooper_0: 5462497140434423990
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

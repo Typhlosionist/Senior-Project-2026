@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SpitterShot : MonoBehaviour
 {
     Vector2 direction;
     float speed;
-    float damage;
+    public float Damage;
+
 
     Rigidbody2D rb;
 
@@ -15,15 +17,20 @@ public class SpitterShot : MonoBehaviour
 
     }
 
-    public void setValues(Vector2 dir, float spd, float dmg)
+    public void setValues(Vector2 dir, float spd, float dmg, bool isNight)
     {
-        Vector2 direction = dir;
-        float speed = spd;
-        float damage = dmg;
+        direction = dir;
+        speed = spd;
+        Damage = dmg;
 
         rb = GetComponent<Rigidbody2D>();
 
         rb.linearVelocity = direction * speed;
+
+        if(!isNight)
+        {
+            GetComponent<Light2D>().intensity = 0;
+        }
 
         StartCoroutine(selfDestruct());
     }
@@ -35,11 +42,6 @@ public class SpitterShot : MonoBehaviour
         Debug.Log("self Destruct");
         Destroy(gameObject);
 
-    }
-
-    public float getDamage()
-    {
-        return damage;
     }
 
     void OnTriggerEnter2D(Collider2D other) {
