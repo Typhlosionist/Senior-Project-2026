@@ -2,6 +2,7 @@ using NUnit.Framework.Constraints;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Dungeon
 {
@@ -10,6 +11,11 @@ public class Dungeon
     private int roomCount;
     private int minRoomSize;
     private int maxRoomSize;
+    private List<Room> rooms = new List<Room>();
+
+    
+
+    private Room exitRoom;
 
     private char[,] dungeonLayout;
 
@@ -43,15 +49,29 @@ public class Dungeon
 
     }
 
+    public void SetExitRoom(Room room)
+    {
+        exitRoom = room;
+    }
+
+    public Room GetExitRoom()
+    {
+        return exitRoom;
+    }
     public void AddRoom(Room room)
     {
         for (int x = room.x; x < room.x + room.width; x++)
-                    {
-                        for (int y = room.y; y < room.y + room.height; y++)
-                        {
-                            dungeonLayout[x, y] = FLOOR_CHAR;
-                        }
-                    }
+        {
+            for (int y = room.y; y < room.y + room.height; y++)
+            {
+                dungeonLayout[x, y] = FLOOR_CHAR;
+            }
+        }
+        rooms.Add(room);
+    }
+    public List<Room> GetRooms()
+    {
+        return rooms;
     }
 
     public void AddFloor(int x, int y)
