@@ -294,10 +294,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089d5631fdf159249ae30ecd9bbe4aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  MaxHealth: 1
+  MaxHealth: 3
   CurrentHealth: 0
   MoveSpeed: 1.2
   Damage: 1
+  slowed: 0
   AttackTarget: {fileID: 0}
   LineOfSight: 0
   raycastMask:

@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StalkerBehavior : EnemyBase
@@ -36,7 +37,7 @@ public class StalkerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
+        sprite = transform.Find("Sprite").GetComponent<SpriteRenderer>();
         hurtBox = transform.Find("AttackBox");
 
         AttackTarget = GameObject.Find("Player");
@@ -54,6 +55,8 @@ public class StalkerBehavior : EnemyBase
     {
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
 
+        if (knockedBack) return;
+        
         switch (state)
         {
             case "Search":

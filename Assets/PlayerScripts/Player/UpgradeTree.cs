@@ -30,29 +30,59 @@ public class UpgradeTree : MonoBehaviour
 
     public void Clicked()
     {
-        Debug.Log(GetComponentInChildren<TextMeshProUGUI>().text + " clicked");
-        if (GetComponentInChildren<TextMeshProUGUI>().text == "Bullet Speed")
+        string buttonText = GetComponentInChildren<TextMeshProUGUI>().text;
+        Debug.Log(buttonText + " clicked");
+
+        switch (buttonText)
         {
-            Shooting.bulletSpeed = 20f;
-        }
-        
-        if (GetComponentInChildren<TextMeshProUGUI>().text == "Spread")
-        {
-            Shooting.spreadOne = true;
-        }
-        
-        if (GetComponentInChildren<TextMeshProUGUI>().text == "Spread2" && Shooting.spreadOne)
-        {
-            Shooting.spreadTwo = true;
-        }
-        else
-        {
-            Debug.Log("Spread 1 not unlocked");
-        }
-        
-        if (GetComponentInChildren<TextMeshProUGUI>().text == "Fire Rate")
-        {
-            Shooting.shootCooldown  = .3f;
+            case "Bullet Speed":
+                Shooting.bulletSpeed = 20f;
+                break;
+
+            case "Spread":
+                Shooting.spreadOne = true;
+                break;
+
+            case "Spread2":
+                if (Shooting.spreadOne)
+                    Shooting.spreadTwo = true;
+                else
+                    Debug.Log("Spread 1 not unlocked");
+                break;
+
+            case "Fire Rate":
+                Shooting.shootCooldown = .3f;
+                break;
+
+            case "Ice":
+                Bullter.ice = true;
+                break;
+
+            case "Freeze":
+                if (Bullter.ice)
+                    Bullter.freeze = true;
+                else
+                    Debug.Log("Ice not unlocked");
+                break;
+
+            case "Fire":
+                Bullter.flame = true;
+                break;
+
+            case "Wildfire":
+                if (Bullter.flame)
+                    Bullter.wildfire = true;
+                else
+                    Debug.Log("Fire not unlocked");
+                break;
+
+            case "Gust":
+                Bullter.gust = true;
+                break;
+
+            default:
+                Debug.Log("Unknown upgrade: " + buttonText);
+                break;
         }
     }
 }

@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2b0fe3f47dac4449b40f973f2c016e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShinerBehavior
-  MaxHealth: 1
+  MaxHealth: 3
   CurrentHealth: 0
   MoveSpeed: 1
   Damage: 1

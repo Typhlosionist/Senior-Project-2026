@@ -10,11 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6575834545281270691}
   - component: {fileID: 7213918651734918972}
-  - component: {fileID: 718824785319082415}
   - component: {fileID: 3901672236115867880}
   - component: {fileID: -4924488762212356791}
   - component: {fileID: -7250885547499596781}
-  m_Layer: 7
+  m_Layer: 8
   m_Name: Bullet
   m_TagString: bullet
   m_Icon: {fileID: 0}
@@ -95,19 +94,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &718824785319082415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4272885084264023472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39f70d0bfade9b440b84e7ff4a64241b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
 --- !u!50 &3901672236115867880
 Rigidbody2D:
   serializedVersion: 5
@@ -150,6 +136,13 @@ MonoBehaviour:
   targetPos: {x: 0, y: 0, z: 0}
   aim: {fileID: 0}
   time: 10
+  damage: 0
+  slowDuration: 10
+  burnDamage: 1
+  burnInterval: 2
+  burnDuration: 6
+  knockbackForce: 5
+  knockbackDuration: 0.2
 --- !u!61 &-7250885547499596781
 BoxCollider2D:
   m_ObjectHideFlags: 0

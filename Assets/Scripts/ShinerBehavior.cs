@@ -61,6 +61,8 @@ public class ShinerBehavior : EnemyBase
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
         StartCoroutine(Pathfind());
 
+        if (knockedBack) return;
+        
         switch (state)
         {
             case "Search":

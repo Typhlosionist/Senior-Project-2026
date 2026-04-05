@@ -34,8 +34,6 @@ public class PlayerMove : MonoBehaviour
         if (!freeze)
         {
             moveDir = move.action.ReadValue<Vector2>();
-            
-            
         }
         else
         {
@@ -47,7 +45,6 @@ public class PlayerMove : MonoBehaviour
         playerAnimator.SetBool("Back", false);
         
         
-        moveDir = move.action.ReadValue<Vector2>();
         if (moveDir.x == 0 && moveDir.y == 0)
         {
             playerAnimator.SetFloat("Speed", 0);
