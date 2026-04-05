@@ -34,7 +34,7 @@ public class NavGrid : MonoBehaviour
                     posVec.x += offset;
                 }
 
-                Collider2D hit = Physics2D.OverlapCircle((Vector2)transform.position + posVec, detectionRadius, LayerMask.GetMask("Default"));
+                Collider2D hit = Physics2D.OverlapCircle((Vector2)transform.position + posVec, detectionRadius, LayerMask.GetMask("Wall"));
                 //Debug.Log(hit);
                 if(hit == null)
                 {
