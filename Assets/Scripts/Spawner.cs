@@ -54,7 +54,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurrentWave.RemoveAll(enemy => enemy == null);
+        //CurrentWave.RemoveAll(enemy => enemy == null);
 
         if(spawnInitiated && !allWavesCompleted){
             if(CurrentWave.Count == 0)
