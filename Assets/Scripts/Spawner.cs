@@ -29,6 +29,13 @@ public class Spawner : MonoBehaviour
         nodeList = navGrid.nodes;
     }
 
+
+    [ContextMenu("Spawn 1 enemy 2 waves")]
+    void testSpawn()
+    {
+        InitiateSpawn(1,2);
+    }
+
     public void InitiateSpawn(int perWave, int waves)
     {
         spawnInitiated = true;
@@ -54,10 +61,13 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurrentWave.RemoveAll(enemy => enemy == null);
+        if (CurrentWave != null)
+        {
+            CurrentWave.RemoveAll(enemy => enemy == null);
+        }
 
         if(spawnInitiated && !allWavesCompleted){
-            if(CurrentWave.Count == 0)
+            if(CurrentWave == null)
             {
                 numWavesCompleted += 1;
 

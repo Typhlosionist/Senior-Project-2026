@@ -48,12 +48,10 @@ public class StalkerBehavior : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        if (knockedBack) return;
-        
         StartCoroutine(Pathfind());
 
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
-        
+
         if(distToTarget <= attackDistance)
         {
             state = "Attack";
@@ -193,8 +191,5 @@ public class StalkerBehavior : EnemyBase
 
     }
 
-    // protected override void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     base.OnTriggerEnter2D(collision); 
-    // }
+
 }

@@ -1,8 +1,6 @@
 using System.Collections;
 using UnityEngine;
-using Unity.Mathematics;
 using System.Collections.Generic;
-using UnityEditor;
 
 public class EnemyBase : MonoBehaviour
 {
@@ -102,13 +100,18 @@ public class EnemyBase : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    public void ObjectCollide(Collider2D other)
     {
         Debug.Log(other.name + " Entered hitbox of " + this.name);
 
-        if (other.name == "Bullet(Clone)")
+        if (other.CompareTag("bullet"))
         {
+            
             Bullter bullet = other.GetComponent<Bullter>();
+
+            Debug.Log("Hit with " + bullet.damage);
+
+            CurrentHealth -= bullet.damage;
 
             if (Bullter.ice)
             {
@@ -135,7 +138,7 @@ public class EnemyBase : MonoBehaviour
                 StartCoroutine(Gust(knockbackDir, bullet.knockbackForce, bullet.knockbackDuration));
             }
         
-            CurrentHealth -= bullet.damage;
+            
         }
     }
 

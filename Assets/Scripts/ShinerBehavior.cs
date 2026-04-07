@@ -6,7 +6,7 @@ public class ShinerBehavior : EnemyBase
 {
 
     Transform hurtBox;
-    CapsuleCollider2D capCollider;
+    CircleCollider2D circCollider;
     Light2D nightLight;
 
     [Header("Attack Variables")]
@@ -43,7 +43,7 @@ public class ShinerBehavior : EnemyBase
         rb = GetComponent<Rigidbody2D>();
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
-        capCollider = GetComponent<CapsuleCollider2D>();
+        circCollider = GetComponent<CircleCollider2D>();
         nightLight = sprite.GetComponent<Light2D>();
 
         nightLight.intensity = 0;
@@ -63,8 +63,6 @@ public class ShinerBehavior : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        if (knockedBack) return;
-
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
         StartCoroutine(Pathfind());
 
@@ -156,7 +154,7 @@ public class ShinerBehavior : EnemyBase
         hopSpot = hopNode.transform.position;
 
         //Hop Motion
-        capCollider.enabled = false;
+        circCollider.enabled = false;
         float progress = 0;
         float distance = Vector3.Distance(transform.position, hopSpot);
 
@@ -180,7 +178,7 @@ public class ShinerBehavior : EnemyBase
 
         rb.linearVelocity = Vector2.zero;
 
-        capCollider.enabled = true;
+        circCollider.enabled = true;
 
         //Hop Cooldown
         yield return new WaitForSeconds(0.25f);
@@ -223,9 +221,6 @@ public class ShinerBehavior : EnemyBase
         nightLight.intensity = 1;
     }
 
-    // protected override void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     base.OnTriggerEnter2D(collision); 
-    // }
+
 
 }
