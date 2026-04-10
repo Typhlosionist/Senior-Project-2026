@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SwooperBehavior : EnemyBase
 {
-    
+    Animator swooperAnim;
 
   // Start is called once before the first execution of Update after the MonoBehaviour is created
   void Start()
@@ -14,6 +14,7 @@ public class SwooperBehavior : EnemyBase
      //Objects and Components
     rb = GetComponent<Rigidbody2D>();
     sprite = transform.Find("Sprite");
+    swooperAnim = GetComponent<Animator>();
 
     AttackTarget = GameObject.Find("Player");
 
@@ -80,8 +81,19 @@ public class SwooperBehavior : EnemyBase
     }
 
     desiredVelocity = dir * MoveSpeed;
+    swooperAnim.SetFloat("Speed", MoveSpeed);
+    if (desiredVelocity.x < 0)
+    {
+       swooperAnim.SetBool("BR", false);
+       swooperAnim.SetBool("FL", true);
+     }
+     else if (desiredVelocity.x > 0)
+     {
+       swooperAnim.SetBool("FL", false);
+       swooperAnim.SetBool("BR", true);
+     }
 
-  }
+    }
 
   void BecomeNightmode()
   {
