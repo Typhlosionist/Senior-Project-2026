@@ -17,7 +17,7 @@ public class StalkerBehavior : EnemyBase
     [Header("Lunging Variable")]
     [SerializeField] float lungeSpeed = 5;
 
-    
+    Animator stalkerAnim;
     
     bool canAttack = true;
 
@@ -38,6 +38,7 @@ public class StalkerBehavior : EnemyBase
 
         hurtBox.gameObject.SetActive(false);
         hurtBox.GetComponent<AttackBox>().setDamage(Damage);
+        stalkerAnim = GetComponent<Animator>();
         
 
         //State
@@ -99,8 +100,11 @@ public class StalkerBehavior : EnemyBase
         desiredVelocity = Vector2.zero;
         yield return new WaitForSeconds(attackDelay);
 
-        
+        stalkerAnim.SetFloat("Speed", 0);
+
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
+
+        stalkerAnim.SetTrigger("Attack");
 
         //AttackBox
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);
@@ -112,6 +116,7 @@ public class StalkerBehavior : EnemyBase
             desiredVelocity = rb.linearVelocity;
             yield return new WaitForSeconds(attackDuration);
             desiredVelocity = Vector2.zero;
+            stalkerAnim.SetFloat("Speed", 0);
         }
         else
         {
@@ -190,6 +195,17 @@ public class StalkerBehavior : EnemyBase
         }
 
         desiredVelocity = dir * MoveSpeed;
+        stalkerAnim.SetFloat("Speed", MoveSpeed);
+        if (desiredVelocity.x < 0)
+        {
+            stalkerAnim.SetBool("BR", false);
+            stalkerAnim.SetBool("FL", true);
+        }
+        else if (desiredVelocity.x > 0)
+        {
+            stalkerAnim.SetBool("FL", false);
+            stalkerAnim.SetBool("BR", true);
+        }
 
     }
 

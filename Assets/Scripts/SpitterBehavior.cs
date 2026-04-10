@@ -18,6 +18,7 @@ public class SpitterBehavior : EnemyBase
 
     //Behvior related variable
     bool canAttack = true;
+    Animator spitterAnim;
 
     void Start()
     {
@@ -27,6 +28,7 @@ public class SpitterBehavior : EnemyBase
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
         sprite = transform.Find("Sprite");
+        spitterAnim = GetComponent<Animator>();
 
         AttackTarget = GameObject.Find("Player");
 
@@ -56,6 +58,7 @@ public class SpitterBehavior : EnemyBase
         if (LineOfSight && distToTarget <= attackDistance)
         {
             desiredVelocity = Vector2.zero;
+            spitterAnim.SetFloat("Speed", 0);
             if (canAttack)
             {
                 StartCoroutine(Attack());
@@ -78,9 +81,19 @@ public class SpitterBehavior : EnemyBase
                 travelNode = path[1];
             }
 
-            
 
+            spitterAnim.SetFloat("Speed", MoveSpeed);
             desiredVelocity = (travelNode.transform.position - transform.position).normalized * MoveSpeed; 
+            if (desiredVelocity.x < 0)
+            {
+                spitterAnim.SetBool("BR", false);
+                spitterAnim.SetBool("FL", true);
+            }
+            else if (desiredVelocity.x > 0)
+            {
+                spitterAnim.SetBool("FL", false);
+                spitterAnim.SetBool("BR", true);
+            }
 
         }
     }
@@ -92,6 +105,17 @@ public class SpitterBehavior : EnemyBase
 
         GameObject shot = Instantiate(projectile, transform.position, quaternion.identity);
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
+        if (dir.x < 0)
+        {
+            spitterAnim.SetBool("BR", false);
+            spitterAnim.SetBool("FL", true);
+        }
+        else if (dir.x > 0)
+        {
+            spitterAnim.SetBool("FL", false);
+            spitterAnim.SetBool("BR", true);
+        }
+        spitterAnim.SetTrigger("Attack");
         shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage, isNightmode);
 
         if (isNightmode)

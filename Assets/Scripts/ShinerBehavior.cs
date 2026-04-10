@@ -8,6 +8,7 @@ public class ShinerBehavior : EnemyBase
     Transform hurtBox;
     CapsuleCollider2D capCollider;
     Light2D nightLight;
+    Animator shinerAnim;
 
     [Header("Attack Variables")]
     [SerializeField] float attackDistance = 1;
@@ -41,6 +42,7 @@ public class ShinerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
+        shinerAnim = GetComponent<Animator>();
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
         capCollider = GetComponent<CapsuleCollider2D>();
@@ -113,12 +115,24 @@ public class ShinerBehavior : EnemyBase
         {
             //Walk towards target
             Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
+            shinerAnim.SetFloat("Speed", MoveSpeed);
+            if (dir.x < 0)
+            {
+                shinerAnim.SetBool("BR", false);
+                shinerAnim.SetBool("FL", true); 
+            }
+            else if (dir.x > 0)
+            {
+                shinerAnim.SetBool("FL", false);
+                shinerAnim.SetBool("BR", true);
+            }
             rb.linearVelocity = dir * MoveSpeed;
 
         }
         else
         {
             rb.linearVelocity = Vector2.zero;
+            shinerAnim.SetFloat("Speed", 0);
             //Hop
             if (canHop)
             {
@@ -201,6 +215,7 @@ public class ShinerBehavior : EnemyBase
 
         //Move AttackBox
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
+        shinerAnim.SetTrigger("Attack");
 
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);
         hurtBox.gameObject.SetActive(true);

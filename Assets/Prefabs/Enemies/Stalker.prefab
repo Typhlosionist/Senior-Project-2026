@@ -299,6 +299,11 @@ MonoBehaviour:
   CurrentHealth: 0
   MoveSpeed: 2
   Damage: 1
+  slowed: 0
+  frozen: 0
+  onFire: 0
+  knockedBack: 0
+  hasSpreadFire: 0
   AttackTarget: {fileID: 0}
   LineOfSight: 0
   raycastMask:
@@ -320,9 +325,6 @@ MonoBehaviour:
   attackCooldown: 1
   attackReach: 10
   lungeSpeed: 8
-  lungeReduction: 7
-  skulkTime: 1
-  skulkSpeed: 1.5
 --- !u!58 &1784439052915226296
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -396,10 +398,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8.36, y: 9.47}
+    newSize: {x: 8.36, y: 9.47}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
