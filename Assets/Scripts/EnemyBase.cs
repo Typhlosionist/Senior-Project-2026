@@ -8,7 +8,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] public float MaxHealth = 1;
     public float CurrentHealth;
     [SerializeField] public float MoveSpeed = 1;
-    private float originalMoveSpeed;
+    [HideInInspector] public float originalMoveSpeed;
     [SerializeField] public float Damage = 1;
     [SerializeField] public bool slowed = false;
     [SerializeField] public bool frozen = false;
@@ -83,7 +83,7 @@ public class EnemyBase : MonoBehaviour
         }
         else
         {
-            Debug.Log("Raycast error, make sure to set raycast mask");
+            //Debug.Log("Raycast error, make sure to set raycast mask");
         }
 
         //Interpolate current velocity towards desired velocity
@@ -102,11 +102,10 @@ public class EnemyBase : MonoBehaviour
 
     public void ObjectCollide(Collider2D other)
     {
-        Debug.Log(other.name + " Entered hitbox of " + this.name);
+        Debug.Log(other.name + " Entered hitbox of " + this.name + " with tag: " + other.tag);
 
-        if (other.CompareTag("bullet"))
-        {
-            
+        if(other.CompareTag("bullet")){
+
             Bullter bullet = other.GetComponent<Bullter>();
 
             Debug.Log("Hit with " + bullet.damage);
@@ -137,9 +136,11 @@ public class EnemyBase : MonoBehaviour
                 Vector2 knockbackDir = (transform.position - other.transform.position).normalized;
                 StartCoroutine(Gust(knockbackDir, bullet.knockbackForce, bullet.knockbackDuration));
             }
-        
-            
+
+            Destroy(other);
+
         }
+        
     }
 
     private IEnumerator Freeze(float slowDuration)

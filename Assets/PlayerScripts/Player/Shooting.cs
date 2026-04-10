@@ -90,7 +90,7 @@ public class Shooting : MonoBehaviour
                     Vector3 spreadTarget = bulletTrans.position + spreadDir * 100f;
 
                     GameObject bull = Instantiate(bullet, bulletTrans.position, bulletTrans.rotation);
-                    bull.tag = gameObject.tag;
+                    bull.tag = "bullet";
 
                     bull.GetComponent<Bullter>().targetPos = spreadTarget;
                 }

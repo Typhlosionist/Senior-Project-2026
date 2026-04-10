@@ -41,7 +41,7 @@ public class SwooperBehavior : EnemyBase
       Vector2 direction = (target - origin).normalized;
       float distance = Vector2.Distance(origin, target);
 
-      LayerMask mask = LayerMask.GetMask("Default");
+      LayerMask mask = LayerMask.GetMask("Wall");
 
       // Get collider half width (for left/right offsets)
       float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;
@@ -86,7 +86,9 @@ public class SwooperBehavior : EnemyBase
   void BecomeNightmode()
   {
     isNightmode = true;
-    MoveSpeed = MoveSpeed * 1.5f;
+
+    originalMoveSpeed = originalMoveSpeed * 1.5f;
+    MoveSpeed = originalMoveSpeed;
   }
 
 

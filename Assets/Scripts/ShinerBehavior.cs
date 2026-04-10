@@ -111,12 +111,12 @@ public class ShinerBehavior : EnemyBase
         {
             //Walk towards target
             Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
-            rb.linearVelocity = dir * MoveSpeed;
+            desiredVelocity = dir * MoveSpeed;
 
         }
         else
         {
-            rb.linearVelocity = Vector2.zero;
+            desiredVelocity = Vector2.zero;
             //Hop
             if (canHop)
             {
@@ -131,6 +131,7 @@ public class ShinerBehavior : EnemyBase
         canHop = false;
 
         rb.linearVelocity = Vector2.zero;
+        desiredVelocity = Vector2.zero;
 
         yield return new WaitForSeconds(0.5f);
 
@@ -159,6 +160,7 @@ public class ShinerBehavior : EnemyBase
         float distance = Vector3.Distance(transform.position, hopSpot);
 
         rb.linearVelocity = variedDirection*hopSpeed;
+        desiredVelocity = rb.linearVelocity;
 
         while(progress < 1f)
         {
@@ -177,6 +179,7 @@ public class ShinerBehavior : EnemyBase
         }
 
         rb.linearVelocity = Vector2.zero;
+        desiredVelocity = Vector2.zero;
 
         circCollider.enabled = true;
 
@@ -194,7 +197,7 @@ public class ShinerBehavior : EnemyBase
         canAttack = false;
 
         //Pause
-        rb.linearVelocity = Vector2.zero;
+        desiredVelocity = Vector2.zero;
         yield return new WaitForSeconds(attackDelay);
 
         //Move AttackBox
@@ -217,7 +220,10 @@ public class ShinerBehavior : EnemyBase
     void BecomeNightmode()
     {
         isNightmode = true;
-        MoveSpeed = MoveSpeed * 1.5f;
+
+        originalMoveSpeed = originalMoveSpeed * 1.5f;
+        MoveSpeed = originalMoveSpeed;
+
         nightLight.intensity = 1;
     }
 

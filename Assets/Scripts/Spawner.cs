@@ -47,6 +47,8 @@ public class Spawner : MonoBehaviour
 
     void SpawnWave()
     {
+        CurrentWave = new List<GameObject>();
+
         for(int i = 0; i < enemiesPerWave; i++) {
             GameObject spawnNode = nodeList[UnityEngine.Random.Range(0, nodeList.Count)];
          
@@ -66,12 +68,13 @@ public class Spawner : MonoBehaviour
             CurrentWave.RemoveAll(enemy => enemy == null);
         }
 
-        if(spawnInitiated && !allWavesCompleted){
-            if(CurrentWave == null)
+        if (spawnInitiated && !allWavesCompleted && CurrentWave != null)
+        {
+            if (CurrentWave.Count == 0)
             {
-                numWavesCompleted += 1;
+                numWavesCompleted++;
 
-                if(numWavesCompleted < requiredWaves)
+                if (numWavesCompleted < requiredWaves)
                 {
                     SpawnWave();
                 }

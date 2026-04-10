@@ -206,6 +206,7 @@ MonoBehaviour:
   MaxHealth: 1
   CurrentHealth: 0
   MoveSpeed: 7
+  originalMoveSpeed: 0
   Damage: 1
   slowed: 0
   frozen: 0
@@ -216,7 +217,7 @@ MonoBehaviour:
   LineOfSight: 0
   raycastMask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 193
   path: []
   navGrid: {fileID: 0}
   pathfindCooldown: 1
@@ -237,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1082356948116109767}
   - component: {fileID: 6757045365395065096}
+  - component: {fileID: 7839936519947725346}
   m_Layer: 10
   m_Name: Hitbox
   m_TagString: Untagged
@@ -305,6 +307,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.44872797, y: 0.72456443}
   m_EdgeRadius: 0
+--- !u!114 &7839936519947725346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629949498595200475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127a0afba29cf9d41981d4243e891e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &7596398360412651407
 GameObject:
   m_ObjectHideFlags: 0

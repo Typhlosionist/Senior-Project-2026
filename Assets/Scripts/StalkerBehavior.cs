@@ -134,6 +134,9 @@ public class StalkerBehavior : EnemyBase
         isNightmode = true;
 
         attackDistance = attackDistance * 2;
+
+        originalMoveSpeed = originalMoveSpeed * 1.25f;
+        MoveSpeed = originalMoveSpeed;
     }
 
     public void Search()
@@ -149,7 +152,7 @@ public class StalkerBehavior : EnemyBase
             Vector2 direction = (target - origin).normalized;
             float distance = Vector2.Distance(origin, target);
 
-            LayerMask mask = LayerMask.GetMask("Default");
+            LayerMask mask = LayerMask.GetMask("Wall");
 
             // Get collider half width (for left/right offsets)
             float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;

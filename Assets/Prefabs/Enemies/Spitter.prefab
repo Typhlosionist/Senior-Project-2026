@@ -215,6 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7534726262253699900}
   - component: {fileID: 1872613301297598535}
+  - component: {fileID: 3371143665269419419}
   m_Layer: 10
   m_Name: Hitbox
   m_TagString: Untagged
@@ -283,6 +284,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.85965145, y: 0.8662622}
   m_EdgeRadius: 0
+--- !u!114 &3371143665269419419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6833179538598299431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127a0afba29cf9d41981d4243e891e37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
 --- !u!1 &7279296804068032560
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,7 +308,6 @@ GameObject:
   - component: {fileID: 3792676905926995711}
   - component: {fileID: 4588519240797361138}
   - component: {fileID: 8262632984368308368}
-  - component: {fileID: 6479314574287003727}
   m_Layer: 8
   m_Name: Spitter
   m_TagString: Enemy
@@ -396,9 +408,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089d5631fdf159249ae30ecd9bbe4aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  MaxHealth: 3
+  MaxHealth: 2
   CurrentHealth: 0
   MoveSpeed: 1.2
+  originalMoveSpeed: 0
   Damage: 1
   slowed: 0
   frozen: 0
@@ -409,7 +422,7 @@ MonoBehaviour:
   LineOfSight: 0
   raycastMask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 193
   path: []
   navGrid: {fileID: 0}
   pathfindCooldown: 1
@@ -424,25 +437,3 @@ MonoBehaviour:
   attackCooldown: 1
   projectile: {fileID: 6853589449238579801, guid: 068b455f3730eea48b85a7f1e4056ad8, type: 3}
   shotSpeed: 4
---- !u!95 &6479314574287003727
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279296804068032560}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 658b92d0b7980ff4ebc15e35fc8fab48, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
