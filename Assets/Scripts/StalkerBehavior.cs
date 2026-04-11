@@ -17,6 +17,8 @@ public class StalkerBehavior : EnemyBase
     [Header("Lunging Variable")]
     [SerializeField] float lungeSpeed = 5;
 
+    [SerializeField] private AudioClip attackSFX;
+
     Animator stalkerAnim;
     
     bool canAttack = true;
@@ -105,6 +107,7 @@ public class StalkerBehavior : EnemyBase
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
 
         stalkerAnim.SetTrigger("Attack");
+        SFXManager.instance.PlaySFX(attackSFX, transform, 1f);
 
         //AttackBox
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);

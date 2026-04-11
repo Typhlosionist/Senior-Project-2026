@@ -14,7 +14,7 @@ public class SwooperBehavior : EnemyBase
      //Objects and Components
     rb = GetComponent<Rigidbody2D>();
     sprite = transform.Find("Sprite");
-    swooperAnim = GetComponent<Animator>();
+    swooperAnim = GetComponentInChildren<Animator>();
 
     AttackTarget = GameObject.Find("Player");
 
@@ -81,7 +81,7 @@ public class SwooperBehavior : EnemyBase
     }
 
     desiredVelocity = dir * MoveSpeed;
-    swooperAnim.SetFloat("Speed", MoveSpeed);
+    swooperAnim.SetFloat("Speed",MoveSpeed);
     if (desiredVelocity.x < 0)
     {
        swooperAnim.SetBool("BR", false);

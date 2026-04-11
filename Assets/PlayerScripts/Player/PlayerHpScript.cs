@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerHpScript : MonoBehaviour
 {
@@ -16,18 +17,29 @@ public class PlayerHpScript : MonoBehaviour
     public float iFrames;
     public int flashes;
     public SpriteRenderer sprite;
+    public HealthBar healthBar;
     
     void Start()
     {
         currentHp = maxHp;
         sprite = GetComponent<SpriteRenderer>();
+        healthBar.SetMaxHealth(maxHp);
     }
-
+    //testing health bar
+    /*private void Update()
+    {
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Debug.Log("Space presssed");
+            hurt(1);
+        }
+    }*/
     public void heal(int health)
     {
         if (currentHp < 3)
         {
             currentHp += health;
+            healthBar.SetHealth(currentHp);
             increaseHp();
         }
     }
@@ -37,6 +49,9 @@ public class PlayerHpScript : MonoBehaviour
         if (!god)
         {
             currentHp -= damage;
+
+            healthBar.SetHealth(currentHp);
+
             reduceHp();
             if (currentHp <= 0)
             {
@@ -70,7 +85,6 @@ public class PlayerHpScript : MonoBehaviour
         {
             hp3.color = new Color(hp3.color.r, hp3.color.g, hp3.color.b, 0.5f);
         }
-
         StartCoroutine(invuln());
     }
     

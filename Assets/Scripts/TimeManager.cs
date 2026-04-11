@@ -9,15 +9,23 @@ public class TimeManager : MonoBehaviour
     float totalTime = 0;
     float currTime = 0;
 
+    //public AudioSource dayForest;
+    //public AudioSource nightForest;
+
     // Update is called once per frame
     void Update()
     {
         totalTime += Time.deltaTime;
         currTime = totalTime % dayDuration;
+        if (totalTime > dayDuration)
+        {
+
+        }
     }
 
     public float GetHour()
     {
+        Debug.Log(currTime * hrsinday / dayDuration);
         return currTime * hrsinday / dayDuration;
     }
     
