@@ -40,12 +40,12 @@ public class SpitterShot : MonoBehaviour
         yield return new WaitForSeconds(5);
         
         Debug.Log("self Destruct");
-        Destroy(gameObject);
+        Destroy(this.gameObject);
 
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        Debug.Log("shot collided");
-        Destroy(gameObject);
+        //Debug.Log("shot collided");
+        Destroy(this.gameObject);
     }
 }
