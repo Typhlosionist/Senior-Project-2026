@@ -16,15 +16,22 @@ public class NavGrid : MonoBehaviour
     //Grid
     public List<GameObject> nodes = new List<GameObject>();
 
+    private bool initialized = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (!initialized)
+            Initialize();
+    }
+
+    public void Initialize()
+    {
+        initialized = true;
+
         for(int i = 0 ; i < nodesHorizontal; i++)
         {
             for(int j = 0 ; j < nodesVertical; j++)
             {
-                
                 float offset = nodeSpacing/2;
                 
                 Vector2 posVec = new Vector2(i*nodeSpacing, j*nodeSpacing);
@@ -35,16 +42,14 @@ public class NavGrid : MonoBehaviour
                 }
 
                 Collider2D hit = Physics2D.OverlapCircle((Vector2)transform.position + posVec, detectionRadius, LayerMask.GetMask("Wall"));
-                //Debug.Log(hit);
                 if(hit == null)
                 {
                     GameObject nodeObj = Instantiate(Node, (Vector2)transform.position + posVec, Quaternion.identity);
+                    nodeObj.transform.SetParent(transform, true);
                     nodeObj.GetComponent<node>().parentSpawner = this;
 
                     nodes.Add(nodeObj);
                 }
-
-
             }
         }
 
@@ -64,9 +69,6 @@ public class NavGrid : MonoBehaviour
 
         //Cleanup
         KeepLargestCluster();
-
-
-
     }
 
     //Helper

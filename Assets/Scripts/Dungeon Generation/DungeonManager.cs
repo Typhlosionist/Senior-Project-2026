@@ -1,10 +1,13 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class DungeonManager : MonoBehaviour
 {
     public DungeonGenerator dungeonGenerator;
 
     public LevelExit levelExitPrefab;
+
+    public NavGrid navGridPrefab;
 
     public Transform player;
 
@@ -32,6 +35,11 @@ public class DungeonManager : MonoBehaviour
         levelParent = new GameObject("Level Parent").transform;
 
         currentDungeon = dungeonGenerator.CreateDungeon();
+
+        List<Room> rooms = currentDungeon.GetRooms();
+        SetNavGrids(rooms);
+
+
         LevelExit exit = Instantiate(levelExitPrefab, currentDungeon.GetExitLocation() + spawnOffset, Quaternion.identity);
 
         exit.dungeonManager = this;
@@ -53,4 +61,19 @@ public class DungeonManager : MonoBehaviour
         return currentDungeon.GetStartLocation() + spawnOffset;
     }
 
+    public void SetNavGrids(List<Room> rooms)
+    {
+        for (int i = 1; i < rooms.Count; i++)
+        {
+            Room room = rooms[i];
+            Vector3 spawnPosition = new Vector3(room.x + 0.5f, room.y + 0.5f, 0f);
+
+            NavGrid navGrid = Instantiate(navGridPrefab, spawnPosition, Quaternion.identity);
+            navGrid.transform.SetParent(levelParent, true);
+
+            navGrid.nodesVertical = room.height;
+            navGrid.nodesHorizontal = room.width;
+            navGrid.Initialize();
+        }
+    }
 }

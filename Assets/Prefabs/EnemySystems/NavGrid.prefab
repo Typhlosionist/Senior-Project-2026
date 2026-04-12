@@ -50,7 +50,7 @@ MonoBehaviour:
   nodesHorizontal: 25
   nodeSpacing: 1
   detectionRadius: 0.5
-  nodesVisible: 0
+  nodesVisible: 1
   nodes: []
 --- !u!212 &4049473666026445955
 SpriteRenderer:

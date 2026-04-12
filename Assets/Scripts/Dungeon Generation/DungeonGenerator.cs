@@ -11,11 +11,11 @@ public class DungeonGenerator : MonoBehaviour
 
     public GameObject[] obstaclePrefabs;
 
+    public GameObject navGridPrefab;
+
     [Range(0f, 1f)]
     public float obstacleSpawnChance = 0.05f;
     public int obstacleEdgeBuffer = 1;
-
-
     public int dungeonWidth = 50;
     public int dungeonHeight = 50;
 
@@ -45,11 +45,16 @@ public class DungeonGenerator : MonoBehaviour
         SetStartAndExitRooms(dungeon, rooms);
         //SpawnObstacles(dungeon, rooms);
 
+        // set nav grid to bottom left corner of room
+        
+
         dungeonVisualizer.Clear();
         dungeonVisualizer.PaintFloorTiles(dungeon);
 
         return dungeon;
     }
+
+    
 
 
     private List<Room> GenerateRooms(Dungeon dungeon)
