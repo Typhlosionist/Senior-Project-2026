@@ -32,6 +32,7 @@ public class EnemyBase : MonoBehaviour
 
     [HideInInspector] public Rigidbody2D rb;
     [HideInInspector] public Transform sprite;
+    [HideInInspector] public SpriteRenderer sr;
 
     //Night Transitioning Variables
     [HideInInspector] public DarknessController darknessController;
@@ -43,6 +44,7 @@ public class EnemyBase : MonoBehaviour
     {
         originalMoveSpeed = MoveSpeed;
         darknessController = GameObject.Find("DarknessController").GetComponent<DarknessController>();
+        sr = transform.Find("Sprite").GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate() {
@@ -145,10 +147,12 @@ public class EnemyBase : MonoBehaviour
         {
             frozen = true;
             MoveSpeed = 0;
+            if (sr != null) sr.color = new Color(0.4f, 0.6f, 1f); // solid blue tint while frozen
             Debug.Log(this.name + " is frozen!");
 
             yield return new WaitForSeconds(slowDuration);
 
+            if (sr != null) sr.color = Color.white;
             MoveSpeed = originalMoveSpeed;
             slowed = false;
             frozen = false;
@@ -158,12 +162,14 @@ public class EnemyBase : MonoBehaviour
         {
             slowed = true;
             MoveSpeed = originalMoveSpeed / 2;
+            if (sr != null) sr.color = new Color(0.7f, 0.85f, 1f); // lighter blue tint while slowed
             Debug.Log(this.name + " is slowed!");
 
             yield return new WaitForSeconds(slowDuration);
 
             if (!frozen)
             {
+                if (sr != null) sr.color = Color.white;
                 MoveSpeed = originalMoveSpeed;
                 slowed = false;
                 Debug.Log(this.name + " is no longer slowed");
@@ -174,17 +180,41 @@ public class EnemyBase : MonoBehaviour
     public IEnumerator Burn(float burnDamage, float burnInterval, float burnDuration)
     {
         float elapsed = 0f;
-
+        
         while (elapsed < burnDuration)
         {
             yield return new WaitForSeconds(burnInterval);
             CurrentHealth -= burnDamage;
             elapsed += burnInterval;
+
+            if (sr != null)
+            {
+                Debug.Log("Sprite: " + sr.name);
+                StartCoroutine(FlashRed(sr, 0.15f));
+            }
+
             Debug.Log(this.name + " is burning");
         }
 
         onFire = false;
         Debug.Log(this.name + " is no longer burning");
+    }
+    
+    private IEnumerator FlashRed(SpriteRenderer sr, float flashDuration)
+    {
+        Debug.Log(this.name + " is flashing");
+        Color original = sr.color;
+        sr.color = Color.red;
+
+        float elapsed = 0f;
+        while (elapsed < flashDuration)
+        {
+            sr.color = Color.Lerp(Color.red, original, elapsed / flashDuration);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        sr.color = original;
     }
 
     private IEnumerator Gust(Vector2 direction, float knockbackForce, float knockbackDuration)
