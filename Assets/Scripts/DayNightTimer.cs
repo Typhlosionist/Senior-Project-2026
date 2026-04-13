@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 
 public class DayNightTimer : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class DayNightTimer : MonoBehaviour
     public DarknessController nightfall;
     public RectTransform handle;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip daySFX;
+    [SerializeField] private AudioClip nightSFX;
+    bool SFXplaying = false;
+
     private void Start()
     {
         if(nightfall == null)
@@ -23,6 +29,7 @@ public class DayNightTimer : MonoBehaviour
         if(handle == null){
             handle = transform.Find("Canvas/Timer/handle").GetComponent<RectTransform>();
         }
+        SFXManager.instance.PlaySFX(daySFX, transform, 1f);
     }
 
     void Update()
@@ -50,6 +57,10 @@ public class DayNightTimer : MonoBehaviour
             {
                 Trigger();
             }
+            if (!SFXplaying)
+            {
+                StartCoroutine(NightTime());
+            }
         }
     }
 
@@ -73,5 +84,13 @@ public class DayNightTimer : MonoBehaviour
     {
         elapsedTime = 0f;
         hasTriggered = false;
+    }
+
+    private IEnumerator NightTime()
+    {
+        SFXManager.instance.PlaySFX(nightSFX, transform, 1f);
+        SFXplaying = true;
+        yield return new WaitForSeconds(nightSFX.length);
+        SFXplaying = false;
     }
 }

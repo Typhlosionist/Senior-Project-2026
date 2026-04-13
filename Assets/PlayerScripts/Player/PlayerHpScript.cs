@@ -28,14 +28,14 @@ public class PlayerHpScript : MonoBehaviour
         healthBar.SetMaxHealth(maxHp);
     }
     //testing health bar
-    /*private void Update()
+    private void Update()
     {
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
         {
             Debug.Log("Space presssed");
             hurt(1);
         }
-    }*/
+    }
     public void heal(int health)
     {
         if (currentHp < 3)
