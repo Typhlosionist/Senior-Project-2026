@@ -251,6 +251,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   darknessController: {fileID: 0}
   isNightmode: 0
+  attackSFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
 --- !u!1 &6629949498595200475
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,31 +343,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127a0afba29cf9d41981d4243e891e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  MaxHealth: 1
-  CurrentHealth: 0
-  MoveSpeed: 7
-  Damage: 1
-  slowed: 0
-  frozen: 0
-  onFire: 0
-  knockedBack: 0
-  hasSpreadFire: 0
-  AttackTarget: {fileID: 0}
-  LineOfSight: 0
-  raycastMask:
-    serializedVersion: 2
-    m_Bits: 129
-  path: []
-  navGrid: {fileID: 0}
-  pathfindCooldown: 1
-  pathfindOnCooldown: 0
-  desiredVelocity: {x: 0, y: 0}
-  accelerationRate: 0.5
-  rb: {fileID: 0}
-  sprite: {fileID: 0}
-  darknessController: {fileID: 0}
-  isNightmode: 0
-  attackSFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
 --- !u!1 &7596398360412651407
 GameObject:
   m_ObjectHideFlags: 0

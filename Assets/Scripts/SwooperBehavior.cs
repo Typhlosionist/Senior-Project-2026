@@ -94,6 +94,7 @@ public class SwooperBehavior : EnemyBase
        swooperAnim.SetBool("FL", false);
        swooperAnim.SetBool("BR", true);
      }
+     
 
     }
 

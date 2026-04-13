@@ -179,8 +179,21 @@ public class ShinerBehavior : EnemyBase
 
         rb.linearVelocity = variedDirection*hopSpeed;
         desiredVelocity = rb.linearVelocity;
+        if (desiredVelocity.x < 0)
+        {
+            shinerAnim.SetBool("BR", false);
+            shinerAnim.SetBool("FL", true);
+        }
+        else if (desiredVelocity.x > 0)
+        {
+            shinerAnim.SetBool("FL", false);
+            shinerAnim.SetBool("BR", true);
+        }
 
-        while(progress < 1f)
+        shinerAnim.SetBool("Jumping", true);
+        
+
+        while (progress < 1f)
         {
             progress = (distance - Vector3.Distance(transform.position, hopSpot)) / distance;
 
@@ -192,10 +205,10 @@ public class ShinerBehavior : EnemyBase
 
             float height = Mathf.Sin(progress * Mathf.PI) * hopHeight;
             sprite.localPosition = new Vector3(0, height, 0);
-
+            //shinerAnim.SetTrigger("Jump");
             yield return new WaitForFixedUpdate(); //Allows 1 frame of physics to happen
         }
-
+        shinerAnim.SetBool("Jumping", false);
         rb.linearVelocity = Vector2.zero;
         desiredVelocity = Vector2.zero;
 
