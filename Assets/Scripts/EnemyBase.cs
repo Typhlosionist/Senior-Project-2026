@@ -136,11 +136,7 @@ public class EnemyBase : MonoBehaviour
                 Vector2 knockbackDir = (transform.position - other.transform.position).normalized;
                 StartCoroutine(Gust(knockbackDir, bullet.knockbackForce, bullet.knockbackDuration));
             }
-
-            Destroy(other);
-
         }
-        
     }
 
     private IEnumerator Freeze(float slowDuration)
