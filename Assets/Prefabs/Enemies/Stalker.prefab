@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7221855734743337741}
   m_Layer: 10
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 1220946709333802379}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 5247835659272638857}
   m_Layer: 11
   m_Name: AttackBox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -582,7 +582,7 @@ GameObject:
   - component: {fileID: 5951645540173947557}
   m_Layer: 8
   m_Name: Shadow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

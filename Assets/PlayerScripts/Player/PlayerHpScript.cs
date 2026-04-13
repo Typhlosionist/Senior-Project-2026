@@ -1,48 +1,78 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerHpScript : MonoBehaviour
 {
 
-    public bool god = false;
-    private int maxHp = 3;
+    public static bool god = false;
+    public int maxHp = 3;
     public int currentHp;
-    
-    public SpriteRenderer hp1;
-    public SpriteRenderer hp2;
-    public SpriteRenderer hp3;
-
     public float iFrames;
     public int flashes;
     public SpriteRenderer sprite;
     public HealthBar healthBar;
+    
+    private bool isDashing;
+
     [Header("SFX")]
     [SerializeField] private AudioClip damageSFX;
-
+    
+    [SerializeField] private Volume volume;
+    private Vignette vignette;
+    
     void Start()
     {
         currentHp = maxHp;
+        volume.profile.TryGet<Vignette>(out vignette);
         sprite = GetComponent<SpriteRenderer>();
         healthBar.SetMaxHealth(maxHp);
     }
-    //testing health bar
-    private void Update()
+    
+    void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        /*if (Keyboard.current.spaceKey.wasPressedThisFrame) //testing health bar
         {
             Debug.Log("Space presssed");
             hurt(1);
+        }*/
+        if (vignette != null)
+        {
+            float hpPercent = (float)currentHp / maxHp;
+        
+            float baseIntensity = Mathf.Lerp(0.6f, 0f, Mathf.Pow(hpPercent, 3));
+        
+            float pulseSpeed = Mathf.Lerp(4f, 1f, hpPercent);
+            float pulseAmount = Mathf.Lerp(0.15f, 0f, Mathf.Pow(hpPercent, 0.4f));
+            float pulse = (Mathf.Sin(Time.time * pulseSpeed) + 1f) / 2f * pulseAmount;
+
+            vignette.color.value = Color.Lerp(Color.red, Color.black, hpPercent);
+            vignette.intensity.value = baseIntensity + pulse;
         }
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        isDashing = PlayerMove.isDashing;
+        if (!isDashing)
+        {
+            if (other.CompareTag("Enemy"))
+            {
+                hurt(1);
+            }
+        }
+    }
+    
     public void heal(int health)
     {
         if (currentHp < 3)
         {
             currentHp += health;
             healthBar.SetHealth(currentHp);
-            increaseHp();
         }
     }
 
@@ -54,7 +84,6 @@ public class PlayerHpScript : MonoBehaviour
             SFXManager.instance.PlaySFX(damageSFX, transform, 1f);
             healthBar.SetHealth(currentHp);
 
-            reduceHp();
             if (currentHp <= 0)
             {
                 die();
@@ -66,52 +95,20 @@ public class PlayerHpScript : MonoBehaviour
     {
         //play death anim
         //go to gameover
-        Destroy(gameObject);
+        gameObject.SetActive(false);
         Debug.Log("RIP");
     }
-    
-    public void reduceHp()
-    {
-        if (currentHp == 0)
-        {
-            hp3.color = new Color(hp3.color.r, hp3.color.g, hp3.color.b, 0.5f);
-            hp2.color = new Color(hp2.color.r, hp2.color.g, hp2.color.b, 0.5f);
-            hp1.color = new Color(hp1.color.r, hp1.color.g, hp1.color.b, 0.5f);
-        }
-        if (currentHp == 1)
-        {
-            hp3.color = new Color(hp3.color.r, hp3.color.g, hp3.color.b, 0.5f);
-            hp2.color = new Color(hp2.color.r, hp2.color.g, hp2.color.b, 0.5f);
-        }
-        if (currentHp == 2)
-        {
-            hp3.color = new Color(hp3.color.r, hp3.color.g, hp3.color.b, 0.5f);
-        }
-        StartCoroutine(invuln());
-    }
-    
-    public void increaseHp()
-    {
-        if (currentHp == 3)
-        {
-            hp3.color = new Color(hp3.color.r, hp3.color.g, hp3.color.b, 1f);
-        }
-        if (currentHp == 2)
-        {
-            hp2.color = new Color(hp2.color.r, hp2.color.g, hp2.color.b, 1f);
-        }
-    }
 
-    private IEnumerator invuln()
-    {
-        Physics2D.IgnoreLayerCollision(10, 11, true);
-        for (int i = 0; i < flashes; i++)
-        {
-            sprite.color = new Color(1, 0, 0, .5f);
-            yield return new WaitForSeconds(iFrames / (flashes * 2));
-            sprite.color = Color.white;
-            yield return new WaitForSeconds(iFrames / (flashes *2));
-        }
-        Physics2D.IgnoreLayerCollision(10, 11, false);
-    }
+    // private IEnumerator invuln()
+    // {
+    //     Physics2D.IgnoreLayerCollision(10, 11, true);
+    //     for (int i = 0; i < flashes; i++)
+    //     {
+    //         sprite.color = new Color(1, 0, 0, .5f);
+    //         yield return new WaitForSeconds(iFrames / (flashes * 2));
+    //         sprite.color = Color.white;
+    //         yield return new WaitForSeconds(iFrames / (flashes *2));
+    //     }
+    //     Physics2D.IgnoreLayerCollision(10, 11, false);
+    // }
 }

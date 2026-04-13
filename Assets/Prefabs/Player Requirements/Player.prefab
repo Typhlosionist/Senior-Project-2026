@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4164101319500511872}
   - component: {fileID: 5305222527649539113}
-  m_Layer: 7
+  - component: {fileID: 5516919634463661714}
+  m_Layer: 0
   m_Name: rotationPoint
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7190680362804420557}
   m_Father: {fileID: 3425437296133134468}
@@ -51,6 +52,42 @@ MonoBehaviour:
   bulletTrans: {fileID: 7190680362804420557}
   canFire: 0
   shootSFX: {fileID: 8300000, guid: a3607d842fdbba24897f2fe608fcf9e6, type: 3}
+--- !u!58 &5516919634463661714
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51651336017150268}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1 &2426661252426977538
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,6 +191,7 @@ GameObject:
   - component: {fileID: 4087760517061858931}
   - component: {fileID: 3023207425432477024}
   - component: {fileID: 3335688943832338847}
+  - component: {fileID: 8780891582885712886}
   - component: {fileID: 6851032148477793583}
   - component: {fileID: 2956219508254292652}
   - component: {fileID: 2507097544918246196}
@@ -302,8 +340,44 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_Offset: {x: 0.10671536, y: -0.39637446}
+  m_Radius: 2.8630126
+--- !u!58 &8780891582885712886
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210548336253915911}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 16311
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0.1067154, y: -0.3963745}
+  m_Radius: 2.863013
 --- !u!114 &6851032148477793583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,8 +394,8 @@ MonoBehaviour:
   moveSpeed: 5
   rb: {fileID: 3023207425432477024}
   circleCollider: {fileID: 3335688943832338847}
-  move: {fileID: 0}
-  dash: {fileID: 0}
+  move: {fileID: -1680190386980627800, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  dash: {fileID: -7471211009204490832, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   dashLen: 0.5
   dashSpeed: 10
   walkSFX: {fileID: 8300000, guid: 056ea007f52e402458e93f27ecd28f8b, type: 3}
@@ -337,16 +411,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 078a5d4496c28f241bb787ce737ca56f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  god: 0
+  maxHp: 3
   currentHp: 0
-  hp1: {fileID: 0}
-  hp2: {fileID: 0}
-  hp3: {fileID: 0}
   iFrames: 2
   flashes: 3
   sprite: {fileID: 0}
   healthBar: {fileID: 0}
   damageSFX: {fileID: 8300000, guid: 0b4327f6d73d7a64696ee3510bee0f35, type: 3}
+  volume: {fileID: 0}
 --- !u!114 &2507097544918246196
 MonoBehaviour:
   m_ObjectHideFlags: 0

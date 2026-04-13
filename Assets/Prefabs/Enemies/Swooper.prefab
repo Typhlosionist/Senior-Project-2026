@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8755129076241205299}
   m_Layer: 8
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,9 +146,9 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4406223212346089964}
   - {fileID: 2027251151010172136}
   - {fileID: 1082356948116109767}
+  - {fileID: 4406223212346089964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8414972299222152295
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 7839936519947725346}
   m_Layer: 10
   m_Name: Hitbox
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,7 +355,7 @@ GameObject:
   - component: {fileID: 6992649334379038508}
   m_Layer: 8
   m_Name: Shadow
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

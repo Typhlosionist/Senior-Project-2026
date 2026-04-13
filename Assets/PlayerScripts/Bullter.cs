@@ -66,11 +66,14 @@ public class Bullter : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
+            Debug.Log("hit enemy");
             if (Bullter.wildfire)
             {
-                EnemyBase hitEnemy = other.GetComponent<EnemyBase>();
+                EnemyBase hitEnemy = other.GetComponentInParent<EnemyBase>();
+                Debug.Log(hitEnemy + " hit");
                 if (hitEnemy != null && hitEnemy.onFire && !hitEnemy.hasSpreadFire)
                 {
+                    Debug.Log("should show circle");
                     hitEnemy.hasSpreadFire = true;
 
                     Collider2D[] nearby = Physics2D.OverlapCircleAll(other.transform.position, wildfireRange);
@@ -93,7 +96,6 @@ public class Bullter : MonoBehaviour
                     vfx.Show(other.transform.position, wildfireRange);
                 }
             }
-
             Destroy(this.gameObject);
         }
     }
