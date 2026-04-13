@@ -4,9 +4,11 @@ using UnityEngine;
 public class SwooperBehavior : EnemyBase
 {
     Animator swooperAnim;
+    [Header("SFX")]
+    [SerializeField] private AudioClip attackSFX;
 
-  // Start is called once before the first execution of Update after the MonoBehaviour is created
-  void Start()
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
   {
     //Stats
     CurrentHealth = MaxHealth;

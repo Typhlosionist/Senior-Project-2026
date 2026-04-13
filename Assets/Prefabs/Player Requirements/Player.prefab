@@ -50,6 +50,7 @@ MonoBehaviour:
   bullet: {fileID: 4272885084264023472, guid: 68bfdd647f9119d44bd90124ebdb0bb2, type: 3}
   bulletTrans: {fileID: 7190680362804420557}
   canFire: 0
+  shootSFX: {fileID: 8300000, guid: a3607d842fdbba24897f2fe608fcf9e6, type: 3}
 --- !u!1 &2426661252426977538
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,6 +324,7 @@ MonoBehaviour:
   dash: {fileID: 0}
   dashLen: 0.5
   dashSpeed: 10
+  walkSFX: {fileID: 8300000, guid: 056ea007f52e402458e93f27ecd28f8b, type: 3}
 --- !u!114 &2956219508254292652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,6 +345,8 @@ MonoBehaviour:
   iFrames: 2
   flashes: 3
   sprite: {fileID: 0}
+  healthBar: {fileID: 0}
+  damageSFX: {fileID: 8300000, guid: 0b4327f6d73d7a64696ee3510bee0f35, type: 3}
 --- !u!114 &2507097544918246196
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,7 @@ public class SFXManager : MonoBehaviour
         AudioSource audioSource = Instantiate(sfxObj, transformObj.position, Quaternion.identity);
         audioSource.clip = audioClip;
         audioSource.volume = volume;
+
         audioSource.Play();
 
         float clipLength = audioSource.clip.length;

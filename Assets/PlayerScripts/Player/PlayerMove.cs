@@ -27,7 +27,10 @@ public class PlayerMove : MonoBehaviour
     private float dashCool;
     public float dashSpeed;
     private Vector2 dashDir;
-    
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip walkSFX;
+    private bool SFXplaying = false;
 
     void Update()
     {
@@ -84,7 +87,14 @@ public class PlayerMove : MonoBehaviour
             playerAnimator.SetBool("Back", false);
         }
 
-        
+        if (playerAnimator.GetFloat("Speed") > 0)
+        {
+            if (!SFXplaying)
+            {
+                StartCoroutine(walking());
+            }
+            
+        }
         if (Keyboard.current.shiftKey.wasPressedThisFrame)
         {
             StartCoroutine(dashing());
@@ -107,5 +117,13 @@ public class PlayerMove : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(moveDir.x * moveSpeed, moveDir.y * moveSpeed);
         }
+    }
+
+    private IEnumerator walking()
+    {
+        SFXManager.instance.PlaySFX(walkSFX, transform, 1f);
+        SFXplaying = true;
+        yield return new WaitForSeconds(walkSFX.length);
+        SFXplaying = false;
     }
 }

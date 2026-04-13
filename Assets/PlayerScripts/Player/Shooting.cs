@@ -25,7 +25,11 @@ public class Shooting : MonoBehaviour
 
     public static bool spreadOne = false;
     public static bool spreadTwo = false;
-    
+
+
+    [Header("SFX")]
+    [SerializeField] private AudioClip shootSFX;
+
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -88,6 +92,8 @@ public class Shooting : MonoBehaviour
                     Vector3 spreadDir = Quaternion.Euler(0, 0, angleOffset) * dir;
 
                     Vector3 spreadTarget = bulletTrans.position + spreadDir * 100f;
+
+                    SFXManager.instance.PlaySFX(shootSFX, transform, 1f);
 
                     GameObject bull = Instantiate(bullet, bulletTrans.position, bulletTrans.rotation);
                     bull.tag = gameObject.tag;

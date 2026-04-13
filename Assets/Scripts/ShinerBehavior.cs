@@ -32,6 +32,8 @@ public class ShinerBehavior : EnemyBase
     bool canHop = true;
     float distToTarget;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip attackSFX;
 
     string state;
 
@@ -42,7 +44,7 @@ public class ShinerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        shinerAnim = GetComponent<Animator>();
+        shinerAnim = GetComponentInChildren<Animator>();
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
         capCollider = GetComponent<CapsuleCollider2D>();
@@ -216,7 +218,7 @@ public class ShinerBehavior : EnemyBase
         //Move AttackBox
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
         shinerAnim.SetTrigger("Attack");
-
+        SFXManager.instance.PlaySFX(attackSFX, transform, 1f);
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);
         hurtBox.gameObject.SetActive(true);
 

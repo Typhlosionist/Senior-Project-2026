@@ -296,6 +296,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   darknessController: {fileID: 0}
   isNightmode: 0
+  attackSFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
 --- !u!1 &7596398360412651407
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class StalkerBehavior : EnemyBase
     [Header("Lunging Variable")]
     [SerializeField] float lungeSpeed = 5;
 
+    [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
 
     Animator stalkerAnim;
@@ -40,7 +41,7 @@ public class StalkerBehavior : EnemyBase
 
         hurtBox.gameObject.SetActive(false);
         hurtBox.GetComponent<AttackBox>().setDamage(Damage);
-        stalkerAnim = GetComponent<Animator>();
+        stalkerAnim = GetComponentInChildren<Animator>();
         
 
         //State

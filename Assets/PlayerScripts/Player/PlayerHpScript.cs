@@ -18,7 +18,9 @@ public class PlayerHpScript : MonoBehaviour
     public int flashes;
     public SpriteRenderer sprite;
     public HealthBar healthBar;
-    
+    [Header("SFX")]
+    [SerializeField] private AudioClip damageSFX;
+
     void Start()
     {
         currentHp = maxHp;
@@ -49,7 +51,7 @@ public class PlayerHpScript : MonoBehaviour
         if (!god)
         {
             currentHp -= damage;
-
+            SFXManager.instance.PlaySFX(damageSFX, transform, 1f);
             healthBar.SetHealth(currentHp);
 
             reduceHp();

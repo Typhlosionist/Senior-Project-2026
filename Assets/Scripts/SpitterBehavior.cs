@@ -20,6 +20,9 @@ public class SpitterBehavior : EnemyBase
     bool canAttack = true;
     Animator spitterAnim;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip attackSFX;
+
     void Start()
     {
         //Stats
@@ -28,7 +31,7 @@ public class SpitterBehavior : EnemyBase
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
         sprite = transform.Find("Sprite");
-        spitterAnim = GetComponent<Animator>();
+        spitterAnim = GetComponentInChildren<Animator>();
 
         AttackTarget = GameObject.Find("Player");
 
@@ -116,6 +119,7 @@ public class SpitterBehavior : EnemyBase
             spitterAnim.SetBool("BR", true);
         }
         spitterAnim.SetTrigger("Attack");
+        SFXManager.instance.PlaySFX(attackSFX, transform, 1f);
         shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage, isNightmode);
 
         if (isNightmode)
