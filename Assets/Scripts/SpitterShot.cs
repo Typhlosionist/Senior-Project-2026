@@ -45,7 +45,10 @@ public class SpitterShot : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other) {
-        //Debug.Log("shot collided");
-        Destroy(this.gameObject);
+        Debug.Log("shot collided with " + other.name);
+        if (other.CompareTag("Player") || other.CompareTag("Wall"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }
