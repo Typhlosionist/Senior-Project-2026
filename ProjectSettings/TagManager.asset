@@ -15,14 +15,14 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Wall
   - Player
   - Enemy
   - PlayerHitbox
   - EnemyHitbox
   - EnemyHurtbox
   - Navigation
-  - 
+  - Bullet
   - 
   - 
   - 

@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 1798610903284018800}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.31, y: -3.69, z: 0}
-  m_LocalScale: {x: 8.212132, y: 1.3333331, z: 1}
+  m_LocalPosition: {x: 0.148, y: -3.17, z: 0}
+  m_LocalScale: {x: 8.5422945, y: 1.3333331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5702654114211392421}
@@ -118,13 +118,35 @@ Transform:
   m_GameObject: {fileID: 4747133972530089298}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.14, y: 0.05, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5702654114211392421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &5612174064294823252
+--- !u!95 &1279225671096810361
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747133972530089298}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 658b92d0b7980ff4ebc15e35fc8fab48, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &7824466850010621140
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -173,12 +195,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 5609500302020201274, guid: a99e021fa7c59ef498a913277f5e8749, type: 3}
+  m_Sprite: {fileID: -2370474221856776835, guid: a58bdda86380a5a4bb280027026b9063, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.17, y: 8.08}
+  m_Size: {x: 7.61, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -216,7 +238,6 @@ GameObject:
   - component: {fileID: 5702654114211392421}
   - component: {fileID: 3792676905926995711}
   - component: {fileID: 4588519240797361138}
-  - component: {fileID: 5479169566562296671}
   - component: {fileID: 8262632984368308368}
   m_Layer: 8
   m_Name: Spitter
@@ -238,6 +259,7 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7534726262253699900}
   - {fileID: 1167903916305467820}
   - {fileID: 7595577704135713183}
   m_Father: {fileID: 0}
@@ -363,9 +385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089d5631fdf159249ae30ecd9bbe4aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  MaxHealth: 3
+  MaxHealth: 2
   CurrentHealth: 0
   MoveSpeed: 1.2
+  originalMoveSpeed: 0
   Damage: 1
   slowed: 0
   frozen: 0
@@ -376,7 +399,7 @@ MonoBehaviour:
   LineOfSight: 0
   raycastMask:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 193
   path: []
   navGrid: {fileID: 0}
   pathfindCooldown: 1

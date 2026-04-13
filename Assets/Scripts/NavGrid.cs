@@ -5,8 +5,8 @@ public class NavGrid : MonoBehaviour
 {
     //Configuration options
     [SerializeField] GameObject Node;
-    [SerializeField] public int nodesVertical = 2;
-    [SerializeField] public int nodesHorizontal = 2;
+    [SerializeField] int nodesVertical = 2;
+    [SerializeField] int nodesHorizontal = 2;
     [SerializeField] float nodeSpacing = 5;
     [SerializeField] float detectionRadius = 0.4f;
 

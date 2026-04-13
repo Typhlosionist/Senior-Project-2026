@@ -96,7 +96,7 @@ public class Shooting : MonoBehaviour
                     SFXManager.instance.PlaySFX(shootSFX, transform, 1f);
 
                     GameObject bull = Instantiate(bullet, bulletTrans.position, bulletTrans.rotation);
-                    bull.tag = gameObject.tag;
+                    bull.tag = "bullet";
 
                     bull.GetComponent<Bullter>().targetPos = spreadTarget;
                 }

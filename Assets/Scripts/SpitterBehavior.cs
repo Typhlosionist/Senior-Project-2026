@@ -47,10 +47,7 @@ public class SpitterBehavior : EnemyBase
             BecomeNightmode();
         }
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
-        if (!knockedBack)
-        {
-            Search();
-        }
+        Search();
     }
 
     void Search()
@@ -146,9 +143,6 @@ public class SpitterBehavior : EnemyBase
     {
         isNightmode = true;
     }
-    //
-    // protected override void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     base.OnTriggerEnter2D(collision); 
-    // }
+
+
 }

@@ -125,7 +125,6 @@ GameObject:
   - component: {fileID: 7081192389614475088}
   - component: {fileID: 8414972299222152295}
   - component: {fileID: 135995460829137697}
-  - component: {fileID: 9042858021669172853}
   - component: {fileID: 7820777886600850871}
   m_Layer: 8
   m_Name: Swooper
@@ -143,12 +142,13 @@ Transform:
   m_GameObject: {fileID: 4485160149239802741}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.8202662, y: -1.3531168, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4406223212346089964}
   - {fileID: 2027251151010172136}
+  - {fileID: 1082356948116109767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8414972299222152295
@@ -214,13 +214,83 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.25, y: -0.3}
   m_Radius: 0.35
---- !u!61 &9042858021669172853
-BoxCollider2D:
+--- !u!114 &7820777886600850871
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4485160149239802741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 946babfc0e82aa747862e88decc05f56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  MaxHealth: 1
+  CurrentHealth: 0
+  MoveSpeed: 7
+  originalMoveSpeed: 0
+  Damage: 1
+  slowed: 0
+  frozen: 0
+  onFire: 0
+  knockedBack: 0
+  hasSpreadFire: 0
+  AttackTarget: {fileID: 0}
+  LineOfSight: 0
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 193
+  path: []
+  navGrid: {fileID: 0}
+  pathfindCooldown: 1
+  pathfindOnCooldown: 0
+  desiredVelocity: {x: 0, y: 0}
+  accelerationRate: 0.5
+  rb: {fileID: 0}
+  sprite: {fileID: 0}
+  darknessController: {fileID: 0}
+  isNightmode: 0
+--- !u!1 &6629949498595200475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082356948116109767}
+  - component: {fileID: 6757045365395065096}
+  - component: {fileID: 7839936519947725346}
+  m_Layer: 10
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1082356948116109767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629949498595200475}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.6666665, y: 1.6666665, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7081192389614475088}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &6757045365395065096
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629949498595200475}
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
@@ -248,7 +318,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.25999704, y: -0.3229902}
+  m_Offset: {x: -0.023602754, y: 0.019669011}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -258,18 +328,18 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.77916616, y: 1.1100762}
+  m_Size: {x: 0.44872797, y: 0.72456443}
   m_EdgeRadius: 0
---- !u!114 &7820777886600850871
+--- !u!114 &7839936519947725346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4485160149239802741}
+  m_GameObject: {fileID: 6629949498595200475}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 946babfc0e82aa747862e88decc05f56, type: 3}
+  m_Script: {fileID: 11500000, guid: 127a0afba29cf9d41981d4243e891e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
   MaxHealth: 1
@@ -323,7 +393,7 @@ Transform:
   m_GameObject: {fileID: 7596398360412651407}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2561, y: -1.23, z: 0}
+  m_LocalPosition: {x: 0.0038999915, y: -0.97, z: 0}
   m_LocalScale: {x: 1.0003614, y: 0.26064414, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

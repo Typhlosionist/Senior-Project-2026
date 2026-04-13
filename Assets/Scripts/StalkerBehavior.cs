@@ -52,12 +52,10 @@ public class StalkerBehavior : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        if (knockedBack) return;
-        
         StartCoroutine(Pathfind());
 
         distToTarget = Vector3.Distance (transform.position, AttackTarget.transform.position);
-        
+
         if(distToTarget <= attackDistance)
         {
             state = "Attack";
@@ -145,6 +143,9 @@ public class StalkerBehavior : EnemyBase
         isNightmode = true;
 
         attackDistance = attackDistance * 2;
+
+        originalMoveSpeed = originalMoveSpeed * 1.25f;
+        MoveSpeed = originalMoveSpeed;
     }
 
     public void Search()
@@ -160,7 +161,7 @@ public class StalkerBehavior : EnemyBase
             Vector2 direction = (target - origin).normalized;
             float distance = Vector2.Distance(origin, target);
 
-            LayerMask mask = LayerMask.GetMask("Default");
+            LayerMask mask = LayerMask.GetMask("Wall");
 
             // Get collider half width (for left/right offsets)
             float halfWidth = GetComponent<CircleCollider2D>().bounds.extents.x;
@@ -213,8 +214,5 @@ public class StalkerBehavior : EnemyBase
 
     }
 
-    // protected override void OnTriggerEnter2D(Collider2D collision)
-    // {
-    //     base.OnTriggerEnter2D(collision); 
-    // }
+
 }
