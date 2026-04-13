@@ -83,9 +83,6 @@ public class PlayerMove : MonoBehaviour
             playerAnimator.SetBool("Left", false);
             playerAnimator.SetBool("Back", false);
         }
-
-        //Debug.Log("x " + moveDir.x);
-        //Debug.Log("y " + moveDir.y);
         
         if (Keyboard.current.shiftKey.wasPressedThisFrame)
         {
