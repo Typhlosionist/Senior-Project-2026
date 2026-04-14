@@ -78,8 +78,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -822672773
+  m_SortingLayer: 3
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5462497140434423990, guid: dc78a6a6acc18324bb03a39863dcd2de, type: 3}
@@ -249,6 +249,7 @@ MonoBehaviour:
   accelerationRate: 0.5
   rb: {fileID: 0}
   sprite: {fileID: 0}
+  sr: {fileID: 0}
   darknessController: {fileID: 0}
   isNightmode: 0
   attackSFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
