@@ -9,6 +9,14 @@ public class MainMenu : MonoBehaviour
         Debug.Log("New Game");
         if (GameStateManager.Instance != null){
             GameStateManager.Instance.currentLevel = 0;
+            //reset upgrades
+            Shooting.spreadOne = false;
+            Shooting.spreadTwo = false;
+            Bullter.flame = false;
+            Bullter.gust = false;
+            Bullter.freeze = false;
+            Bullter.wildfire = false;
+            Bullter.ice = false;
         }
         SceneManager.LoadScene("SampleScene");
     }
