@@ -100,8 +100,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7595577704135713183}
-  - component: {fileID: 5612174064294823252}
   - component: {fileID: 8562262631682658568}
+  - component: {fileID: 7824466850010621140}
+  - component: {fileID: 1279225671096810361}
   m_Layer: 8
   m_Name: Sprite
   m_TagString: Enemy
@@ -124,7 +125,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5702654114211392421}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1279225671096810361
+--- !u!95 &8562262631682658568
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -191,8 +192,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -822672773
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2370474221856776835, guid: a58bdda86380a5a4bb280027026b9063, type: 3}
@@ -203,9 +204,9 @@ SpriteRenderer:
   m_Size: {x: 7.61, y: 6.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!95 &8562262631682658568
+--- !u!95 &1279225671096810361
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -239,6 +240,7 @@ GameObject:
   - component: {fileID: 3792676905926995711}
   - component: {fileID: 4588519240797361138}
   - component: {fileID: 8262632984368308368}
+  - component: {fileID: 5479169566562296671}
   m_Layer: 8
   m_Name: Spitter
   m_TagString: Enemy
@@ -259,7 +261,6 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7534726262253699900}
   - {fileID: 1167903916305467820}
   - {fileID: 7595577704135713183}
   m_Father: {fileID: 0}
@@ -327,6 +328,49 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 1.0645704, y: -0.9226288}
   m_Radius: 3
+--- !u!114 &8262632984368308368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279296804068032560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 089d5631fdf159249ae30ecd9bbe4aaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  MaxHealth: 2
+  CurrentHealth: 0
+  MoveSpeed: 1.2
+  originalMoveSpeed: 0
+  Damage: 1
+  slowed: 0
+  frozen: 0
+  onFire: 0
+  knockedBack: 0
+  hasSpreadFire: 0
+  AttackTarget: {fileID: 0}
+  LineOfSight: 0
+  raycastMask:
+    serializedVersion: 2
+    m_Bits: 193
+  path: []
+  navGrid: {fileID: 0}
+  pathfindCooldown: 1
+  pathfindOnCooldown: 0
+  desiredVelocity: {x: 0, y: 0}
+  accelerationRate: 3
+  rb: {fileID: 0}
+  sprite: {fileID: 0}
+  sr: {fileID: 0}
+  darknessController: {fileID: 0}
+  isNightmode: 0
+  attackDistance: 8
+  attackCooldown: 1
+  projectile: {fileID: 6853589449238579801, guid: 068b455f3730eea48b85a7f1e4056ad8, type: 3}
+  shotSpeed: 4
+  attackSFX: {fileID: 8300000, guid: 8799d7788a80a3e4085966d23b168051, type: 3}
 --- !u!61 &5479169566562296671
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -373,45 +417,3 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 6.1099443, y: 8.144459}
   m_EdgeRadius: 0
---- !u!114 &8262632984368308368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7279296804068032560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 089d5631fdf159249ae30ecd9bbe4aaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  MaxHealth: 2
-  CurrentHealth: 0
-  MoveSpeed: 1.2
-  originalMoveSpeed: 0
-  Damage: 1
-  slowed: 0
-  frozen: 0
-  onFire: 0
-  knockedBack: 0
-  hasSpreadFire: 0
-  AttackTarget: {fileID: 0}
-  LineOfSight: 0
-  raycastMask:
-    serializedVersion: 2
-    m_Bits: 193
-  path: []
-  navGrid: {fileID: 0}
-  pathfindCooldown: 1
-  pathfindOnCooldown: 0
-  desiredVelocity: {x: 0, y: 0}
-  accelerationRate: 3
-  rb: {fileID: 0}
-  sprite: {fileID: 0}
-  darknessController: {fileID: 0}
-  isNightmode: 0
-  attackDistance: 8
-  attackCooldown: 1
-  projectile: {fileID: 6853589449238579801, guid: 068b455f3730eea48b85a7f1e4056ad8, type: 3}
-  shotSpeed: 4
-  attackSFX: {fileID: 8300000, guid: 8799d7788a80a3e4085966d23b168051, type: 3}
