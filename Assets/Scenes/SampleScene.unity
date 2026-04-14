@@ -234,6 +234,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &638660532 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5934886902294734252, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
+  m_PrefabInstance: {fileID: 250757233235907866}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b8c486cb3fefc4f875c6d4ab98a9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
 --- !u!1001 &706245648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27552,6 +27563,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: DarknessController
       objectReference: {fileID: 0}
+    - target: {fileID: 4407809754737520903, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
+      propertyPath: m_ApplyToSortingLayers.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407809754737520903, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[3]'
+      value: -822672773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407809754737520903, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[4]'
+      value: -775775893
+      objectReference: {fileID: 0}
+    - target: {fileID: 4407809754737520903, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
+      propertyPath: 'm_ApplyToSortingLayers.Array.data[5]'
+      value: -1604694953
+      objectReference: {fileID: 0}
     - target: {fileID: 7496687999282602295, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -27621,6 +27648,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: DungeonManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 345117717}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: dungeonGenerator
+      value: 
+      objectReference: {fileID: 638660532}
     - target: {fileID: 5776496252447404822, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.75818
