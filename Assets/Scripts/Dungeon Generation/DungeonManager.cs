@@ -13,6 +13,12 @@ public class DungeonManager : MonoBehaviour
 
     public List<GameObject> enemyTypes;
 
+    public GameObject[] obstaclePrefabs;
+
+    [Range(0f, 1f)]
+    public float obstacleSpawnChance = 0.05f;
+    public int obstacleEdgeBuffer = 1;
+
     //public ExitRoomWarning exitRoomWarningPrefab;
 
     public int exitRoomWarningBuffer = 2;
@@ -41,6 +47,10 @@ public class DungeonManager : MonoBehaviour
         currentDungeon = dungeonGenerator.CreateDungeon();
 
         List<Room> rooms = currentDungeon.GetRooms();
+
+        SpawnObstacles(currentDungeon, rooms);
+        Physics2D.SyncTransforms();
+
         SetNavGrids(rooms, spawnerParameters);
 
 
@@ -89,5 +99,32 @@ public class DungeonManager : MonoBehaviour
         }
 
         
+    }
+
+    private void SpawnObstacles(Dungeon dungeon, List<Room> rooms)
+    {
+        System.Random random = new System.Random();
+
+        foreach (var room in rooms)
+        {
+            if (room == rooms[0]) continue;
+
+            for(int x = room.x + obstacleEdgeBuffer; x < room.x + room.width - obstacleEdgeBuffer; x++)
+            {
+                for(int y = room.y + obstacleEdgeBuffer; y < room.y + room.height - obstacleEdgeBuffer; y++)
+                {
+                    if (!dungeon.IsFloor(x, y)) continue;
+
+                    if (random.NextDouble() < obstacleSpawnChance)
+                    {
+
+                        int index = random.Next(0, obstaclePrefabs.Length);
+                        Vector3 position = new Vector3(x + 0.5f, y + 0.5f);
+                        GameObject obstacle = Instantiate(obstaclePrefabs[index], position, Quaternion.identity);
+                        obstacle.transform.SetParent(levelParent, true);
+                    }
+                }
+            }
+        }
     }
 }

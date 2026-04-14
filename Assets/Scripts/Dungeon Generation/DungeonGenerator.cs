@@ -8,19 +8,12 @@ using UnityEngine.Tilemaps;
 public class DungeonGenerator : MonoBehaviour
 {
 
-    public GameObject[] obstaclePrefabs;
-
-    [Range(0f, 1f)]
-    public float obstacleSpawnChance = 0.05f;
-    public int obstacleEdgeBuffer = 1;
-
-
-    public int dungeonWidth = 50;
-    public int dungeonHeight = 50;
+    public int dungeonWidth = 90;
+    public int dungeonHeight = 80;
 
     public int roomCount = 5;
-    public int minRoomSize = 6;
-    public int maxRoomSize = 10;
+    public int minRoomSize = 15;
+    public int maxRoomSize = 20;
 
     public DungeonVisualizer dungeonVisualizer;
     public void GenerateDungeon()
@@ -42,7 +35,8 @@ public class DungeonGenerator : MonoBehaviour
         List<Room> rooms = GenerateRooms(dungeon);
         ConnectRooms(dungeon, rooms);
         SetStartAndExitRooms(dungeon, rooms);
-        //SpawnObstacles(dungeon, rooms);
+
+        
 
         dungeonVisualizer.Clear();
         dungeonVisualizer.PaintFloorTiles(dungeon);
@@ -264,31 +258,7 @@ public class DungeonGenerator : MonoBehaviour
         }
     }
 
-    private void SpawnObstacles(Dungeon dungeon, List<Room> rooms)
-    {
-        System.Random random = new System.Random();
-
-        foreach (var room in rooms)
-        {
-            if (room == rooms[0]) continue;
-
-            for(int x = room.x + obstacleEdgeBuffer; x < room.x + room.width - obstacleEdgeBuffer; x++)
-            {
-                for(int y = room.y + obstacleEdgeBuffer; y < room.y + room.height - obstacleEdgeBuffer; y++)
-                {
-                    if (!dungeon.IsFloor(x, y)) continue;
-
-                    if (random.NextDouble() < obstacleSpawnChance)
-                    {
-
-                        int index = random.Next(0, obstaclePrefabs.Length);
-                        Vector3 position = new Vector3(x + 0.5f, y + 0.5f);
-                        Instantiate(obstaclePrefabs[index], position, Quaternion.identity);
-                    }
-                }
-            }
-        }
-    }
+    
 
     private bool IsCenterWall(Dungeon dungeon, int x, int y)
     {
