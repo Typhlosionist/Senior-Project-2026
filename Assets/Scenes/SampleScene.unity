@@ -21306,6 +21306,10 @@ PrefabInstance:
       propertyPath: upgradeTree
       value: 
       objectReference: {fileID: 1937115080}
+    - target: {fileID: 2416216242490188369, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: PauseMenuUI
+      value: 
+      objectReference: {fileID: 1864574479}
     - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: gameOver
       value: 
@@ -21814,6 +21818,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46b12159fc4acda4ea82245d1cc2044c, type: 3}
+--- !u!1 &1864574479 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 292452811894141213, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+  m_PrefabInstance: {fileID: 6721064166573143727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1937115080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7705237323736615313, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
@@ -73597,6 +73606,10 @@ PrefabInstance:
     - target: {fileID: 7705237323736615313, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8515518387360694229, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+      propertyPath: m_text
+      value: Spread+
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
