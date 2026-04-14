@@ -9,6 +9,13 @@ public class WinMenu : MonoBehaviour
     {
         Debug.Log("Replay");
         GameStateManager.Instance.currentLevel = 0;
+        Shooting.spreadOne = false;
+        Shooting.spreadTwo = false;
+        Bullter.flame = false;
+        Bullter.gust = false;
+        Bullter.freeze = false;
+        Bullter.wildfire = false;
+        Bullter.ice = false;
         SceneManager.LoadScene("SampleScene");
     }
     
