@@ -48,5 +48,9 @@ MonoBehaviour:
   levelExitPrefab: {fileID: 4687017980384211178, guid: b82fe253cb2843a45aba62af6a005798, type: 3}
   navGridPrefab: {fileID: 2873904665374790407, guid: 02ea8f8d283cfa949b6ee0f154dee6ac, type: 3}
   player: {fileID: 3425437296133134468, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-  enemyTypes: []
+  enemyTypes:
+  - {fileID: 4230250071954917259, guid: f89e99627e2426942837e0f0bc11f6c1, type: 3}
+  - {fileID: 7279296804068032560, guid: 7d016da4074a71e47b48d9c5566fe38f, type: 3}
+  - {fileID: 5358961323757698928, guid: 8ad38b0ddcd3d5b45928d02366aba9b8, type: 3}
+  - {fileID: 4485160149239802741, guid: 3291a5881b7bfd540a41023a924f8a9a, type: 3}
   exitRoomWarningBuffer: 2
