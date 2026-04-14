@@ -27326,6 +27326,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1937115080}
     - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 1478191048}
+    - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1474250007}
@@ -27712,6 +27716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc6268c4d5c2874390e8304ce0993ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
+--- !u!1 &1478191048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1974328766858993523, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+  m_PrefabInstance: {fileID: 6721064166573143727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1684108002
 PrefabInstance:
   m_ObjectHideFlags: 0

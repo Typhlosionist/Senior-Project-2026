@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 815047375125425243}
   - component: {fileID: 6752753900854492882}
   - component: {fileID: 1621687167087489827}
+  - component: {fileID: 4793697818197812897}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -320,7 +321,7 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16311
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -342,7 +343,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.10671536, y: -0.39637446}
-  m_Radius: 2
+  m_Radius: 3
 --- !u!58 &8780891582885712886
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -378,7 +379,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0.1067154, y: -0.3963745}
-  m_Radius: 2.8
+  m_Radius: 1
 --- !u!114 &6851032148477793583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,3 +615,16 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &4793697818197812897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4210548336253915911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f420831d92ed3d408f2531b94bfea31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  PauseMenuUI: {fileID: 0}
