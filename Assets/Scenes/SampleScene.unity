@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &130909036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1974328766858993523, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+  m_PrefabInstance: {fileID: 6721064166573143727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &227869906
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27359,6 +27364,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 951786134}
     - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 130909036}
+    - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1474250007}
@@ -27664,6 +27673,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7547108430861784792, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
+      propertyPath: darkLevel
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7547108430861784792, guid: 6886a04a306d0e24285aba4ce441959c, type: 3}
+      propertyPath: transitionTime
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27688,7 +27705,31 @@ PrefabInstance:
     - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
       propertyPath: dungeonGenerator
       value: 
-      objectReference: {fileID: 562189973}
+      objectReference: {fileID: 638660532}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: obstacleEdgeBuffer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: obstacleSpawnChance
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: exitRoomWarningBuffer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: obstaclePrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: 'obstaclePrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2204385640700403400, guid: fc53916b6fc9a1443a299f7fd9914014, type: 3}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: 'obstaclePrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4536979912775086970, guid: 47a7f92dcd87cab4e9899ea70c2dce70, type: 3}
     - target: {fileID: 5776496252447404822, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.75818
@@ -33779,6 +33820,10 @@ PrefabInstance:
     - target: {fileID: 2107754315885016021, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5934886902294734252, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
+      propertyPath: obstacleSpawnChance
+      value: 0.179
       objectReference: {fileID: 0}
     - target: {fileID: 7332703302262499451, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
       propertyPath: wallTilemap

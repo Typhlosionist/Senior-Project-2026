@@ -38,7 +38,7 @@ public class GameStateManager : MonoBehaviour
             maxEnemiesPerWave = 4 + currentLevel,
             minWaves = 1 + currentLevel,
             maxWaves = 2 + currentLevel,
-            enemySpawnWeights = new List<int> {4, 3, 2, 1},
+            enemySpawnWeights = new List<int> {1, 1, 1, 1},
         };
     }
 
