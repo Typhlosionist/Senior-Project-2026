@@ -17,6 +17,8 @@ public class PlayerHpScript : MonoBehaviour
     public SpriteRenderer sprite;
     public HealthBar healthBar;
     
+    public GameObject gameOver;
+    
     private bool isDashing;
 
     [Header("SFX")]
@@ -27,20 +29,17 @@ public class PlayerHpScript : MonoBehaviour
     
     void Start()
     {
+        volume = GameObject.Find("Global Volume").GetComponent<Volume>();
+        healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         currentHp = maxHp;
         sprite = GetComponent<SpriteRenderer>();
         healthBar.SetMaxHealth(maxHp);
         volume.profile.TryGet<Vignette>(out vignette);
-        
     }
     
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame) //testing health bar
-        {
-            Debug.Log("Space presssed");
-            hurt(1);
-        }
+        
         if (vignette != null)
         {
             float hpPercent = (float)currentHp / maxHp;
@@ -82,7 +81,7 @@ public class PlayerHpScript : MonoBehaviour
         if (!god)
         {
             currentHp -= damage;
-            SFXManager.instance.PlaySFX(damageSFX, transform, 1f);
+            SFXManager.instance.PlaySFX(damageSFX, transform, .3f);
             healthBar.SetHealth(currentHp);
 
             if (currentHp <= 0)
@@ -95,7 +94,7 @@ public class PlayerHpScript : MonoBehaviour
     public void die()
     {
         //play death anim
-        //go to gameover
+        gameOver.SetActive(true);
         gameObject.SetActive(false);
         Debug.Log("RIP");
     }

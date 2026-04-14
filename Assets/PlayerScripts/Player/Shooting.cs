@@ -29,7 +29,7 @@ public class Shooting : MonoBehaviour
 
     [Header("SFX")]
     [SerializeField] private AudioClip shootSFX;
-
+    
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -93,7 +93,7 @@ public class Shooting : MonoBehaviour
 
                     Vector3 spreadTarget = bulletTrans.position + spreadDir * 100f;
 
-                    SFXManager.instance.PlaySFX(shootSFX, transform, 1f);
+                    SFXManager.instance.PlaySFX(shootSFX, transform, .3f);
 
                     GameObject bull = Instantiate(bullet, bulletTrans.position, bulletTrans.rotation);
                     bull.tag = "bullet";

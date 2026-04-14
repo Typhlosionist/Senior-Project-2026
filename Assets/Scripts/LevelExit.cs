@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelExit : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class LevelExit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.position = dungeonManager.NextLevel();
+            GameStateManager.Instance.CompleteLevel();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             
         }
     }

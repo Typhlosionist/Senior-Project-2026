@@ -22,7 +22,6 @@ public class PlayerMove : MonoBehaviour
     public static bool isDashing = false;
     
     public float dashLen;
-    private float dashCd = 1f;
     private float dashCount;
     private float dashCool;
     public float dashSpeed;
@@ -121,7 +120,7 @@ public class PlayerMove : MonoBehaviour
 
     private IEnumerator walking()
     {
-        SFXManager.instance.PlaySFX(walkSFX, transform, 1f);
+        SFXManager.instance.PlaySFX(walkSFX, transform, .1f);
         SFXplaying = true;
         yield return new WaitForSeconds(walkSFX.length);
         SFXplaying = false;

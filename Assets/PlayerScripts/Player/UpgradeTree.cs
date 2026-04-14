@@ -43,7 +43,7 @@ public class UpgradeTree : MonoBehaviour
                 Shooting.spreadOne = true;
                 break;
 
-            case "Spread2":
+            case "Spread+":
                 if (Shooting.spreadOne)
                     Shooting.spreadTwo = true;
                 else
