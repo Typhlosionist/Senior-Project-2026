@@ -9,6 +9,7 @@ public class LevelExit : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.transform.position = dungeonManager.NextLevel();
+            GameStateManager.Instance.CompleteLevel();
             
         }
     }
