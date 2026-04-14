@@ -19,7 +19,7 @@ public class StalkerBehavior : EnemyBase
 
     [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
-    
+
     Animator stalkerAnim;
     
     bool canAttack = true;
@@ -106,7 +106,7 @@ public class StalkerBehavior : EnemyBase
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
 
         stalkerAnim.SetTrigger("Attack");
-        SFXManager.instance.PlaySFX(attackSFX, transform, .3f);
+        SFXManager.instance.PlaySFX(attackSFX, transform, 1f);
 
         //AttackBox
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);

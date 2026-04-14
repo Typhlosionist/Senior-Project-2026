@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class DungeonManager : MonoBehaviour
 {
@@ -7,11 +6,7 @@ public class DungeonManager : MonoBehaviour
 
     public LevelExit levelExitPrefab;
 
-    public NavGrid navGridPrefab;
-
     public Transform player;
-
-    public List<GameObject> enemyTypes;
 
     //public ExitRoomWarning exitRoomWarningPrefab;
 
@@ -30,8 +25,6 @@ public class DungeonManager : MonoBehaviour
 
     public Vector3 NextLevel()
     {
-        
-        SpawnerParameters spawnerParameters = GameStateManager.Instance.CreateSpawnerParameters();
         if (levelParent != null)
         {
             Destroy(levelParent.gameObject);
@@ -39,11 +32,6 @@ public class DungeonManager : MonoBehaviour
         levelParent = new GameObject("Level Parent").transform;
 
         currentDungeon = dungeonGenerator.CreateDungeon();
-
-        List<Room> rooms = currentDungeon.GetRooms();
-        SetNavGrids(rooms, spawnerParameters);
-
-
         LevelExit exit = Instantiate(levelExitPrefab, currentDungeon.GetExitLocation() + spawnOffset, Quaternion.identity);
 
         exit.dungeonManager = this;
@@ -65,29 +53,4 @@ public class DungeonManager : MonoBehaviour
         return currentDungeon.GetStartLocation() + spawnOffset;
     }
 
-    public void SetNavGrids(List<Room> rooms, SpawnerParameters spawnerParameters)
-    {
-        for (int i = 1; i < rooms.Count; i++)
-        {
-            Room room = rooms[i];
-            Vector3 spawnPosition = new Vector3(room.x + 0.5f, room.y + 0.5f, 0f);
-
-            NavGrid navGrid = Instantiate(navGridPrefab, spawnPosition, Quaternion.identity);
-            navGrid.transform.SetParent(levelParent, true);
-
-            navGrid.nodesVertical = room.height;
-            navGrid.nodesHorizontal = room.width;
-
-            Spawner spawner = navGrid.gameObject.AddComponent<Spawner>();
-            spawner.enemyTypes = enemyTypes;
-            navGrid.spawnWeights = spawnerParameters.enemySpawnWeights;
-
-            navGrid.enemiesPerWave = Random.Range(spawnerParameters.minEnemiesPerWave, spawnerParameters.maxEnemiesPerWave + 1);
-            navGrid.waveCount = Random.Range(spawnerParameters.minWaves, spawnerParameters.maxWaves + 1);
-
-            navGrid.Initialize();
-        }
-
-        
-    }
 }

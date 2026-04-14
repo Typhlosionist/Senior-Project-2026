@@ -8,10 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: de7bdff11824c084e987887494c4e79c
-  - enabled: 1
-    path: Assets/Scenes/NavGridTest.unity
-    guid: 78e7b966ba42ca041b05532bd69b1d0b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
