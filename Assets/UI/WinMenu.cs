@@ -16,6 +16,8 @@ public class WinMenu : MonoBehaviour
         Bullter.freeze = false;
         Bullter.wildfire = false;
         Bullter.ice = false;
+        Shooting.shootCooldown = .8f;
+        Shooting.bulletSpeed = 10f;
         SceneManager.LoadScene("SampleScene");
     }
     
