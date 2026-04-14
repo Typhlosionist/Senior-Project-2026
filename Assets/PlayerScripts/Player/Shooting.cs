@@ -33,6 +33,8 @@ public class Shooting : MonoBehaviour
     void Start()
     {
         cam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        spreadOne = false;
+        spreadTwo = false;
     }
     
     void Update()
