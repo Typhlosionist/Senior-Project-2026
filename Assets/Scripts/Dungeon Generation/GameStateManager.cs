@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public struct SpawnerParameters
 {
@@ -45,7 +46,7 @@ public class GameStateManager : MonoBehaviour
     {
         currentLevel++;
     }
-
+    
     public void ResetGame()
     {
         currentLevel = 0;

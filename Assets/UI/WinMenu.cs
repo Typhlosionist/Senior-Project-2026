@@ -1,16 +1,21 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenu : MonoBehaviour
+
+public class WinMenu : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void NewGame()
+    public void Replay()
     {
-        Debug.Log("New Game");
-        if (GameStateManager.Instance != null){
-            GameStateManager.Instance.currentLevel = 0;
-        }
+        Debug.Log("Replay");
+        GameStateManager.Instance.currentLevel = 0;
         SceneManager.LoadScene("SampleScene");
+    }
+    
+    public void MainMenu()
+    {
+        Debug.Log("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()

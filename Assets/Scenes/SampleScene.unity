@@ -27267,6 +27267,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &951786134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1974328766858993523, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
+  m_PrefabInstance: {fileID: 6721064166573143727}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1027397160
 GameObject:
   m_ObjectHideFlags: 0
@@ -27333,6 +27338,10 @@ PrefabInstance:
       propertyPath: m_PointLightOuterRadius
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: gameOver
+      value: 
+      objectReference: {fileID: 951786134}
     - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: healthBar
       value: 
