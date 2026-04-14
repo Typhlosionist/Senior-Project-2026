@@ -121,7 +121,7 @@ public class PlayerMove : MonoBehaviour
 
     private IEnumerator walking()
     {
-        SFXManager.instance.PlaySFX(walkSFX, transform, 1f);
+        SFXManager.instance.PlaySFX(walkSFX, transform, .1f);
         SFXplaying = true;
         yield return new WaitForSeconds(walkSFX.length);
         SFXplaying = false;
