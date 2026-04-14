@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] public List<GameObject> enemyTypes;
     [SerializeField] public float spawnDelaySeconds = 2.0f;
-    [SerializeField] public float waveDelaySeconds = 5.0f;
+    [SerializeField] public float waveDelaySeconds = 3.0f;
 
     List<GameObject> CurrentWave = new List<GameObject>();
 
@@ -37,6 +37,7 @@ public class Spawner : MonoBehaviour
     public void InitiateSpawn(int perWave, int waves, List<int> enemySpawnWeights)
     {
         spawnInitiated = true;
+        waitingForWave = true;
         requiredWaves = waves;
         enemiesPerWave = perWave;
         spawnWeights = enemySpawnWeights;
@@ -66,6 +67,11 @@ public class Spawner : MonoBehaviour
             enemy.GetComponent<EnemyBase>().navGrid = navGrid;
             CurrentWave.Add(enemy);
         }
+    }
+
+    public bool AllWavesCompleted()
+    {
+        return allWavesCompleted;
     }
 
     GameObject SelectEnemy(List<int> weights)

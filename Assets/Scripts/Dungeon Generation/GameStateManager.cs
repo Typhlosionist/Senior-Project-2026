@@ -34,11 +34,11 @@ public class GameStateManager : MonoBehaviour
     {
         return new SpawnerParameters
         {
-            minEnemiesPerWave = 2 + currentLevel,
-            maxEnemiesPerWave = 4 + currentLevel,
-            minWaves = 1 + currentLevel,
+            minEnemiesPerWave = 3 + currentLevel,
+            maxEnemiesPerWave = 5 + currentLevel,
+            minWaves = 2 + currentLevel,
             maxWaves = 2 + currentLevel,
-            enemySpawnWeights = new List<int> {1, 1, 1, 1},
+            enemySpawnWeights = new List<int> {1, 2, 2, 2},
         };
     }
 

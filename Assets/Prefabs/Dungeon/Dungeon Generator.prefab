@@ -45,10 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b8c486cb3fefc4f875c6d4ab98a9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
-  obstaclePrefabs:
-  - {fileID: 2204385640700403400, guid: fc53916b6fc9a1443a299f7fd9914014, type: 3}
-  obstacleSpawnChance: 0.068
-  obstacleEdgeBuffer: 1
   dungeonWidth: 85
   dungeonHeight: 85
   roomCount: 6
@@ -91,13 +87,13 @@ MonoBehaviour:
     bottomLeftInnerCornerTile: {fileID: 11400000, guid: 39e939d7f500b2545b7c2a520a5c27ef, type: 2}
     rightWallInnerEndTopTile: {fileID: 11400000, guid: 8b135fabde2dc414bbe2274c1ea02070, type: 2}
     rightWallInnerEndBottomTile: {fileID: 11400000, guid: 8b135fabde2dc414bbe2274c1ea02070, type: 2}
-    rightWallInnerCenterTile: {fileID: 11400000, guid: 8b135fabde2dc414bbe2274c1ea02070, type: 2}
+    rightWallInnerCenterTile: {fileID: 11400000, guid: 1725190327a4c664b98aa1753b922246, type: 2}
     topWallTTile: {fileID: 11400000, guid: 1725190327a4c664b98aa1753b922246, type: 2}
     bottomWallTTile: {fileID: 11400000, guid: fc14bdc6bcf76e3458d87912b6897fea, type: 2}
     rightWallTTile: {fileID: 11400000, guid: 68cb50fe46b5dc24ab5b7df919604ce8, type: 2}
     leftWallTTile: {fileID: 11400000, guid: bfd4ceef28bf1fd49b003ecb86e516d6, type: 2}
     topRightConnectionLeftBorderTile: {fileID: 11400000, guid: 39e939d7f500b2545b7c2a520a5c27ef, type: 2}
-    topRightConnectionBottomBorderTile: {fileID: 0}
+    topRightConnectionBottomBorderTile: {fileID: 11400000, guid: 1725190327a4c664b98aa1753b922246, type: 2}
     topLeftConnectionRightBorderTile: {fileID: 11400000, guid: afb4b76a1580cd549b5a72a36e0b249f, type: 2}
     topLeftConnectionBottomBorderTile: {fileID: 11400000, guid: 1725190327a4c664b98aa1753b922246, type: 2}
     bottomLeftConnectionTopBorderTile: {fileID: 11400000, guid: fc14bdc6bcf76e3458d87912b6897fea, type: 2}

@@ -163,6 +163,21 @@ public class WallGenerator
         }
     }
 
+    public TileBase GetTileForPosition(Dungeon dungeon, int x, int y, bool asExit)
+    {
+        string binaryTileType = "";
+        foreach (var direction in directions)
+        {
+            int nx = x + direction.x;
+            int ny = y + direction.y;
+            if (dungeon.InBounds(nx, ny))
+                binaryTileType += dungeon.IsFloor(nx, ny) ? "1" : "0";
+            else
+                binaryTileType += "0";
+        }
+        return asExit ? GetExitTile(binaryTileType) : GetWallTile(binaryTileType);
+    }
+
     private TileBase GetExitTile(string binaryTileType)
     {
         int tileType = Convert.ToInt32(binaryTileType, 2);
