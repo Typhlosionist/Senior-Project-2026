@@ -27,20 +27,17 @@ public class PlayerHpScript : MonoBehaviour
     
     void Start()
     {
+        volume = GameObject.Find("Global Volume").GetComponent<Volume>();
+        healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         currentHp = maxHp;
         sprite = GetComponent<SpriteRenderer>();
         healthBar.SetMaxHealth(maxHp);
         volume.profile.TryGet<Vignette>(out vignette);
-        
     }
     
     void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame) //testing health bar
-        {
-            Debug.Log("Space presssed");
-            hurt(1);
-        }
+        
         if (vignette != null)
         {
             float hpPercent = (float)currentHp / maxHp;
