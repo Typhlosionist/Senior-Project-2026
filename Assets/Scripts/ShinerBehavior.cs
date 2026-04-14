@@ -34,7 +34,7 @@ public class ShinerBehavior : EnemyBase
 
     [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
-    
+
     string state;
 
     void Start()
@@ -234,7 +234,7 @@ public class ShinerBehavior : EnemyBase
         //Move AttackBox
         Vector2 dir = (AttackTarget.transform.position - transform.position).normalized;
         shinerAnim.SetTrigger("Attack");
-        SFXManager.instance.PlaySFX(attackSFX, transform, .3f);
+        SFXManager.instance.PlaySFX(attackSFX, transform, 1f);
         hurtBox.transform.localPosition = Vector2.zero + (dir * attackReach);
         hurtBox.gameObject.SetActive(true);
 

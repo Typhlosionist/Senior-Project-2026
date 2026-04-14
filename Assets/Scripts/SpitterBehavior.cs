@@ -22,7 +22,7 @@ public class SpitterBehavior : EnemyBase
 
     [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
-    
+
     void Start()
     {
         //Stats
@@ -116,7 +116,7 @@ public class SpitterBehavior : EnemyBase
             spitterAnim.SetBool("BR", true);
         }
         spitterAnim.SetTrigger("Attack");
-        SFXManager.instance.PlaySFX(attackSFX, transform, .3f);
+        SFXManager.instance.PlaySFX(attackSFX, transform, 1f);
         shot.GetComponent<SpitterShot>().setValues(dir, shotSpeed, Damage, isNightmode);
 
         if (isNightmode)

@@ -44,13 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1628b6638d68a8843bb48f12f7a0f8f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonManager
-  dungeonGenerator: {fileID: 5934886902294734252, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
+  dungeonGenerator: {fileID: 0}
   levelExitPrefab: {fileID: 4687017980384211178, guid: b82fe253cb2843a45aba62af6a005798, type: 3}
-  navGridPrefab: {fileID: 2873904665374790407, guid: 02ea8f8d283cfa949b6ee0f154dee6ac, type: 3}
-  player: {fileID: 3425437296133134468, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-  enemyTypes:
-  - {fileID: 4230250071954917259, guid: f89e99627e2426942837e0f0bc11f6c1, type: 3}
-  - {fileID: 7279296804068032560, guid: 7d016da4074a71e47b48d9c5566fe38f, type: 3}
-  - {fileID: 5358961323757698928, guid: 8ad38b0ddcd3d5b45928d02366aba9b8, type: 3}
-  - {fileID: 4485160149239802741, guid: 3291a5881b7bfd540a41023a924f8a9a, type: 3}
+  player: {fileID: 0}
   exitRoomWarningBuffer: 2

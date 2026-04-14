@@ -5,15 +5,10 @@ public class NavGrid : MonoBehaviour
 {
     //Configuration options
     [SerializeField] GameObject Node;
-    [SerializeField] public int nodesVertical = 2;
-    [SerializeField] public int nodesHorizontal = 2;
+    [SerializeField] int nodesVertical = 2;
+    [SerializeField] int nodesHorizontal = 2;
     [SerializeField] float nodeSpacing = 5;
     [SerializeField] float detectionRadius = 0.4f;
-
-    [SerializeField] public int enemiesPerWave = 3;
-    [SerializeField] public int waveCount = 3;
-    public List<int> spawnWeights;
-    bool spawned = false;
 
     //Debug Options
     [SerializeField] bool nodesVisible = true;
@@ -21,22 +16,15 @@ public class NavGrid : MonoBehaviour
     //Grid
     public List<GameObject> nodes = new List<GameObject>();
 
-    private bool initialized = false;
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (!initialized)
-            Initialize();
-    }
-
-    public void Initialize()
-    {
-        initialized = true;
-
         for(int i = 0 ; i < nodesHorizontal; i++)
         {
             for(int j = 0 ; j < nodesVertical; j++)
             {
+                
                 float offset = nodeSpacing/2;
                 
                 Vector2 posVec = new Vector2(i*nodeSpacing, j*nodeSpacing);
@@ -47,14 +35,16 @@ public class NavGrid : MonoBehaviour
                 }
 
                 Collider2D hit = Physics2D.OverlapCircle((Vector2)transform.position + posVec, detectionRadius, LayerMask.GetMask("Wall"));
+                //Debug.Log(hit);
                 if(hit == null)
                 {
                     GameObject nodeObj = Instantiate(Node, (Vector2)transform.position + posVec, Quaternion.identity);
-                    nodeObj.transform.SetParent(transform, true);
                     nodeObj.GetComponent<node>().parentSpawner = this;
 
                     nodes.Add(nodeObj);
                 }
+
+
             }
         }
 
@@ -72,13 +62,11 @@ public class NavGrid : MonoBehaviour
             }
         }
 
-        var collider = gameObject.AddComponent<BoxCollider2D>();
-        collider.isTrigger = true;
-        collider.size = new Vector2(nodesHorizontal * nodeSpacing, nodesVertical * nodeSpacing);
-        collider.offset = new Vector2((nodesHorizontal - 1) / 2.0f * nodeSpacing, (nodesVertical - 1) / 2.0f * nodeSpacing);
-
         //Cleanup
         KeepLargestCluster();
+
+
+
     }
 
     //Helper
@@ -247,20 +235,6 @@ public class NavGrid : MonoBehaviour
         }
 
         return closestNode;
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (spawned) return;
-        if (!other.CompareTag("Player")) return;
-
-        spawned = true;
-
-        var spawner = GetComponentInChildren<Spawner>();
-        if (spawner != null)
-        {
-            spawner.InitiateSpawn(enemiesPerWave, waveCount, spawnWeights);
-        }
     }
 }
 
