@@ -262,6 +262,13 @@ public class NavGrid : MonoBehaviour
         {
             spawner.InitiateSpawn(enemiesPerWave, waveCount, spawnWeights);
         }
+
+        var roomLock = GetComponentInChildren<RoomLock>();
+        if (roomLock != null)
+        {
+            roomLock.LockRoom();
+        }
+        
         Destroy(gameObject.GetComponent<BoxCollider2D>());
     }
 }
