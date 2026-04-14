@@ -35,7 +35,6 @@ public class DayNightTimer : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-        GameManager.Instance.time += Time.deltaTime;
 
         if(!hasTriggered){
             // Clamp between 0 and 1

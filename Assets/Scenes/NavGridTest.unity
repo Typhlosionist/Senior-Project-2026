@@ -596,6 +596,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1974328766858993523, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
   m_PrefabInstance: {fileID: 12661322}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &459532584 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4210548336253915911, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+  m_PrefabInstance: {fileID: 1042500547}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &482982982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -795,6 +800,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3425437296133134468, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
   m_PrefabInstance: {fileID: 1042500547}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &615153936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459532584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f420831d92ed3d408f2531b94bfea31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenu
+  PauseMenuUI: {fileID: 1882229634}
 --- !u!1001 &827976480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1117,14 +1135,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 514517353}
-    - target: {fileID: 3335688943832338847, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-      propertyPath: m_Radius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3335688943832338847, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-      propertyPath: m_IncludeLayers.m_Bits
-      value: 16311
-      objectReference: {fileID: 0}
     - target: {fileID: 3425437296133134468, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.29
@@ -1169,18 +1179,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4793697818197812897, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-      propertyPath: PauseMenuUI
-      value: 
-      objectReference: {fileID: 1882229634}
-    - target: {fileID: 8780891582885712886, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-      propertyPath: m_Radius
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4210548336253915911, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 615153936}
   m_SourcePrefab: {fileID: 100100000, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
 --- !u!1 &1126047800 stripped
 GameObject:

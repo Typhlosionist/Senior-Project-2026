@@ -189,6 +189,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3425437296133134468, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
   m_PrefabInstance: {fileID: 1032936631}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &562189973 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5934886902294734252, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
+  m_PrefabInstance: {fileID: 250757233235907866}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9b8c486cb3fefc4f875c6d4ab98a9a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
 --- !u!1 &612753300
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,17 +245,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &638660532 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5934886902294734252, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
-  m_PrefabInstance: {fileID: 250757233235907866}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b8c486cb3fefc4f875c6d4ab98a9a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
 --- !u!1001 &706245648
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27326,10 +27326,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1937115080}
     - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
-      propertyPath: gameOver
-      value: 
-      objectReference: {fileID: 1478191048}
-    - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1474250007}
@@ -27659,7 +27655,7 @@ PrefabInstance:
     - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
       propertyPath: dungeonGenerator
       value: 
-      objectReference: {fileID: 638660532}
+      objectReference: {fileID: 562189973}
     - target: {fileID: 5776496252447404822, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.75818
@@ -27716,11 +27712,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc6268c4d5c2874390e8304ce0993ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealthBar
---- !u!1 &1478191048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1974328766858993523, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
-  m_PrefabInstance: {fileID: 6721064166573143727}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1684108002
 PrefabInstance:
   m_ObjectHideFlags: 0
