@@ -20,7 +20,6 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
-        
     }
 
     public void Resume()
@@ -39,7 +38,7 @@ public class PauseMenu : MonoBehaviour
 
     public void loadMenu()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(0);
     }
 
     public void Quit()

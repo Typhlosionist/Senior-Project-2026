@@ -417,6 +417,7 @@ MonoBehaviour:
   flashes: 3
   sprite: {fileID: 0}
   healthBar: {fileID: 0}
+  gameOver: {fileID: 0}
   damageSFX: {fileID: 8300000, guid: 0b4327f6d73d7a64696ee3510bee0f35, type: 3}
   volume: {fileID: 0}
 --- !u!114 &2507097544918246196

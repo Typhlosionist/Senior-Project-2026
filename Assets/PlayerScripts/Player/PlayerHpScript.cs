@@ -17,6 +17,8 @@ public class PlayerHpScript : MonoBehaviour
     public SpriteRenderer sprite;
     public HealthBar healthBar;
     
+    public GameObject gameOver;
+    
     private bool isDashing;
 
     [Header("SFX")]
@@ -79,7 +81,7 @@ public class PlayerHpScript : MonoBehaviour
         if (!god)
         {
             currentHp -= damage;
-            SFXManager.instance.PlaySFX(damageSFX, transform, 1f);
+            SFXManager.instance.PlaySFX(damageSFX, transform, .3f);
             healthBar.SetHealth(currentHp);
 
             if (currentHp <= 0)
@@ -92,7 +94,7 @@ public class PlayerHpScript : MonoBehaviour
     public void die()
     {
         //play death anim
-        //go to gameover
+        gameOver.SetActive(true);
         gameObject.SetActive(false);
         Debug.Log("RIP");
     }
