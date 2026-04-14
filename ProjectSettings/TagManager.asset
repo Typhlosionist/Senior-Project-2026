@@ -48,6 +48,9 @@ TagManager:
   - name: Dungeon
     uniqueID: 2996057291
     locked: 0
+  - name: Enemy
+    uniqueID: 1487744957
+    locked: 0
   - name: Player
     uniqueID: 1272399919
     locked: 0

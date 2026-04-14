@@ -10,6 +10,11 @@ public class NavGrid : MonoBehaviour
     [SerializeField] float nodeSpacing = 5;
     [SerializeField] float detectionRadius = 0.4f;
 
+    [SerializeField] public int enemiesPerWave = 3;
+    [SerializeField] public int waveCount = 3;
+    public List<int> spawnWeights;
+    bool spawned = false;
+
     //Debug Options
     [SerializeField] bool nodesVisible = true;
 
@@ -66,6 +71,11 @@ public class NavGrid : MonoBehaviour
                 }
             }
         }
+
+        var collider = gameObject.AddComponent<BoxCollider2D>();
+        collider.isTrigger = true;
+        collider.size = new Vector2(nodesHorizontal * nodeSpacing, nodesVertical * nodeSpacing);
+        collider.offset = new Vector2((nodesHorizontal - 1) / 2.0f * nodeSpacing, (nodesVertical - 1) / 2.0f * nodeSpacing);
 
         //Cleanup
         KeepLargestCluster();
@@ -237,6 +247,20 @@ public class NavGrid : MonoBehaviour
         }
 
         return closestNode;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (spawned) return;
+        if (!other.CompareTag("Player")) return;
+
+        spawned = true;
+
+        var spawner = GetComponentInChildren<Spawner>();
+        if (spawner != null)
+        {
+            spawner.InitiateSpawn(enemiesPerWave, waveCount, spawnWeights);
+        }
     }
 }
 

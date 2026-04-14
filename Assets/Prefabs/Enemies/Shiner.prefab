@@ -254,6 +254,11 @@ MonoBehaviour:
   CurrentHealth: 0
   MoveSpeed: 1
   Damage: 1
+  slowed: 0
+  frozen: 0
+  onFire: 0
+  knockedBack: 0
+  hasSpreadFire: 0
   AttackTarget: {fileID: 0}
   LineOfSight: 0
   raycastMask:
@@ -359,8 +364,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1487744957
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_MaskInteraction: 0
   m_Sprite: {fileID: 4493077389576853052, guid: d6c95af8b015a934488f6add88f131a2, type: 3}
@@ -393,7 +398,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 00000000cb3494b22f48d74b6b99c2d1574c5aa0
+  m_ApplyToSortingLayers: 00000000cb3494b22f48d74b6b99c2d1574c5aa0e967806e2dffac2bbd2fad58
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

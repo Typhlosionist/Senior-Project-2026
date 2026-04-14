@@ -34434,6 +34434,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9b8c486cb3fefc4f875c6d4ab98a9a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonGenerator
+--- !u!1 &1685603123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1685603125}
+  - component: {fileID: 1685603124}
+  m_Layer: 0
+  m_Name: GameStateManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1685603124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685603123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e404af75c91f2d3468e67a1f7eeda5c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameStateManager
+  currentLevel: 0
+--- !u!4 &1685603125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685603123}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 43.71947, y: 54.48754, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1937115080 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7705237323736615313, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
@@ -82178,6 +82223,26 @@ PrefabInstance:
       propertyPath: dungeonGenerator
       value: 
       objectReference: {fileID: 1552100005}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: enemyTypes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: 'enemyTypes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4230250071954917259, guid: f89e99627e2426942837e0f0bc11f6c1, type: 3}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: 'enemyTypes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 7279296804068032560, guid: 7d016da4074a71e47b48d9c5566fe38f, type: 3}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: 'enemyTypes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5358961323757698928, guid: 8ad38b0ddcd3d5b45928d02366aba9b8, type: 3}
+    - target: {fileID: 5450650769557867846, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
+      propertyPath: 'enemyTypes.Array.data[3]'
+      value: 
+      objectReference: {fileID: 4485160149239802741, guid: 3291a5881b7bfd540a41023a924f8a9a, type: 3}
     - target: {fileID: 5776496252447404822, guid: 3432a19502d435744b368ff6b03f77a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -82236,3 +82301,4 @@ SceneRoots:
   - {fileID: 1994068932}
   - {fileID: 1032936631}
   - {fileID: 8237827014626198213}
+  - {fileID: 1685603125}

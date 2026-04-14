@@ -168,8 +168,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1487744957
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 5609500302020201274, guid: a99e021fa7c59ef498a913277f5e8749, type: 3}
@@ -180,7 +180,7 @@ SpriteRenderer:
   m_Size: {x: 8.17, y: 8.08}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!1 &7279296804068032560
 GameObject:
@@ -321,10 +321,10 @@ BoxCollider2D:
   m_Offset: {x: 0.28388584, y: -0.11828613}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.61, y: 6.4}
+    newSize: {x: 7.61, y: 6.4}
+    adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
@@ -347,6 +347,10 @@ MonoBehaviour:
   MoveSpeed: 1.2
   Damage: 1
   slowed: 0
+  frozen: 0
+  onFire: 0
+  knockedBack: 0
+  hasSpreadFire: 0
   AttackTarget: {fileID: 0}
   LineOfSight: 0
   raycastMask:

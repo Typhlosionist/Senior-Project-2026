@@ -11,6 +11,8 @@ public class DungeonManager : MonoBehaviour
 
     public Transform player;
 
+    public List<GameObject> enemyTypes;
+
     //public ExitRoomWarning exitRoomWarningPrefab;
 
     public int exitRoomWarningBuffer = 2;
@@ -28,6 +30,8 @@ public class DungeonManager : MonoBehaviour
 
     public Vector3 NextLevel()
     {
+        GameStateManager.Instance.CompleteLevel();
+        SpawnerParameters spawnerParameters = GameStateManager.Instance.CreateSpawnerParameters();
         if (levelParent != null)
         {
             Destroy(levelParent.gameObject);
@@ -37,7 +41,7 @@ public class DungeonManager : MonoBehaviour
         currentDungeon = dungeonGenerator.CreateDungeon();
 
         List<Room> rooms = currentDungeon.GetRooms();
-        SetNavGrids(rooms);
+        SetNavGrids(rooms, spawnerParameters);
 
 
         LevelExit exit = Instantiate(levelExitPrefab, currentDungeon.GetExitLocation() + spawnOffset, Quaternion.identity);
@@ -61,7 +65,7 @@ public class DungeonManager : MonoBehaviour
         return currentDungeon.GetStartLocation() + spawnOffset;
     }
 
-    public void SetNavGrids(List<Room> rooms)
+    public void SetNavGrids(List<Room> rooms, SpawnerParameters spawnerParameters)
     {
         for (int i = 1; i < rooms.Count; i++)
         {
@@ -73,7 +77,17 @@ public class DungeonManager : MonoBehaviour
 
             navGrid.nodesVertical = room.height;
             navGrid.nodesHorizontal = room.width;
+
+            Spawner spawner = navGrid.gameObject.AddComponent<Spawner>();
+            spawner.enemyTypes = enemyTypes;
+            navGrid.spawnWeights = spawnerParameters.enemySpawnWeights;
+
+            navGrid.enemiesPerWave = Random.Range(spawnerParameters.minEnemiesPerWave, spawnerParameters.maxEnemiesPerWave + 1);
+            navGrid.waveCount = Random.Range(spawnerParameters.minWaves, spawnerParameters.maxWaves + 1);
+
             navGrid.Initialize();
         }
+
+        
     }
 }
