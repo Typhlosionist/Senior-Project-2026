@@ -22,7 +22,6 @@ public class PlayerMove : MonoBehaviour
     public static bool isDashing = false;
     
     public float dashLen;
-    private float dashCd = 1f;
     private float dashCount;
     private float dashCool;
     public float dashSpeed;
