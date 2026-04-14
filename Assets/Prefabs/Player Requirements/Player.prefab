@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 4210548336253915911}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 15.5, y: 15.5, z: 0}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -341,8 +341,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.10671536, y: -0.39637446}
-  m_Radius: 2.8630126
+  m_Offset: {x: 0.2726555, y: -0.39637446}
+  m_Radius: 2.8
 --- !u!58 &8780891582885712886
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -377,8 +377,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.1067154, y: -0.3963745}
-  m_Radius: 2.863013
+  m_Offset: {x: 0.27266818, y: -0.39637446}
+  m_Radius: 2
 --- !u!114 &6851032148477793583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,8 +598,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
