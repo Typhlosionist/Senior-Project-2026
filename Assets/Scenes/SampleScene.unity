@@ -27325,6 +27325,14 @@ PrefabInstance:
       propertyPath: upgradeTree
       value: 
       objectReference: {fileID: 1937115080}
+    - target: {fileID: 1621687167087489827, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1621687167087489827, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
+      propertyPath: m_PointLightOuterRadius
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2956219508254292652, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
       propertyPath: healthBar
       value: 
