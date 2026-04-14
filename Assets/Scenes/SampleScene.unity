@@ -179,6 +179,18 @@ PrefabInstance:
       propertyPath: nightSFX
       value: 
       objectReference: {fileID: 8300000, guid: e6621631fffce254d926d0ffbfe27dba, type: 3}
+    - target: {fileID: 8240042503116457421, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240042503116457421, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 8240042503116457421, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -27766,6 +27778,18 @@ PrefabInstance:
     - target: {fileID: 1956683402931422210, guid: 46b12159fc4acda4ea82245d1cc2044c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788241209988714831, guid: 46b12159fc4acda4ea82245d1cc2044c, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788241209988714831, guid: 46b12159fc4acda4ea82245d1cc2044c, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 2788241209988714831, guid: 46b12159fc4acda4ea82245d1cc2044c, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 3554659209562531710, guid: 46b12159fc4acda4ea82245d1cc2044c, type: 3}
       propertyPath: m_LocalPosition.x
