@@ -1,12 +1,13 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameOver : MonoBehaviour
+
+public class WinMenu : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Retry()
+    public void Replay()
     {
-        Debug.Log("Retry");
+        Debug.Log("Replay");
         GameStateManager.Instance.currentLevel = 0;
         Shooting.spreadOne = false;
         Shooting.spreadTwo = false;
@@ -17,10 +18,16 @@ public class GameOver : MonoBehaviour
         Bullter.ice = false;
         SceneManager.LoadScene("SampleScene");
     }
-
+    
     public void MainMenu()
     {
-        Debug.Log("back to main menu");
+        Debug.Log("MainMenu");
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
     }
 }

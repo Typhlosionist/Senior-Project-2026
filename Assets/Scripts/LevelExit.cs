@@ -9,9 +9,14 @@ public class LevelExit : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameStateManager.Instance.CompleteLevel();
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            if (GameStateManager.Instance.currentLevel >= 2)
+            {
+                SceneManager.LoadScene("WinScreen");
+                return;
+            }
             
+            GameStateManager.Instance.CompleteLevel();
+            SceneManager.LoadScene("SampleScene");
         }
     }
 }

@@ -29,7 +29,7 @@ public class DayNightTimer : MonoBehaviour
         if(handle == null){
             handle = transform.Find("Canvas/Timer/handle").GetComponent<RectTransform>();
         }
-        SFXManager.instance.PlaySFX(daySFX, transform, 1f);
+        SFXManager.instance.PlaySFX(daySFX, transform, .2f);
     }
 
     void Update()
@@ -88,7 +88,7 @@ public class DayNightTimer : MonoBehaviour
 
     private IEnumerator NightTime()
     {
-        SFXManager.instance.PlaySFX(nightSFX, transform, 1f);
+        SFXManager.instance.PlaySFX(nightSFX, transform, .3f);
         SFXplaying = true;
         yield return new WaitForSeconds(nightSFX.length);
         SFXplaying = false;

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class NavGrid : MonoBehaviour   
 {
@@ -261,6 +262,7 @@ public class NavGrid : MonoBehaviour
         {
             spawner.InitiateSpawn(enemiesPerWave, waveCount, spawnWeights);
         }
+        Destroy(gameObject.GetComponent<BoxCollider2D>());
     }
 }
 
