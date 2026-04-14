@@ -70,9 +70,9 @@ MonoBehaviour:
   floorTilemap: {fileID: 0}
   wallTilemap: {fileID: 0}
   floorTile: {fileID: 11400000, guid: 33a5307f10382b7449ccdd31137a0f99, type: 2}
-  startTile: {fileID: 11400000, guid: e0cd95ed53cbe9445b3f7628feb4795c, type: 2}
+  startTile: {fileID: 11400000, guid: 33a5307f10382b7449ccdd31137a0f99, type: 2}
   wallGenerator:
-    defaultWallTile: {fileID: 0}
+    defaultWallTile: {fileID: 11400000, guid: 8b135fabde2dc414bbe2274c1ea02070, type: 2}
     topExitTile: {fileID: 11400000, guid: 33a5307f10382b7449ccdd31137a0f99, type: 2}
     rightExitTile: {fileID: 11400000, guid: 33a5307f10382b7449ccdd31137a0f99, type: 2}
     leftExitTile: {fileID: 11400000, guid: 33a5307f10382b7449ccdd31137a0f99, type: 2}
