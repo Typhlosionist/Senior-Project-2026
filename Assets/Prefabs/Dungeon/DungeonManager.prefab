@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DungeonManager
   dungeonGenerator: {fileID: 5934886902294734252, guid: bfcb34894d5224647b0848e025d2ef2e, type: 3}
   levelExitPrefab: {fileID: 4687017980384211178, guid: b82fe253cb2843a45aba62af6a005798, type: 3}
-  barrierPrefab: {fileID: 3602607676766038446, guid: 02ca3b58693b8f24eb8bbe6793f524e0, type: 3}
+  barrierPrefab: {fileID: 2204385640700403400, guid: fc53916b6fc9a1443a299f7fd9914014, type: 3}
   navGridPrefab: {fileID: 2873904665374790407, guid: 02ea8f8d283cfa949b6ee0f154dee6ac, type: 3}
   player: {fileID: 3425437296133134468, guid: ad1477e4d135cfd44a7bba0d8f409677, type: 3}
   enemyTypes:
