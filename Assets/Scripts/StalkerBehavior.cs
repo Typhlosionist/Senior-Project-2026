@@ -20,7 +20,7 @@ public class StalkerBehavior : EnemyBase
     [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
     
-    Animator stalkerAnim;
+    [SerializeField] Animator stalkerAnim;
     
     bool canAttack = true;
 
@@ -41,7 +41,7 @@ public class StalkerBehavior : EnemyBase
 
         hurtBox.gameObject.SetActive(false);
         hurtBox.GetComponent<AttackBox>().setDamage(Damage);
-        stalkerAnim = GetComponentInChildren<Animator>();
+        //stalkerAnim = GetComponentInChildren<Animator>();
         
 
         //State

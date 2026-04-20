@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SwooperBehavior : EnemyBase
 {
-    Animator swooperAnim;
+    [SerializeField] Animator swooperAnim;
     [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
 
@@ -16,7 +16,7 @@ public class SwooperBehavior : EnemyBase
      //Objects and Components
     rb = GetComponent<Rigidbody2D>();
     sprite = transform.Find("Sprite");
-    swooperAnim = GetComponentInChildren<Animator>();
+    //swooperAnim = GetComponentInChildren<Animator>();
 
     AttackTarget = GameObject.Find("Player");
 

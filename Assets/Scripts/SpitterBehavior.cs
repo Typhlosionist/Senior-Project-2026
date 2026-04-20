@@ -18,7 +18,7 @@ public class SpitterBehavior : EnemyBase
 
     //Behvior related variable
     bool canAttack = true;
-    Animator spitterAnim;
+    [SerializeField] Animator spitterAnim;
 
     [Header("SFX")]
     [SerializeField] private AudioClip attackSFX;
@@ -31,7 +31,7 @@ public class SpitterBehavior : EnemyBase
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
         sprite = transform.Find("Sprite");
-        spitterAnim = GetComponentInChildren<Animator>();
+        //spitterAnim = GetComponentInChildren<Animator>();
 
         AttackTarget = GameObject.Find("Player");
 

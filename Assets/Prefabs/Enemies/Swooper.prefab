@@ -253,6 +253,8 @@ MonoBehaviour:
   darknessController: {fileID: 0}
   isNightmode: 0
   enemySFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
+  effects: {fileID: 8551642633708305144}
+  swooperAnim: {fileID: 8755129076241205299}
   attackSFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
 --- !u!1 &6629949498595200475
 GameObject:
@@ -265,6 +267,7 @@ GameObject:
   - component: {fileID: 1082356948116109767}
   - component: {fileID: 6757045365395065096}
   - component: {fileID: 7839936519947725346}
+  - component: {fileID: 8551642633708305144}
   m_Layer: 10
   m_Name: Hitbox
   m_TagString: Enemy
@@ -345,6 +348,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127a0afba29cf9d41981d4243e891e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!95 &8551642633708305144
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6629949498595200475}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f08c37a9234f6e4d928edd09b9a5790, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7596398360412651407
 GameObject:
   m_ObjectHideFlags: 0

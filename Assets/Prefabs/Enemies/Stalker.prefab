@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3450603949685702863}
   - component: {fileID: 3286633319385429859}
   - component: {fileID: 7221855734743337741}
+  - component: {fileID: 3155322338214908801}
   m_Layer: 10
   m_Name: Hitbox
   m_TagString: Enemy
@@ -91,6 +92,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127a0afba29cf9d41981d4243e891e37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHitbox
+--- !u!95 &3155322338214908801
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542252426168514233}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f08c37a9234f6e4d928edd09b9a5790, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2585017697713220138
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,6 +481,7 @@ MonoBehaviour:
   darknessController: {fileID: 0}
   isNightmode: 0
   enemySFX: {fileID: 8300000, guid: 8473bfeaa9d01844999b8dab204917bd, type: 3}
+  effects: {fileID: 3155322338214908801}
   attackDistance: 1.75
   attackDelay: 0.3
   attackDuration: 0.3
@@ -465,6 +489,7 @@ MonoBehaviour:
   attackReach: 10
   lungeSpeed: 8
   attackSFX: {fileID: 8300000, guid: 8473bfeaa9d01844999b8dab204917bd, type: 3}
+  stalkerAnim: {fileID: 1220946709333802379}
 --- !u!58 &1784439052915226296
 CircleCollider2D:
   m_ObjectHideFlags: 0

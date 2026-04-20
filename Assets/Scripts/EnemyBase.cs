@@ -41,6 +41,9 @@ public class EnemyBase : MonoBehaviour
     [Header("SFX")]
     [SerializeField] private AudioClip enemySFX;
 
+    [Header("Effects")]
+    [SerializeField] private Animator effects;
+
     void Awake()
     {
         originalMoveSpeed = MoveSpeed;
@@ -149,21 +152,25 @@ public class EnemyBase : MonoBehaviour
     {
         if (slowed)
         {
+            effects.SetTrigger("Ice");
             frozen = true;
             MoveSpeed = 0;
             if (sr != null) sr.color = new Color(0.4f, 0.6f, 1f); // solid blue tint while frozen
             Debug.Log(this.name + " is frozen!");
+            
 
             yield return new WaitForSeconds(slowDuration);
-
+            effects.SetTrigger("Ice");
             if (sr != null) sr.color = Color.white;
             MoveSpeed = originalMoveSpeed;
             slowed = false;
             frozen = false;
             Debug.Log(this.name + " is no longer frozen");
+            
         }
         else
         {
+            effects.SetTrigger("Ice");
             slowed = true;
             MoveSpeed = originalMoveSpeed / 2;
             if (sr != null) sr.color = new Color(0.7f, 0.85f, 1f); // lighter blue tint while slowed
@@ -173,6 +180,7 @@ public class EnemyBase : MonoBehaviour
 
             if (!frozen)
             {
+                effects.SetTrigger("Ice");
                 if (sr != null) sr.color = Color.white;
                 MoveSpeed = originalMoveSpeed;
                 slowed = false;
@@ -184,7 +192,7 @@ public class EnemyBase : MonoBehaviour
     public IEnumerator Burn(float burnDamage, float burnInterval, float burnDuration)
     {
         float elapsed = 0f;
-        
+        effects.SetTrigger("Fire");
         while (elapsed < burnDuration)
         {
             yield return new WaitForSeconds(burnInterval);
@@ -199,7 +207,7 @@ public class EnemyBase : MonoBehaviour
 
             Debug.Log(this.name + " is burning");
         }
-
+        effects.SetTrigger("Fire");
         onFire = false;
         Debug.Log(this.name + " is no longer burning");
     }
@@ -225,7 +233,7 @@ public class EnemyBase : MonoBehaviour
     {
         knockedBack = true;
         float elapsed = 0f;
-
+        effects.SetTrigger("Gust");
         while (elapsed < knockbackDuration)
         {
             rb.linearVelocity = direction * knockbackForce;

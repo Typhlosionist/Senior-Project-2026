@@ -8,7 +8,7 @@ public class ShinerBehavior : EnemyBase
     Transform hurtBox;
     CircleCollider2D circCollider;
     Light2D nightLight;
-    Animator shinerAnim;
+    [SerializeField] Animator shinerAnim;
 
     [Header("Attack Variables")]
     [SerializeField] float attackDistance = 1;
@@ -44,7 +44,7 @@ public class ShinerBehavior : EnemyBase
 
         //Objects and Components
         rb = GetComponent<Rigidbody2D>();
-        shinerAnim = GetComponentInChildren<Animator>();
+        //shinerAnim = GetComponentInChildren<Animator>();
         sprite = transform.Find("Sprite");
         hurtBox = transform.Find("AttackBox");
         circCollider = GetComponent<CircleCollider2D>();
