@@ -252,6 +252,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   darknessController: {fileID: 0}
   isNightmode: 0
+  enemySFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
   attackSFX: {fileID: 8300000, guid: 78f3d01607c278e468522180916e2ab7, type: 3}
 --- !u!1 &6629949498595200475
 GameObject:

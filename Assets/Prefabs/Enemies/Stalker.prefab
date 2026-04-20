@@ -457,6 +457,7 @@ MonoBehaviour:
   sr: {fileID: 0}
   darknessController: {fileID: 0}
   isNightmode: 0
+  enemySFX: {fileID: 8300000, guid: 8473bfeaa9d01844999b8dab204917bd, type: 3}
   attackDistance: 1.75
   attackDelay: 0.3
   attackDuration: 0.3

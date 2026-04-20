@@ -38,7 +38,8 @@ public class EnemyBase : MonoBehaviour
     [HideInInspector] public DarknessController darknessController;
     [HideInInspector] public bool isNightmode = false;
 
-    
+    [Header("SFX")]
+    [SerializeField] private AudioClip enemySFX;
 
     void Awake()
     {
@@ -105,8 +106,11 @@ public class EnemyBase : MonoBehaviour
     public void ObjectCollide(Collider2D other)
     {
         Debug.Log(other.name + " Entered hitbox of " + this.name + " with tag: " + other.tag);
-
-        if(other.CompareTag("bullet")){
+        if (other.CompareTag("Player"))
+        {
+            SFXManager.instance.PlaySFX(enemySFX, transform, .1f);
+        }
+            if (other.CompareTag("bullet")){
 
             Bullter bullet = other.GetComponent<Bullter>();
 
