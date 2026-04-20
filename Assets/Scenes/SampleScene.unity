@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &20421657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8577638293194237548, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
+  m_PrefabInstance: {fileID: 227869906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &130909036 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1974328766858993523, guid: 1a299bbab9cfdc64d811aae66f324ce2, type: 3}
@@ -132,6 +143,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1661941474089423274, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 3641455254884576570, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.550049
@@ -184,6 +199,10 @@ PrefabInstance:
       propertyPath: nightSFX
       value: 
       objectReference: {fileID: 8300000, guid: e6621631fffce254d926d0ffbfe27dba, type: 3}
+    - target: {fileID: 7365147624688690733, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
+      propertyPath: timeText
+      value: 
+      objectReference: {fileID: 20421657}
     - target: {fileID: 8240042503116457421, guid: eeb13041072202c4f9dc86af2dbe8b64, type: 3}
       propertyPath: m_UiScaleMode
       value: 1

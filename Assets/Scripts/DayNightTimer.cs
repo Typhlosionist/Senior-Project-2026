@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+using TMPro;
 
 public class DayNightTimer : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class DayNightTimer : MonoBehaviour
 
     public float elapsedTime = 0f;
     public bool hasTriggered = false;
+
+    public TMP_Text timeText;
 
     // Optional event you can hook into from inspector or code
     public DarknessController nightfall;
@@ -35,7 +38,7 @@ public class DayNightTimer : MonoBehaviour
     void Update()
     {
         elapsedTime += Time.deltaTime;
-
+        DisplayTime();
         if(!hasTriggered){
             // Clamp between 0 and 1
             float t = Mathf.Clamp01(elapsedTime / nightThreshold);
@@ -86,6 +89,12 @@ public class DayNightTimer : MonoBehaviour
         hasTriggered = false;
     }
 
+    public void DisplayTime()
+    {
+        float minutes = Mathf.FloorToInt(elapsedTime / 60);
+        float seconds = Mathf.FloorToInt(elapsedTime % 60);
+        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
     private IEnumerator NightTime()
     {
         SFXManager.instance.PlaySFX(nightSFX, transform, .3f);
