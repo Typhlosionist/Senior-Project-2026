@@ -26,7 +26,8 @@ public class Shooting : MonoBehaviour
     public static bool spreadOne = false;
     public static bool spreadTwo = false;
 
-
+    [Header("Animator")]
+    [SerializeField] private Animator playerAnimator;
     [Header("SFX")]
     [SerializeField] private AudioClip shootSFX;
     
@@ -97,7 +98,7 @@ public class Shooting : MonoBehaviour
 
                     GameObject bull = Instantiate(bullet, bulletTrans.position, bulletTrans.rotation);
                     bull.tag = "bullet";
-
+                    playerAnimator.SetTrigger("Shoot");
                     bull.GetComponent<Bullter>().targetPos = spreadTarget;
                 }
             }

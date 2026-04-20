@@ -51,6 +51,7 @@ MonoBehaviour:
   bullet: {fileID: 4272885084264023472, guid: 68bfdd647f9119d44bd90124ebdb0bb2, type: 3}
   bulletTrans: {fileID: 7190680362804420557}
   canFire: 0
+  playerAnimator: {fileID: 6752753900854492882}
   shootSFX: {fileID: 8300000, guid: a3607d842fdbba24897f2fe608fcf9e6, type: 3}
 --- !u!58 &5516919634463661714
 CircleCollider2D:
