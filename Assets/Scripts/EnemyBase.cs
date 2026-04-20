@@ -193,6 +193,11 @@ public class EnemyBase : MonoBehaviour
     {
         float elapsed = 0f;
         effects.SetTrigger("Fire");
+        bool isTriggerSet = effects.GetBool("Fire");
+        if (isTriggerSet)
+        {
+            Debug.Log("fire effect of " + this.name + " should play");
+        }
         while (elapsed < burnDuration)
         {
             yield return new WaitForSeconds(burnInterval);
