@@ -42,7 +42,7 @@ public class EnemyBase : MonoBehaviour
     [SerializeField] private AudioClip enemySFX;
 
     [Header("Effects")]
-    [SerializeField] private Animator effects;
+    [SerializeField] public Animator effects;
 
     void Awake()
     {
