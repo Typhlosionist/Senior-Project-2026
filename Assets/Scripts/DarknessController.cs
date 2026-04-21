@@ -5,8 +5,8 @@ using UnityEngine.Rendering.Universal;
 public class DarknessController : MonoBehaviour
 {
     Light2D lighting;
-    public float darkLevel = 0.02f;
-    public float transitionTime = 2;
+    public float darkLevel = 0.15f;
+    public float transitionTime = 60.0f;
     public bool isNight = false;
 
     
